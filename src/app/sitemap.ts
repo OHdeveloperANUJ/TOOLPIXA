@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Add all tools to sitemap
   Object.values(toolsRegistry).forEach((tool) => {
     sitemapEntries.push({
-      url: `${BASE_URL}/tools/${tool.slug}`,
+      url: `${BASE_URL}/tools/${tool.id}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
