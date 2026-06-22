@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import TiltCard from '@/components/TiltCard';
 import ToolCard from '@/components/ToolCard';
 import HeroSearch from '@/components/HeroSearch';
@@ -169,8 +170,9 @@ export default function Home() {
             const color = colors[index % colors.length];
             return (
               <TiltCard key={post.slug} href={`/blog/${post.slug}`} className={`p-xl rounded-2xl flex flex-col items-start justify-end min-h-[300px] relative overflow-hidden group animate-fade-in-up ${index > 0 ? `animate-stagger-${index}` : ''}`}>
-                <div className="absolute inset-0 z-0">
-                  <div className={`absolute inset-0 bg-gradient-to-br from-${color}/30 to-background/90 mix-blend-overlay group-hover:scale-105 transition-transform duration-700`} style={{ backgroundImage: `url(${post.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                  <Image src={post.imageUrl} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 100vw, 33vw" />
+                  <div className={`absolute inset-0 bg-gradient-to-br from-${color}/30 to-background/90 mix-blend-overlay`}></div>
                   <div className={`absolute inset-0 bg-gradient-to-t from-background via-background/90 to-${color}/20`}></div>
                 </div>
                 <div className="relative z-10 w-full">
