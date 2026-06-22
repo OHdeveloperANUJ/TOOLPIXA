@@ -244,6 +244,14 @@ function formatMarkdown(content: string) {
            <p class="text-gray-600 dark:text-gray-300 text-sm">Open a free Demat account with Groww and start building your wealth today.</p>
          </div>
          <a href="https://app.groww.in/v3cO/edi2uad9" target="_blank" rel="sponsored noopener" class="shrink-0 px-8 py-3 bg-[#00d09c] text-white font-bold rounded-lg hover:bg-[#00b386] transition-colors flex items-center gap-2 shadow-md hover:shadow-lg">Visit Groww <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+       </div>`,
+      // 4. ClearTax External Ad
+      `<div class="my-16 p-8 glass-card border border-blue-500/20 dark:border-blue-500/30 rounded-2xl bg-gradient-to-r from-blue-500/5 to-transparent dark:from-blue-500/10 flex flex-col sm:flex-row items-center gap-6 justify-between not-prose shadow-sm hover:shadow-md transition-shadow">
+         <div>
+           <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-blue-600 dark:text-blue-400">receipt_long</span> Tax Season Coming Up?</h4>
+           <p class="text-gray-600 dark:text-gray-300 text-sm">File your ITR in minutes with ClearTax, India's most trusted tax filing platform.</p>
+         </div>
+         <a href="https://cleartax.in" target="_blank" rel="sponsored noopener" class="shrink-0 px-8 py-3 bg-[#1B57F0] text-white font-bold rounded-lg hover:bg-[#123EB5] transition-colors flex items-center gap-2 shadow-md hover:shadow-lg">File Taxes <span class="material-symbols-outlined text-sm">open_in_new</span></a>
        </div>`
     ];
     return adTypes[index % adTypes.length];
