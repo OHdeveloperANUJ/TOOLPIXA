@@ -39,12 +39,12 @@ export default function LoginButton() {
   }
 
   return (
-    <button
-      onClick={() => signIn()}
+    <Link
+      href="/login"
       className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-medium text-sm hover:bg-primary-hover transition-colors"
     >
       <User size={16} />
       Sign In
-    </button>
+    </Link>
   );
 }
