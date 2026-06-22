@@ -126,6 +126,10 @@ const calculators = {
   'hash-generator': dynamic(() => import('@/components/tools/HashGenerator')),
   'read-time-calculator': dynamic(() => import('@/components/tools/ReadTimeCalculator')),
   'morse-code-translator': dynamic(() => import('@/components/tools/MorseCodeTranslator')),
+  'personal-loan-emi-calculator': dynamic(() => import('@/components/tools/PersonalLoanEmi')),
+  'bike-loan-emi-calculator': dynamic(() => import('@/components/tools/BikeLoanEmi')),
+  'education-loan-emi-calculator': dynamic(() => import('@/components/tools/EducationLoanEmi')),
+
   'home-loan-emi-calculator': dynamic(() => import('@/components/tools/HomeLoanEmi')),
   'income-tax-calculator': dynamic(() => import('@/components/tools/IncomeTaxCalculator')),
   'gpa-calculator': dynamic(() => import('@/components/tools/GpaCalculator')),

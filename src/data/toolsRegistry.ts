@@ -26,6 +26,48 @@ export interface ToolMetadata {
 }
 
 export const toolsRegistry: Record<string, ToolMetadata> = {
+  'education-loan-emi-calculator': {
+    id: 'education-loan-emi-calculator',
+    slug: 'education-loan-emi-calculator',
+    title: 'Education Loan EMI Calculator',
+    description: 'Calculate your Education Loan EMI to plan your academic finances and repayment schedule.',
+    category: 'finance',
+    icon: 'school',
+    faqs: [
+      { question: 'What is a Education Loan EMI?', answer: 'EMI stands for Equated Monthly Installment. It is the fixed amount you pay every month to repay your Education Loan.' },
+      { question: 'How is Education Loan EMI calculated?', answer: 'It is calculated using the standard formula: E = P * r * (1 + r)^n / ((1 + r)^n - 1), where P is principal, r is monthly rate, and n is tenure in months.' },
+      { question: 'Are there hidden charges?', answer: 'Our calculator shows the pure mathematical EMI. Banks may charge additional processing fees or insurance which are not included in the basic EMI calculation.' }
+    ]
+  },
+
+  'bike-loan-emi-calculator': {
+    id: 'bike-loan-emi-calculator',
+    slug: 'bike-loan-emi-calculator',
+    title: 'Bike Loan EMI Calculator',
+    description: 'Calculate your Two-Wheeler / Bike Loan EMI, total interest, and plan your payments effectively.',
+    category: 'finance',
+    icon: 'two_wheeler',
+    faqs: [
+      { question: 'What is a Bike Loan EMI?', answer: 'EMI stands for Equated Monthly Installment. It is the fixed amount you pay every month to repay your Bike Loan.' },
+      { question: 'How is Bike Loan EMI calculated?', answer: 'It is calculated using the standard formula: E = P * r * (1 + r)^n / ((1 + r)^n - 1), where P is principal, r is monthly rate, and n is tenure in months.' },
+      { question: 'Are there hidden charges?', answer: 'Our calculator shows the pure mathematical EMI. Banks may charge additional processing fees or insurance which are not included in the basic EMI calculation.' }
+    ]
+  },
+
+  'personal-loan-emi-calculator': {
+    id: 'personal-loan-emi-calculator',
+    slug: 'personal-loan-emi-calculator',
+    title: 'Personal Loan EMI Calculator',
+    description: 'Calculate your Personal Loan EMI, total interest payable, and view the complete amortization schedule.',
+    category: 'finance',
+    icon: 'indian_rupee',
+    faqs: [
+      { question: 'What is a Personal Loan EMI?', answer: 'EMI stands for Equated Monthly Installment. It is the fixed amount you pay every month to repay your Personal Loan.' },
+      { question: 'How is Personal Loan EMI calculated?', answer: 'It is calculated using the standard formula: E = P * r * (1 + r)^n / ((1 + r)^n - 1), where P is principal, r is monthly rate, and n is tenure in months.' },
+      { question: 'Are there hidden charges?', answer: 'Our calculator shows the pure mathematical EMI. Banks may charge additional processing fees or insurance which are not included in the basic EMI calculation.' }
+    ]
+  },
+
   'attendance-calculator': {
     id: 'attendance-calculator',
     slug: 'attendance-calculator',
