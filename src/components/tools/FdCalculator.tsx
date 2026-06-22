@@ -7,7 +7,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, L
 
 type CalculatorType = 'FD' | 'RD';
 
-export default function FdRdCalculator() {
+export default function FdCalculator() {
   const { currency } = useStore();
   const [calcType, setCalcType] = useState<CalculatorType>('FD');
   

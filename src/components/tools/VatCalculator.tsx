@@ -5,7 +5,7 @@ import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 
-export default function GstVatCalculator() {
+export default function VatCalculator() {
   const { currency } = useStore();
   const [amount, setAmount] = useState<number>(1000);
   const [taxRate, setTaxRate] = useState<number>(18);

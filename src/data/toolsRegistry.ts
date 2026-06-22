@@ -2306,8 +2306,8 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       },
     ]
   },
-  'home-loan-emi': {
-    id: 'home-loan-emi',
+  'home-loan-emi-calculator': {
+    id: 'home-loan-emi-calculator',
     title: 'Home Loan EMI Calculator',
     seoTitle: 'Home Loan EMI Calculator - Plan Your EMI Perfectly | ToolPixa',
     seoDescription: 'Calculate your exact Home Loan EMI instantly. View detailed amortization schedules and plan your dream home budget perfectly bas ek click mein.',
@@ -2469,8 +2469,8 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     category: 'finance'
   },
-  'compound-interest': {
-    id: 'compound-interest',
+  'compound-interest-calculator': {
+    id: 'compound-interest-calculator',
     title: 'Compound Interest Calculator',
     seoTitle: 'Compound Interest Calculator - See Your Wealth Grow | ToolPixa',
     seoDescription: 'Calculate compound interest daily, monthly, or yearly. Visualize how compounding accelerates your wealth over time. Start calculating your returns now.',
@@ -2494,8 +2494,8 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       { question: 'Which investments offer compound interest in India?', answer: 'Many Indian investments offer compounding, such as Public Provident Fund (PPF), Fixed Deposits (if interest is reinvested), National Savings Certificate (NSC), and Mutual Funds (Growth option).' }
     ]
   },
-  'fd-rd-calculator': {
-    id: 'fd-rd-calculator',
+  'fd-calculator': {
+    id: 'fd-calculator',
     slug: 'fd-rd-calculator',
     title: 'FD / RD Calculator',
     description: 'Calculate maturity values, total investment, and total interest earned for your Fixed Deposits (FD) and Recurring Deposits (RD).',
@@ -2532,10 +2532,61 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       },
     ]
   },
-  'bmr-tdee-calculator': {
-    id: 'bmr-tdee-calculator',
+  'rd-calculator': {
+    id: 'rd-calculator',
+    slug: 'fd-rd-calculator',
+    title: 'FD / RD Calculator',
+    description: 'Calculate maturity values, total investment, and total interest earned for your Fixed Deposits (FD) and Recurring Deposits (RD).',
+    category: 'finance',
+    icon: 'savings',
+    faqs: [
+      {
+        question: `What is the primary use of the FD / RD Calculator?`,
+        answer: `The FD / RD Calculator is designed to provide quick, accurate mathematical estimates and projections related to its specific financial domain. It helps you make informed, data-driven decisions globally without needing complex spreadsheets.`
+      },
+      {
+        question: `Is the FD / RD Calculator accurate for international use?`,
+        answer: `Yes, the core mathematics and logic behind the FD / RD Calculator are universally applicable. While specific localized tax laws or variable rates may differ by region, the fundamental formula works globally. Always consult a local financial advisor for region-specific compliance.`
+      },
+      {
+        question: `How often should I use the FD / RD Calculator?`,
+        answer: `It's best to use the FD / RD Calculator whenever your financial variables change—such as interest rates, principal amounts, or time horizons. Regular recalculation ensures your projections remain accurate over time.`
+      },
+      {
+        question: `Are the results from the FD / RD Calculator guaranteed?`,
+        answer: `No, the FD / RD Calculator provides estimates based on the inputs you provide. It assumes constant rates and ideal conditions unless otherwise specified. Real-world financial outcomes are subject to market volatility and economic changes.`
+      },
+      {
+        question: `Can I use this for professional financial planning?`,
+        answer: `While the FD / RD Calculator is highly accurate, it is intended for educational and informational purposes. Professional financial planning requires a comprehensive review of your personal circumstances by a certified advisor.`
+      },
+      {
+        question: `Does the FD / RD Calculator account for inflation?`,
+        answer: `By default, raw financial calculators project nominal values. Unless the tool explicitly asks for an inflation rate input, you should mentally adjust the final output for the purchasing power of your local currency over time.`
+      },
+      {
+        question: `Is my data safe when using the FD / RD Calculator?`,
+        answer: `Absolutely. The FD / RD Calculator runs entirely in your browser using client-side JavaScript. None of your sensitive financial inputs are stored, tracked, or sent to any external servers.`
+      },
+    ]
+  },
+  'bmr-calculator': {
+    id: 'bmr-calculator',
     slug: 'bmr-tdee-calculator',
-    title: 'BMR & TDEE Calculator',
+    title: 'BMR Calculator',
+    description: 'Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) to understand your body\'s energy needs and metabolism at different activity levels.',
+    category: 'health',
+    icon: 'monitor_heart',
+    faqs: [
+      { question: 'What is BMR?', answer: 'BMR stands for Basal Metabolic Rate. It is the number of calories your body burns at rest to perform basic life-sustaining functions such as breathing, circulation, and cell production.' },
+      { question: 'What is TDEE?', answer: 'TDEE stands for Total Daily Energy Expenditure. It represents the total number of calories you burn in a day, combining your BMR with your daily physical activity and exercise.' },
+      { question: 'How accurate are these calculations?', answer: 'We use the Mifflin-St Jeor equation, which is widely considered the most accurate formula for calculating BMR. However, everyone\'s metabolism is unique, so these numbers should be used as a starting point.' }
+    ]
+  },
+  'tdee-calculator': {
+    id: 'tdee-calculator',
+    slug: 'bmr-tdee-calculator',
+    title: 'TDEE Calculator',
     description: 'Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) to understand your body\'s energy needs and metabolism at different activity levels.',
     category: 'health',
     icon: 'monitor_heart',
@@ -2634,8 +2685,46 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       },
     ]
   },
-  'gst-vat-calculator': {
-    id: 'gst-vat-calculator',
+  'gst-calculator': {
+    id: 'gst-calculator',
+    slug: 'gst-vat-calculator',
+    title: 'GST / VAT Calculator',
+    description: 'Easily calculate Goods and Services Tax (GST) or Value Added Tax (VAT) for inclusive or exclusive prices.',
+    category: 'finance',
+    icon: 'receipt',
+    faqs: [
+      {
+        question: `What is the primary use of the GST / VAT Calculator?`,
+        answer: `The GST / VAT Calculator is designed to provide quick, accurate mathematical estimates and projections related to its specific financial domain. It helps you make informed, data-driven decisions globally without needing complex spreadsheets.`
+      },
+      {
+        question: `Is the GST / VAT Calculator accurate for international use?`,
+        answer: `Yes, the core mathematics and logic behind the GST / VAT Calculator are universally applicable. While specific localized tax laws or variable rates may differ by region, the fundamental formula works globally. Always consult a local financial advisor for region-specific compliance.`
+      },
+      {
+        question: `How often should I use the GST / VAT Calculator?`,
+        answer: `It's best to use the GST / VAT Calculator whenever your financial variables change—such as interest rates, principal amounts, or time horizons. Regular recalculation ensures your projections remain accurate over time.`
+      },
+      {
+        question: `Are the results from the GST / VAT Calculator guaranteed?`,
+        answer: `No, the GST / VAT Calculator provides estimates based on the inputs you provide. It assumes constant rates and ideal conditions unless otherwise specified. Real-world financial outcomes are subject to market volatility and economic changes.`
+      },
+      {
+        question: `Can I use this for professional financial planning?`,
+        answer: `While the GST / VAT Calculator is highly accurate, it is intended for educational and informational purposes. Professional financial planning requires a comprehensive review of your personal circumstances by a certified advisor.`
+      },
+      {
+        question: `Does the GST / VAT Calculator account for inflation?`,
+        answer: `By default, raw financial calculators project nominal values. Unless the tool explicitly asks for an inflation rate input, you should mentally adjust the final output for the purchasing power of your local currency over time.`
+      },
+      {
+        question: `Is my data safe when using the GST / VAT Calculator?`,
+        answer: `Absolutely. The GST / VAT Calculator runs entirely in your browser using client-side JavaScript. None of your sensitive financial inputs are stored, tracked, or sent to any external servers.`
+      },
+    ]
+  },
+  'vat-calculator': {
+    id: 'vat-calculator',
     slug: 'gst-vat-calculator',
     title: 'GST / VAT Calculator',
     description: 'Easily calculate Goods and Services Tax (GST) or Value Added Tax (VAT) for inclusive or exclusive prices.',
@@ -2708,83 +2797,6 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
         question: `Is my data safe when using the Retirement Corpus Calculator?`,
         answer: `Absolutely. The Retirement Corpus Calculator runs entirely in your browser using client-side JavaScript. None of your sensitive financial inputs are stored, tracked, or sent to any external servers.`
       },
-    ]
-  },
-  'image-size-reducer': {
-    id: 'image-size-reducer',
-    title: 'Image Size Reducer',
-    description: 'Reduce Image File Size Easily.',
-    icon: 'Image',
-    category: 'Image',
-    faqs: [
-      { question: "What is the Image Size Reducer?", answer: "Reduce Image File Size Easily." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'bulk-image-compressor': {
-    id: 'bulk-image-compressor',
-    title: 'Bulk Image Compressor',
-    description: 'Compress Multiple Images at Once.',
-    icon: 'Images',
-    category: 'Image',
-    faqs: [
-      { question: "What is the Bulk Image Compressor?", answer: "Compress Multiple Images at Once." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-image-to-20kb': {
-    id: 'compress-image-to-20kb',
-    title: 'Compress Image to 20KB',
-    description: 'Compress your images to under 20KB quickly.',
-    icon: 'Minimize',
-    category: 'Image',
-    faqs: [
-      { question: "What is the Compress Image to 20KB?", answer: "Compress your images to under 20KB quickly." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-image-to-50kb': {
-    id: 'compress-image-to-50kb',
-    title: 'Compress Image to 50KB',
-    description: 'Compress your images to under 50KB quickly.',
-    icon: 'Minimize',
-    category: 'Image',
-    faqs: [
-      { question: "What is the Compress Image to 50KB?", answer: "Compress your images to under 50KB quickly." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-image-to-100kb': {
-    id: 'compress-image-to-100kb',
-    title: 'Compress Image to 100KB',
-    description: 'Compress your images to under 100KB quickly.',
-    icon: 'Minimize',
-    category: 'Image',
-    faqs: [
-      { question: "What is the Compress Image to 100KB?", answer: "Compress your images to under 100KB quickly." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-image-to-200kb': {
-    id: 'compress-image-to-200kb',
-    title: 'Compress Image to 200KB',
-    description: 'Compress your images to under 200KB quickly.',
-    icon: 'Minimize',
-    category: 'Image',
-    faqs: [
-      { question: "What is the Compress Image to 200KB?", answer: "Compress your images to under 200KB quickly." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'resize-image-to-300kb': {
-    id: 'resize-image-to-300kb',
-    title: 'Resize Image to 300KB',
-    description: 'Compress your images to under 300KB quickly.',
-    icon: 'Maximize',
-    category: 'Image',
-    faqs: [
-      { question: "What is the Resize Image to 300KB?", answer: "Compress your images to under 300KB quickly." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
     ]
   },
   'resize-image-for-passport': {
@@ -2883,160 +2895,6 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     category: 'Video',
     faqs: [
       { question: "What is the YouTube Thumbnail Downloader?", answer: "Download YouTube Thumbnail." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-pdf': {
-    id: 'compress-pdf',
-    title: 'Compress PDF',
-    description: 'Compress PDF File, Reduce PDF Size free.',
-    icon: 'FileArchive',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Compress PDF?", answer: "Compress PDF File, Reduce PDF Size free." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-pdf-to-200kb': {
-    id: 'compress-pdf-to-200kb',
-    title: 'Compress PDF to 200kb',
-    description: 'Compress PDF File Size to 200kb free.',
-    icon: 'FileArchive',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Compress PDF to 200kb?", answer: "Compress PDF File Size to 200kb free." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-pdf-to-500kb': {
-    id: 'compress-pdf-to-500kb',
-    title: 'Compress PDF to 500kb',
-    description: 'Compress PDF File Size to 500kb free.',
-    icon: 'FileArchive',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Compress PDF to 500kb?", answer: "Compress PDF File Size to 500kb free." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'compress-pdf-to-1mb': {
-    id: 'compress-pdf-to-1mb',
-    title: 'Compress PDF to 1MB',
-    description: 'Compress PDF File Size to 1MB free.',
-    icon: 'FileArchive',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Compress PDF to 1MB?", answer: "Compress PDF File Size to 1MB free." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'jpg-to-pdf': {
-    id: 'jpg-to-pdf',
-    title: 'JPG to PDF',
-    description: 'Convert JPG images to PDF instantly.',
-    icon: 'FileText',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the JPG to PDF?", answer: "Convert JPG images to PDF instantly." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'pdf-to-jpg': {
-    id: 'pdf-to-jpg',
-    title: 'PDF to JPG',
-    description: 'Convert PDF to JPG images instantly.',
-    icon: 'FileImage',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the PDF to JPG?", answer: "Convert PDF to JPG images instantly." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'merge-pdf': {
-    id: 'merge-pdf',
-    title: 'Merge PDF',
-    description: 'Merging multiple PDF files into a single PDF.',
-    icon: 'CopyPlus',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Merge PDF?", answer: "Merging multiple PDF files into a single PDF." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'split-pdf': {
-    id: 'split-pdf',
-    title: 'Split PDF',
-    description: 'Separate smaller files or extract specific pages.',
-    icon: 'Scissors',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Split PDF?", answer: "Separate smaller files or extract specific pages." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'delete-pdf-pages': {
-    id: 'delete-pdf-pages',
-    title: 'Delete PDF Pages',
-    description: 'Remove Unwanted Pages from PDF.',
-    icon: 'FileMinus',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Delete PDF Pages?", answer: "Remove Unwanted Pages from PDF." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'add-page-numbers-to-pdf': {
-    id: 'add-page-numbers-to-pdf',
-    title: 'Add Page Numbers to PDF',
-    description: 'Easily Add page numbers into any PDF file.',
-    icon: 'ListOrdered',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Add Page Numbers to PDF?", answer: "Easily Add page numbers into any PDF file." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'rotate-pdf': {
-    id: 'rotate-pdf',
-    title: 'Rotate PDF',
-    description: 'Rotate PDF the way you need them.',
-    icon: 'RotateCcw',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Rotate PDF?", answer: "Rotate PDF the way you need them." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'word-to-pdf-converter': {
-    id: 'word-to-pdf-converter',
-    title: 'Word to PDF Converter',
-    description: 'Quickly convert DOCX files into PDF documents.',
-    icon: 'FileText',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the Word to PDF Converter?", answer: "Quickly convert DOCX files into PDF documents." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'pdf-to-text-converter': {
-    id: 'pdf-to-text-converter',
-    title: 'PDF to Text Converter',
-    description: 'Quickly extract text from PDF files.',
-    icon: 'FileType2',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the PDF to Text Converter?", answer: "Quickly extract text from PDF files." },
-      { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
-    ]
-  },
-  'pdf-to-word-converter': {
-    id: 'pdf-to-word-converter',
-    title: 'PDF to Word Converter',
-    description: 'Easily Convert PDF files into DOC format.',
-    icon: 'FileEdit',
-    category: 'PDF',
-    faqs: [
-      { question: "What is the PDF to Word Converter?", answer: "Easily Convert PDF files into DOC format." },
       { question: "Is this tool free?", answer: "Yes, it is completely free to use." }
     ]
   },
