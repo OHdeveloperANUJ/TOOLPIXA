@@ -57,8 +57,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center pt-16 px-4 bg-background">
-      <div className="max-w-md w-full bg-surface-container border border-glass-border rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+    <div className="min-h-screen w-full flex items-center justify-center pt-16 px-4 bg-background">
+      <div className="max-w-md w-full mx-auto bg-surface-container border border-glass-border rounded-2xl p-8 shadow-2xl relative overflow-hidden">
         {/* Glow Effect */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-secondary/20 blur-[80px] rounded-full pointer-events-none"></div>
 
