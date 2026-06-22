@@ -17,6 +17,17 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <>
 
 <main className="pt-16">
+{slug.toLowerCase() === 'finance' && (
+  <div className="w-full z-40 bg-surface-container/80 backdrop-blur-md border-b border-glass-border shadow-sm hidden md:block">
+    <div className="flex justify-center items-center h-10 px-margin max-w-7xl mx-auto gap-8 overflow-x-auto no-scrollbar">
+      <Link href="/category/finance?tag=loans" className="text-text-secondary hover:text-primary text-sm font-label-md uppercase tracking-widest whitespace-nowrap transition-colors">Loans</Link>
+      <Link href="/category/finance?tag=tax" className="text-text-secondary hover:text-primary text-sm font-label-md uppercase tracking-widest whitespace-nowrap transition-colors">Tax</Link>
+      <Link href="/category/finance?tag=investments" className="text-text-secondary hover:text-primary text-sm font-label-md uppercase tracking-widest whitespace-nowrap transition-colors">Investments</Link>
+      <Link href="/category/finance?tag=savings" className="text-text-secondary hover:text-primary text-sm font-label-md uppercase tracking-widest whitespace-nowrap transition-colors">Savings</Link>
+      <Link href="/category/finance?tag=retirement" className="text-text-secondary hover:text-primary text-sm font-label-md uppercase tracking-widest whitespace-nowrap transition-colors">Retirement</Link>
+    </div>
+  </div>
+)}
 
 <section className="relative w-full py-xxxl px-margin mesh-gradient flex flex-col items-center justify-center text-center overflow-hidden">
 
