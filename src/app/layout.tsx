@@ -9,6 +9,7 @@ import Script from "next/script";
 import "./globals.css";
 import PwaRegistry from "@/components/PwaRegistry";
 import AuthProvider from "@/components/AuthProvider";
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -61,6 +62,7 @@ export default function RootLayout({
             </CurrencyProvider>
           </ThemeProvider>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
