@@ -8,6 +8,7 @@ import { CurrencyProvider } from "@/components/CurrencyProvider";
 import Script from "next/script";
 import "./globals.css";
 import PwaRegistry from "@/components/PwaRegistry";
+import AuthProvider from "@/components/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,16 +49,18 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col font-body-md text-on-background selection:bg-primary/30">
         <PwaRegistry />
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <CurrencyProvider>
-          <AmazonGlobalRouter />
-            <Header />
-            <div className="flex-1">
-              {children}
-            </div>
-            <Footer />
-          </CurrencyProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <CurrencyProvider>
+            <AmazonGlobalRouter />
+              <Header />
+              <div className="flex-1">
+                {children}
+              </div>
+              <Footer />
+            </CurrencyProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -4,7 +4,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
-import { Share2, Copy, Check, Download, AlertCircle } from 'lucide-react';
+import { Share2, Copy, Check, Download, AlertCircle, Save, Flame } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 function useAnimatedNumber(value: number, duration: number = 800) {
   const [currentValue, setCurrentValue] = useState(0);
@@ -42,6 +44,39 @@ function useAnimatedNumber(value: number, duration: number = 800) {
 
 export default function HomeLoanEmi() {
   const { currency } = useStore();
+  const { data: session } = useSession();
+  const [isSaving, setIsSaving] = useState(false);
+  const [usageCount, setUsageCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch('/api/stats?toolId=' + 'home-loan-emi')
+      .then(r => r.json())
+      .then(d => { if (d.success) setUsageCount(d.count); })
+      .catch(() => {});
+  }, []);
+
+  const handleSave = async () => {
+    if (!session) {
+      signIn();
+      return;
+    }
+    setIsSaving(true);
+    try {
+      await fetch('/api/history', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          toolId: 'home-loan-emi',
+          inputData: { principal: principalStr, rate: rateStr, tenureYears: tenureYearsStr }
+        })
+      });
+      alert('Calculation saved to your profile!');
+    } catch (e) {
+      alert('Failed to save.');
+    }
+    setIsSaving(false);
+  };
+
   const [principalStr, setPrincipalStr] = useState<string>('5000000');
   const [rateStr, setRateStr] = useState<string>('8.5');
   const [tenureYearsStr, setTenureYearsStr] = useState<string>('20');

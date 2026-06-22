@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useStore, CURRENCIES } from '@/store/useStore';
 import SearchBar from '@/components/SearchBar';
 import ThemeToggle from '@/components/ThemeToggle';
+import LoginButton from '@/components/LoginButton';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -130,6 +131,7 @@ export default function Header() {
                 )}
               </div>
 
+              <LoginButton />
               <ThemeToggle />
               
               <button 
