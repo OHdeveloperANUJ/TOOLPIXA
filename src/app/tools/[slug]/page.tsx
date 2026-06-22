@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic';
 import FaqAccordion from '@/components/FaqAccordion';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { toolsRegistry } from '@/data/toolsRegistry';
+import ShareButton from '@/components/ShareButton';
+import ToolCard from '@/components/ToolCard';
 
 
 const amazonSearchMap: Record<string, string> = {
@@ -252,11 +254,16 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       />
       <main className="pt-xxl pb-xxxl">
         <section className="max-w-7xl mx-auto px-margin items-start">
-          <div className="fade-in-up space-y-md mb-xl">
-            <h1 className="font-display-lg text-4xl md:text-5xl font-bold text-text-primary mb-md tracking-tight">
-              {toolData.title}{toolData.title.toLowerCase().includes('calculator') ? '' : ' Calculator'}
-            </h1>
-            <p className="font-body-lg text-body-lg text-text-secondary">{toolData.description}</p>
+          <div className="fade-in-up mb-xl flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div className="space-y-md flex-1">
+              <h1 className="font-display-lg text-4xl md:text-5xl font-bold text-text-primary tracking-tight leading-tight">
+                {toolData.title}{toolData.title.toLowerCase().includes('calculator') ? '' : ' Calculator'}
+              </h1>
+              <p className="font-body-lg text-body-lg text-text-secondary max-w-3xl">{toolData.description}</p>
+            </div>
+            <div className="shrink-0 pt-2">
+              <ShareButton title={toolData.title} />
+            </div>
           </div>
           
           <ToolComponent />
@@ -400,6 +407,22 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             >
               Read Article
             </a>
+          </div>
+          
+          {/* Related Tools */}
+          <div className="mt-xxxl pt-xl border-t border-glass-border">
+            <h3 className="font-display-sm text-3xl font-bold text-text-primary mb-lg">More {toolData.category} Tools</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+              {Object.entries(toolsRegistry)
+                .filter(([key, t]) => t.category === toolData.category && key !== slug)
+                .slice(0, 4)
+                .map(([toolSlug, tool]) => (
+                  <ToolCard
+                    key={toolSlug}
+                    tool={{...tool, id: toolSlug}}
+                  />
+                ))}
+            </div>
           </div>
 
         </section>

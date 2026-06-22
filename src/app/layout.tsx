@@ -7,6 +7,7 @@ import AmazonGlobalRouter from '@/components/AmazonGlobalRouter';
 import { CurrencyProvider } from "@/components/CurrencyProvider";
 import Script from "next/script";
 import "./globals.css";
+import PwaRegistry from "@/components/PwaRegistry";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,10 +41,13 @@ export default function RootLayout({
       className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0F172A" />
         <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossOrigin="anonymous" strategy="afterInteractive" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
       </head>
       <body className="min-h-full flex flex-col font-body-md text-on-background selection:bg-primary/30">
+        <PwaRegistry />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <CurrencyProvider>
           <AmazonGlobalRouter />

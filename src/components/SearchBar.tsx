@@ -63,17 +63,33 @@ export default function SearchBar({ id = "global-search", placeholder = "Search 
     return () => window.removeEventListener('focus-global-search', handleFocusSearch);
   }, []);
 
+  const trackSearch = async (searchQuery: string) => {
+    try {
+      await fetch('/api/track-search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: searchQuery }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
+      if (query.trim()) trackSearch(query);
       setIsOpen(false);
       inputRef.current?.blur();
     }
-    if (e.key === 'Enter' && results.length > 0) {
-      // Navigate to first result
-      router.push(`/tools/${results[0].id}`);
-      setIsOpen(false);
-      setQuery('');
-      if (onSelect) onSelect();
+    if (e.key === 'Enter') {
+      if (results.length > 0) {
+        router.push(`/tools/${results[0].id}`);
+        setIsOpen(false);
+        setQuery('');
+        if (onSelect) onSelect();
+      } else {
+        if (query.trim()) trackSearch(query);
+      }
     }
   };
 
