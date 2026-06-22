@@ -5,8 +5,7 @@ import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import { Share2, Copy, Check, Download, AlertCircle, Save, Flame } from 'lucide-react';
-import { useSession } from 'next-auth/react';
-import { signIn } from 'next-auth/react';
+
 
 function useAnimatedNumber(value: number, duration: number = 800) {
   const [currentValue, setCurrentValue] = useState(0);
@@ -44,7 +43,6 @@ function useAnimatedNumber(value: number, duration: number = 800) {
 
 export default function HomeLoanEmi() {
   const { currency } = useStore();
-  const { data: session } = useSession();
   const [isSaving, setIsSaving] = useState(false);
   const [usageCount, setUsageCount] = useState<number | null>(null);
 
@@ -55,24 +53,21 @@ export default function HomeLoanEmi() {
       .catch(() => {});
   }, []);
 
-  const handleSave = async () => {
-    if (!session) {
-      signIn();
-      return;
-    }
+  const handleSave = () => {
     setIsSaving(true);
     try {
-      await fetch('/api/history', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          toolId: 'home-loan-emi',
-          inputData: { principal: principalStr, rate: rateStr, tenureYears: tenureYearsStr }
-        })
-      });
-      alert('Calculation saved to your profile!');
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: crypto.randomUUID(),
+        toolId: 'home-loan-emi',
+        inputData: { principal: principalStr, rate: rateStr, tenureYears: tenureYearsStr },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
     } catch (e) {
-      alert('Failed to save.');
+      console.error(e);
+      alert('Failed to save calculation.');
     }
     setIsSaving(false);
   };

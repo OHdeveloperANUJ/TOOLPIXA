@@ -1,98 +1,76 @@
 import React from 'react';
 
-
 export const metadata = {
-    title: "Terms of Service | ToolPixa",
-    description: "Read the Terms of Service of ToolPixa.",
+    title: "Terms & Conditions | ToolPixa",
+    description: "Read the Terms & Conditions of ToolPixa.",
 };
 
 export default function TermsPage() {
   return (
-    <>
-      <main className="min-h-screen pt-xl pb-xxl px-margin">
-<div className="max-w-4xl mx-auto">
+    <main className="min-h-screen pt-24 pb-20 px-4">
+      <div className="max-w-4xl mx-auto">
+        <header className="mb-12 text-left">
+          <h1 className="font-headline-lg text-4xl text-text-primary mb-4 tracking-tight">Terms & Conditions</h1>
+          <p className="text-text-secondary font-body-lg text-lg max-w-2xl">
+            Last updated: October 2026. Rules and guidelines for using ToolPixa.
+          </p>
+        </header>
 
-
-
-<header className="mb-xxl text-left">
-<h1 className="font-display-lg text-display-lg text-gradient mb-sm tracking-tight">Terms of Service</h1>
-<p className="text-text-secondary font-body-lg text-body-lg max-w-2xl">
-                    Last updated: October 2026. How we handle your data with precision and care.
+        <article className="bg-surface-container rounded-xl p-6 md:p-12 shadow-2xl relative overflow-hidden border border-glass-border">
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/10 blur-[100px] rounded-full"></div>
+          
+          <div className="relative z-10 space-y-12">
+            <section className="space-y-6">
+              <h2 className="text-2xl font-semibold text-text-primary flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">gavel</span>
+                1. Acceptance of Terms
+              </h2>
+              <div className="prose prose-invert max-w-none text-text-secondary leading-relaxed space-y-4">
+                <p>
+                  By accessing and using ToolPixa (the "Website"), you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you are prohibited from using or accessing this site.
                 </p>
-</header>
+              </div>
+            </section>
 
-<article className="glass-panel rounded-xl p-md md:p-xl shadow-2xl relative overflow-hidden">
+            <section className="space-y-6">
+              <h2 className="text-2xl font-semibold text-text-primary flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">verified_user</span>
+                2. Use License
+              </h2>
+              <div className="prose prose-invert max-w-none text-text-secondary leading-relaxed space-y-4">
+                <p>
+                  Permission is granted to temporarily use the materials (information or software) on ToolPixa's website for personal, non-commercial transitory viewing only.
+                </p>
+                <p>
+                  You may not:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Modify or copy the materials;</li>
+                  <li>Use the materials for any commercial purpose, or for any public display;</li>
+                  <li>Attempt to decompile or reverse engineer any software contained on ToolPixa;</li>
+                  <li>Transfer the materials to another person or "mirror" the materials on any other server.</li>
+                </ul>
+              </div>
+            </section>
 
-<div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
-<div className="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary-container/10 blur-[100px] rounded-full"></div>
-<div className="relative z-10 space-y-xl">
-<section className="space-y-md">
-<h2 className="font-headline-lg text-headline-lg text-primary flex items-center gap-sm">
-<span className="material-symbols-outlined text-primary">security</span>
-                            1. Data Collection
-                        </h2>
-<div className="space-y-sm text-on-surface-variant font-body-md text-body-md leading-relaxed">
-<p>
-                                At ToolPixa, we believe in radical transparency. Our primary mission is to provide professional-grade calculation tools while maintaining the highest standard of data sovereignty for our users. We strictly collect only the necessary parameters required to execute your specific requests.
-                            </p>
-<p>
-                                This data typically includes mathematical inputs, units of measurement, and technical preferences. We do not link these inputs to your personal identity unless you have explicitly created a ToolPixa Precision account for the purpose of synchronizing your tool presets.
-                            </p>
-</div>
-</section>
-<section className="space-y-md">
-<h2 className="font-headline-lg text-headline-lg text-primary flex items-center gap-sm">
-<span className="material-symbols-outlined text-primary">cookie</span>
-                            2. Use of Cookies
-                        </h2>
-<div className="space-y-sm text-on-surface-variant font-body-md text-body-md leading-relaxed">
-<p>
-                                ToolPixa utilizes a minimal set of essential cookies to manage session states and preserve your tool configurations (such as dark mode preferences or preferred unit systems). These are critical for the technical performance of our glassmorphic interface.
-                            </p>
-<ul className="list-disc pl-md space-y-xs marker:text-primary">
-<li><strong>Session Persistence:</strong> Keeps you logged in while navigating between different precision suites.</li>
-<li><strong>UI State:</strong> Remembers your layout preferences and theme settings.</li>
-<li><strong>Security:</strong> Protects against Cross-Site Request Forgery (CSRF) and other common web vulnerabilities.</li>
-</ul>
-</div>
-</section>
-<section className="space-y-md">
-<h2 className="font-headline-lg text-headline-lg text-primary flex items-center gap-sm">
-<span className="material-symbols-outlined text-primary">analytics</span>
-                            3. Analytics
-                        </h2>
-<div className="space-y-sm text-on-surface-variant font-body-md text-body-md leading-relaxed">
-<p>
-                                To ensure the mathematical precision of our tools remains world-class, we analyze anonymized usage data. This process helps us identify which tools require further optimization and where the user experience can be streamlined.
-                            </p>
-<div className="p-md bg-surface-container rounded-lg border border-glass-border">
-<p className="text-secondary font-label-md text-label-md italic">
-                                    Note: All analytics are stripped of IP addresses and PII (Personally Identifiable Information) before reaching our optimization servers. We value your intellectual property as much as your privacy.
-                                </p>
-</div>
-</div>
-</section>
-<section className="space-y-md">
-<h2 className="font-headline-lg text-headline-lg text-primary flex items-center gap-sm">
-<span className="material-symbols-outlined text-primary">encrypted</span>
-                            4. Information Security
-                        </h2>
-<p className="text-on-surface-variant font-body-md text-body-md leading-relaxed">
-                            Every byte of data transmitted between your device and the ToolPixa Precision Suite is encrypted using 256-bit SSL protocols. Our cloud architecture is designed with advanced isolation layers to prevent any unauthorized access to our glassmorphic core.
-                        </p>
-</section>
-</div>
-</article>
-
-<div className="mt-xl text-center">
-<p className="text-on-surface-variant font-body-md text-body-md mb-md">Have specific questions about your data?</p>
-<button className="inline-flex items-center gap-sm px-xl py-sm rounded-full glass-panel border border-primary/20 text-primary font-bold hover:bg-primary/10 transition-all hover:scale-105 active:scale-95 group">
-                    Contact Privacy Team
-                    <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</button>
-</div>
-</div>
-</main>
-    </>
+            <section className="space-y-6">
+              <h2 className="text-2xl font-semibold text-text-primary flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">warning</span>
+                3. Disclaimer of Liability
+              </h2>
+              <div className="prose prose-invert max-w-none text-text-secondary leading-relaxed space-y-4">
+                <p>
+                  The materials and calculators on ToolPixa are provided on an 'as is' basis. ToolPixa makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                </p>
+                <p>
+                  ToolPixa does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the financial calculators or materials on its website. Always consult a certified financial advisor before making any financial decisions.
+                </p>
+              </div>
+            </section>
+          </div>
+        </article>
+      </div>
+    </main>
   );
 }

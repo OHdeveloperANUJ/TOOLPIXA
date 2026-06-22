@@ -63,13 +63,11 @@ export default function SearchBar({ id = "global-search", placeholder = "Search 
     return () => window.removeEventListener('focus-global-search', handleFocusSearch);
   }, []);
 
-  const trackSearch = async (searchQuery: string) => {
+  const trackSearch = (searchQuery: string) => {
     try {
-      await fetch('/api/track-search', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: searchQuery }),
-      });
+      const existingSearches = JSON.parse(localStorage.getItem('toolpixa_searches') || '[]');
+      const newSearches = [searchQuery, ...existingSearches.filter((q: string) => q !== searchQuery)].slice(0, 10);
+      localStorage.setItem('toolpixa_searches', JSON.stringify(newSearches));
     } catch (e) {
       console.error(e);
     }

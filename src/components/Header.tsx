@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useStore, CURRENCIES } from '@/store/useStore';
 import SearchBar from '@/components/SearchBar';
 import ThemeToggle from '@/components/ThemeToggle';
-import LoginButton from '@/components/LoginButton';
+import { History } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -131,7 +131,14 @@ export default function Header() {
                 )}
               </div>
 
-              <LoginButton />
+              <Link 
+                href="/profile" 
+                className="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg font-medium text-sm hover:bg-primary/20 transition-colors border border-primary/20"
+                title="Your History"
+              >
+                <History size={16} />
+                <span className="hidden md:inline">History</span>
+              </Link>
               <ThemeToggle />
               
               <button 
