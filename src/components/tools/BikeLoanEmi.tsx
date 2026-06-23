@@ -56,8 +56,8 @@ export default function BikeLoanEmi() {
     try {
       const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
       const newItem = {
-        id: crypto.randomUUID(),
-        toolId: 'bike-loan-emi',
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'bike-loan-emi-calculator',
         inputData: { principal: principalStr, rate: rateStr, tenureYears: tenureYearsStr },
         createdAt: new Date().toISOString()
       };

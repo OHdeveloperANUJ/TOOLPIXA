@@ -263,12 +263,18 @@ function formatMarkdown(content: string) {
       const p = paragraph.trim();
       if (!p) return '';
       
-            const parseInline = (text: string) => {
+      const parseInline = (text: string) => {
         return text
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
           .replace(/\*(.*?)\*/g, '<em>$1</em>')
           .replace(/\`(.*?)\`/g, '<code class="px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-surface-container text-primary font-code-sm border border-gray-200 dark:border-white/5">$1</code>')
-          .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="sponsored noopener" class="text-primary hover:underline font-semibold">$1</a>');
+          .replace(/\[(.*?)\]\((.*?)\)/g, (match, linkText, url) => {
+            const isInternal = url.startsWith('/') || url.includes('toolpixa.space');
+            if (isInternal) {
+              return `<a href="${url}" class="text-primary hover:underline font-semibold">${linkText}</a>`;
+            }
+            return `<a href="${url}" target="_blank" rel="sponsored noopener" class="text-primary hover:underline font-semibold">${linkText}</a>`;
+          });
       };
 
       if (p.startsWith('# ')) {
@@ -305,7 +311,7 @@ function formatMarkdown(content: string) {
             ${alt ? `<figcaption class="mt-4 text-center text-xs font-label-md text-gray-500 dark:text-on-surface-variant/70 uppercase tracking-widest">${alt}</figcaption>` : ''}
           </figure>`;
         }
-        return `<p class="text-gray-700 dark:text-gray-300 leading-relaxed">${p}</p>`;
+        return `<p class="text-gray-700 dark:text-gray-300 leading-relaxed">${parseInline(p)}</p>`;
       } else if (p.startsWith('|')) {
         // Advanced beautiful table support
         const lines = p.split('\n');
@@ -326,14 +332,10 @@ function formatMarkdown(content: string) {
             </table>
           </div>`;
         }
-        return `<p class="text-gray-700 dark:text-gray-300 leading-relaxed">${p}</p>`;
+        return `<p class="text-gray-700 dark:text-gray-300 leading-relaxed">${parseInline(p)}</p>`;
       } else {
         // Parse basic inline styles and INJECT AD BANNERS
-        let parsedP = p
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-          .replace(/\`(.*?)\`/g, '<code class="px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-surface-container text-primary font-code-sm border border-gray-200 dark:border-white/5">$1</code>');
-        
+        let parsedP = parseInline(p);
         let html = `<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">${parsedP}</p>`;
         
         // Only count basic paragraphs for ad injection (skip headers/images/tables)

@@ -54,12 +54,68 @@ const getExternalLink = (category: string) => {
 
 const getRelatedBlog = (slug: string, category: string) => {
   const cat = category.toLowerCase();
-  if (slug === 'education-loan-emi-calculator') {
-    return { title: 'Section 80E — Complete Guide for Students', slug: 'section-80e-education-loan-tax-benefit' };
+  
+  if (cat === 'finance') {
+    if (slug === 'sip-calculator') {
+      return { title: 'SIP vs Lumpsum: Which Investment Strategy is Better?', slug: 'sip-vs-lumpsum-investment-guide' };
+    }
+    if (slug === 'home-loan-emi-calculator') {
+      return { title: 'The Secret to Home Loan Prepayment: Save Millions in Interest', slug: 'home-loan-prepayment-strategy' };
+    }
+    if (slug === 'car-loan-calculator') {
+      return { title: 'The Ultimate Guide to Car Loan EMIs and Hidden Charges', slug: 'car-loan-emi-hidden-charges' };
+    }
+    if (slug === 'ppf-calculator' || slug === 'fd-calculator' || slug === 'rd-calculator') {
+      return { title: 'PPF vs FD vs RD: Safe Investments to Grow Your Wealth', slug: 'ppf-vs-fd-vs-rd-safe-investments-2026' };
+    }
+    if (slug === 'inflation-calculator') {
+      return { title: 'Is Inflation Destroying Your Savings? How to Fight Back', slug: 'inflation-destroying-savings-fight-back' };
+    }
+    if (slug === 'gst-calculator' || slug === 'vat-calculator') {
+      return { title: 'How to Calculate GST for Your Freelance or Small Business', slug: 'calculate-gst-freelance-business' };
+    }
+    return { title: 'Old vs New Tax Regime 2025-26: Which Saves You More Money?', slug: 'old-vs-new-tax-regime-2025-26' };
   }
-  if (cat === 'finance') return { title: 'Old vs New Tax Regime 2025-26', slug: 'old-vs-new-tax-regime-2025-26' };
-  if (cat === 'student') return { title: 'How to Manage Student Loans Effectively', slug: 'how-to-manage-student-loans-effectively' };
-  return { title: 'Mastering Personal Finance with Precision Tools', slug: 'mastering-personal-finance' };
+  
+  if (cat === 'health') {
+    if (slug === 'bmi-calculator' || slug === 'ideal-weight-calculator') {
+      return { title: 'BMI for Indian Body Types: The Truth You Need to Know', slug: 'bmi-for-indian-body-types-truth' };
+    }
+    if (slug === 'bmr-calculator' || slug === 'calorie-deficit-surplus-calculator' || slug === 'tdee-calculator') {
+      return { title: 'BMR Secret: The Missing Key to Weight Management', slug: 'bmr-secret-weight-management' };
+    }
+    if (slug === 'water-intake-calculator') {
+      return { title: 'How Much Water Should You Drink Daily? The Science-Backed Truth', slug: 'how-much-water-daily-intake' };
+    }
+    if (slug === 'target-heart-rate-calculator') {
+      return { title: 'Understanding Your Target Heart Rate for Maximum Fat Burn', slug: 'target-heart-rate-fat-burn' };
+    }
+    return { title: 'The Ultimate Guide to Healthy Weight Loss in 2026 (Plus Diet Myths)', slug: 'healthy-weight-loss-guide-2026' };
+  }
+  
+  if (cat === 'student') {
+    if (slug === 'gpa-calculator' || slug === 'gpa-forecaster') {
+      return { title: 'CGPA vs Percentage: The Complete Guide Nobody Gave You Before You Needed It', slug: 'cgpa-vs-percentage-guide-2026' };
+    }
+    return { title: "The Student's Guide to Scoring a 9.0+ CGPA", slug: 'student-guide-high-cgpa' };
+  }
+  
+  if (cat === 'developer') {
+    if (slug === 'json-formatter') {
+      return { title: 'Demystifying JSON: The Backbone of the Web', slug: 'demystifying-json-backbone-web' };
+    }
+    if (slug === 'base64-encoder') {
+      return { title: 'How Base64 Encoding Works (And When to Use It)', slug: 'how-base64-encoding-works' };
+    }
+    if (slug === 'color-converter') {
+      return { title: 'Hex to RGB: A Designer\'s Guide to Color Spaces', slug: 'hex-to-rgb-designers-guide' };
+    }
+    if (slug === 'password-generator') {
+      return { title: 'The Math Behind Password Strength: How Secure is Your Password?', slug: 'math-behind-password-strength' };
+    }
+  }
+  
+  return { title: 'Mastering Financial Modeling for Startups', slug: 'mastering-financial-modeling-for-startups' };
 };
 
 const getAmazonSearchQuery = (slug: string, category: string): string => {
