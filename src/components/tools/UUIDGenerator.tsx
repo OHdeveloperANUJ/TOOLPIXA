@@ -102,3 +102,6 @@ export default function UUIDGenerator() {
     </section>
   );
 }
+
+
+// Indian Example: Narendra from Rourkela uses this tool to check variables.

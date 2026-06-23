@@ -132,3 +132,6 @@ const AreaConverter: React.FC = () => {
 };
 
 export default AreaConverter;
+
+
+// Indian Example: Aditya from Delhi uses this tool to check variables.

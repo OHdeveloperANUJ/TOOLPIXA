@@ -1,10 +1,70 @@
 {
-  "loans": [],
+  "loans": [
+    "bike-loan-emi-calculator",
+    "car-loan-calculator",
+    "education-loan-emi-calculator",
+    "home-loan-emi-calculator",
+    "personal-loan-emi-calculator",
+    "student-loan-calculator"
+  ],
   "comparison-tools": [],
-  "university-specific": [],
-  "conversion": [],
-  "grades": [],
-  "investments": [],
-  "tax": [],
-  "savings": []
+  "university-specific": [
+    "gpa-calculator",
+    "gpa-forecaster"
+  ],
+  "conversion": [
+    "area-converter",
+    "fraction-calculator",
+    "length-converter",
+    "morse-code-translator",
+    "number-base-converter",
+    "percentage-calculator",
+    "probability-calculator",
+    "quadratic-equation-solver",
+    "read-time-calculator",
+    "roman-numeral-converter",
+    "scientific-calculator",
+    "speed-converter",
+    "standard-deviation-calculator",
+    "temperature-converter",
+    "text-to-qr-code-generator",
+    "time-converter",
+    "unit-converter",
+    "unix-timestamp-converter",
+    "url-to-qr-code-generator",
+    "volume-converter",
+    "weight-converter",
+    "z-score-calculator"
+  ],
+  "grades": [
+    "attendance-calculator",
+    "final-grade-calculator",
+    "gpa-calculator",
+    "gpa-forecaster"
+  ],
+  "investments": [
+    "mutual-fund-lumpsum",
+    "roi-calculator",
+    "sip-calculator"
+  ],
+  "tax": [
+    "gst-calculator",
+    "income-tax-calculator",
+    "vat-calculator"
+  ],
+  "savings": [
+    "compound-interest-calculator",
+    "fd-calculator",
+    "inflation-calculator",
+    "password-generator",
+    "pdf-to-word-converter",
+    "ppf-calculator",
+    "rd-calculator",
+    "retirement-calculator",
+    "rule-of-72-calculator",
+    "standard-deviation-calculator",
+    "word-counter",
+    "word-to-pdf-converter",
+    "words-to-pages-converter"
+  ]
 }

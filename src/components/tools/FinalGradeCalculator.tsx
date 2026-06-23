@@ -73,3 +73,6 @@ export default function FinalGradeCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Siddharth from Vasai uses this tool to check variables.

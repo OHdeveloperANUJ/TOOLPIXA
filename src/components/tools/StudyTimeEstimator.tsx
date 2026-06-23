@@ -103,3 +103,6 @@ export default function StudyTimeEstimator() {
     </div>
   );
 }
+
+
+// Indian Example: Vinay from Ulhasnagar uses this tool to check variables.

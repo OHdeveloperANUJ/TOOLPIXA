@@ -216,3 +216,6 @@ export default function MarginCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Karthik from Chandigarh uses this tool to check variables.

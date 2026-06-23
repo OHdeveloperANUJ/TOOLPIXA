@@ -178,3 +178,6 @@ export default function PasswordGenerator() {
     </section>
   );
 }
+
+
+// Indian Example: Swati from Jalandhar uses this tool to check variables.

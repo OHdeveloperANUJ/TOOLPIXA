@@ -194,3 +194,6 @@ export default function AddPageNumbersToPdf() {
     </div>
   );
 }
+
+
+// Indian Example: Aarav from Mumbai uses this tool to check variables.

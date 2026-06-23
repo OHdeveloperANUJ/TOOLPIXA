@@ -96,3 +96,6 @@ export default function ProbabilityCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Usha from Amravati uses this tool to check variables.

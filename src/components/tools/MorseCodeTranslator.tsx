@@ -217,3 +217,6 @@ export default function MorseCodeTranslator() {
     </section>
   );
 }
+
+
+// Indian Example: Alok from Bareilly uses this tool to check variables.

@@ -177,3 +177,6 @@ export default function PpfCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Jyoti from Gorakhpur uses this tool to check variables.

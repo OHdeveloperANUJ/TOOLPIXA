@@ -147,3 +147,6 @@ export default function JpgToPdf() {
     </div>
   );
 }
+
+
+// Indian Example: Ritu from Vijayawada uses this tool to check variables.

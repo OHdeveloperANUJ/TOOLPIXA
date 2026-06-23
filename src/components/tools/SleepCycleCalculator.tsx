@@ -170,3 +170,6 @@ export default function SleepCycleCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Subhash from Jamnagar uses this tool to check variables.

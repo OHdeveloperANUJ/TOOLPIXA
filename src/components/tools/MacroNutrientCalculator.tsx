@@ -97,3 +97,6 @@ export default function MacroNutrientCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Ganesh from Guwahati uses this tool to check variables.

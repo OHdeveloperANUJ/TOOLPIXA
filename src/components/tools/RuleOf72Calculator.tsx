@@ -134,3 +134,6 @@ export default function RuleOf72Calculator() {
     </div>
   );
 }
+
+
+// Indian Example: Pradeep from Nanded uses this tool to check variables.

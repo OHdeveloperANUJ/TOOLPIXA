@@ -98,3 +98,6 @@ export default function TdeeCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Anil from Sangli uses this tool to check variables.

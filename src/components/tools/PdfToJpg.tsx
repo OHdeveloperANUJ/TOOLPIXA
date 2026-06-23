@@ -103,3 +103,6 @@ export default function PdfToJpg() {
     </div>
   );
 }
+
+
+// Indian Example: Komal from Tiruchirappalli uses this tool to check variables.

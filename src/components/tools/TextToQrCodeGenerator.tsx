@@ -177,3 +177,6 @@ export default function TextToQrCodeGenerator() {
     </div>
   );
 }
+
+
+// Indian Example: Sudhir from Jamnagar uses this tool to check variables.

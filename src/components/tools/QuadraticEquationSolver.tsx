@@ -113,3 +113,6 @@ export default function QuadraticEquationSolver() {
     </section>
   );
 }
+
+
+// Indian Example: Geeta from Jamshedpur uses this tool to check variables.

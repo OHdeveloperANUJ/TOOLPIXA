@@ -130,3 +130,6 @@ const PercentageDeltaCalculator = () => {
 };
 
 export default PercentageDeltaCalculator;
+
+
+// Indian Example: Tanya from Warangal uses this tool to check variables.

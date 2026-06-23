@@ -135,3 +135,6 @@ const StudentLoanCalculator: React.FC = () => {
 };
 
 export default StudentLoanCalculator;
+
+
+// Indian Example: Sanjay from Jhansi uses this tool to check variables.

@@ -26,7 +26,7 @@ export const CURRENCIES: Currency[] = [
 export const useStore = create<AppState>()(
   persist(
     (set, get) => ({
-      currency: CURRENCIES[0],
+      currency: CURRENCIES[2], // Default to INR
       hasManuallyChangedCurrency: false,
       setCurrency: (c) => set({ currency: c, hasManuallyChangedCurrency: true }),
       autoDetectCurrency: () => {
@@ -35,16 +35,18 @@ export const useStore = create<AppState>()(
 
         try {
           const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-          let detectedCurrency = CURRENCIES[0]; // Default USD
+          let detectedCurrency = CURRENCIES.find(c => c.code === 'INR') || CURRENCIES[2]; // Default to INR
 
           if (tz.includes('Calcutta') || tz.includes('Kolkata') || tz.includes('Asia/Colombo')) {
-            detectedCurrency = CURRENCIES.find(c => c.code === 'INR') || CURRENCIES[0];
+            detectedCurrency = CURRENCIES.find(c => c.code === 'INR') || CURRENCIES[2];
           } else if (tz.includes('Europe/London')) {
             detectedCurrency = CURRENCIES.find(c => c.code === 'GBP') || CURRENCIES[0];
           } else if (tz.includes('Europe/')) {
-            detectedCurrency = CURRENCIES.find(c => c.code === 'EUR') || CURRENCIES[0];
+            detectedCurrency = CURRENCIES.find(c => c.code === 'EUR') || CURRENCIES[1];
           } else if (tz.includes('Australia/')) {
-            detectedCurrency = CURRENCIES.find(c => c.code === 'AUD') || CURRENCIES[0];
+            detectedCurrency = CURRENCIES.find(c => c.code === 'AUD') || CURRENCIES[4];
+          } else if (tz.includes('America/')) {
+            detectedCurrency = CURRENCIES.find(c => c.code === 'USD') || CURRENCIES[0];
           }
 
           if (state.currency.code !== detectedCurrency.code) {

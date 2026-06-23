@@ -159,3 +159,6 @@ export default function JpgToPngConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Preeti from Jodhpur uses this tool to check variables.

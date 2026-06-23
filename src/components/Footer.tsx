@@ -30,28 +30,28 @@ export default function Footer() {
         <div>
           <h5 className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Finance</h5>
           <ul className="space-y-sm font-body-md text-body-md">
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/home-loan-emi">Loan EMI</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Income Tax</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">SIP Planner</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Compound Interest</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/home-loan-emi-calculator">Loan EMI</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/income-tax-calculator">Income Tax</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/sip-calculator">SIP Planner</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/compound-interest-calculator">Compound Interest</Link></li>
           </ul>
         </div>
         <div>
           <h5 className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Student</h5>
           <ul className="space-y-sm font-body-md text-body-md">
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">CGPA Calc</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Percentage</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Scientific Calc</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Essay Helper</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/gpa-calculator">CGPA Calc</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/percentage-calculator">Percentage</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/scientific-calculator">Scientific Calc</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/essay-length-estimator">Essay Helper</Link></li>
           </ul>
         </div>
         <div>
           <h5 className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Health</h5>
           <ul className="space-y-sm font-body-md text-body-md">
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">BMI Index</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Calories</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Water Intake</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="#">Pregnancy Due</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/bmi-calculator">BMI Index</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/calorie-deficit-surplus-calculator">Calories</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/water-intake-calculator">Water Intake</Link></li>
+            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/pregnancy-due-date-calculator">Pregnancy Due</Link></li>
           </ul>
         </div>
         <div>

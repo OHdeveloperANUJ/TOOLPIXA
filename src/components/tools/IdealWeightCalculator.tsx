@@ -133,3 +133,6 @@ export default function IdealWeightCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Sunita from Ranchi uses this tool to check variables.

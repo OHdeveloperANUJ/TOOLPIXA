@@ -165,3 +165,6 @@ export default function ScientificNotationConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Dinesh from Akola uses this tool to check variables.

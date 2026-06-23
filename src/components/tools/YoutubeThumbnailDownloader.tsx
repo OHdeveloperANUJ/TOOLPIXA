@@ -142,3 +142,6 @@ export default function YoutubeThumbnailDownloader() {
     </div>
   );
 }
+
+
+// Indian Example: Mahendra from Guntur uses this tool to check variables.

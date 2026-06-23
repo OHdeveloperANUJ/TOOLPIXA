@@ -196,3 +196,6 @@ export default function RotateImage() {
     </div>
   );
 }
+
+
+// Indian Example: Manoj from Asansol uses this tool to check variables.

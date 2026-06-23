@@ -247,3 +247,6 @@ export default function BreakEvenCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Gaurav from Jaipur uses this tool to check variables.

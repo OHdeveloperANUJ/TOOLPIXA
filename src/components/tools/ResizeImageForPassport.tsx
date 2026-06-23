@@ -179,3 +179,6 @@ export default function ResizeImageForPassport() {
     </div>
   );
 }
+
+
+// Indian Example: Krishna from Kochi uses this tool to check variables.

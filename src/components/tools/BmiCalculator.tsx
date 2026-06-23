@@ -285,3 +285,6 @@ export default function BmiCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Ayush from Kolkata uses this tool to check variables.

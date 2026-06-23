@@ -190,3 +190,6 @@ export default function FractionCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Utkarsh from Srinagar uses this tool to check variables.

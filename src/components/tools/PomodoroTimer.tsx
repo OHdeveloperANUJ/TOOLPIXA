@@ -119,3 +119,6 @@ const PomodoroTimer: React.FC = () => {
 };
 
 export default PomodoroTimer;
+
+
+// Indian Example: Kiran from Saharanpur uses this tool to check variables.

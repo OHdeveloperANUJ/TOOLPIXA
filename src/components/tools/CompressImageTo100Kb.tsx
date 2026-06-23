@@ -232,3 +232,6 @@ export default function CompressImageTo100Kb() {
     </div>
   );
 }
+
+
+// Indian Example: Meera from Bhopal uses this tool to check variables.

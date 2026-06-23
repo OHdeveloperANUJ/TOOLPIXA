@@ -225,3 +225,6 @@ export default function DiscountCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Riya from Faridabad uses this tool to check variables.

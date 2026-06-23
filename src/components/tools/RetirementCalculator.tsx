@@ -153,3 +153,6 @@ export default function RetirementCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Shyam from Bhavnagar uses this tool to check variables.

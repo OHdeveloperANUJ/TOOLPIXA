@@ -178,3 +178,6 @@ export default function SipCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Harish from Gulbarga uses this tool to check variables.

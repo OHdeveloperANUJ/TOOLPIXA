@@ -7,9 +7,9 @@ import { useStore } from '@/store/useStore';
 
 export default function IncomeTaxCalculator() {
   const { currency } = useStore();
-  const [annualIncome, setAnnualIncome] = useState<number>(150000);
-  const [deductions, setDeductions] = useState<number>(20000);
-  const [exemptions, setExemptions] = useState<number>(10000);
+  const [annualIncome, setAnnualIncome] = useState<number>(1200000);
+  const [deductions, setDeductions] = useState<number>(150000);
+  const [exemptions, setExemptions] = useState<number>(50000);
   const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function IncomeTaxCalculator() {
             
             <label className="block text-xs uppercase tracking-[0.2em] text-cyan-400 font-label-md mb-4 font-bold">Gross Annual Income</label>
             <div className="flex items-end gap-3 relative z-10">
-              <span className="text-3xl text-white/50 pb-1"><CurrencySymbol fallback="$" /></span>
+              <span className="text-3xl text-white/50 pb-1"><CurrencySymbol fallback="₹" /></span>
               <input 
                 className="bg-transparent border-none focus:ring-0 text-5xl font-headline-md font-bold text-white w-full p-0 outline-none placeholder:text-white/20 transition-all focus:text-cyan-300" 
                 type="number" 
@@ -67,7 +67,7 @@ export default function IncomeTaxCalculator() {
               />
             </div>
             <div className="mt-6 relative z-10">
-              <input type="range" min="10000" max="1000000" step="5000" value={annualIncome} onChange={(e) => setAnnualIncome(Number(e.target.value))} className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+              <input type="range" min="10000" max="5000000" step="10000" value={annualIncome} onChange={(e) => setAnnualIncome(Number(e.target.value))} className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
             </div>
           </div>
 
@@ -76,7 +76,7 @@ export default function IncomeTaxCalculator() {
             <div className="group relative bg-white/5 backdrop-blur-2xl p-6 rounded-3xl border border-white/10 hover:border-purple-500/50 transition-all duration-500 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
               <label className="block text-xs uppercase tracking-[0.2em] text-purple-400 font-label-md mb-4 font-bold">Deductions</label>
               <div className="flex items-end gap-2 relative z-10">
-                <span className="text-2xl text-purple-400/50 pb-1"><CurrencySymbol fallback="$" /></span>
+                <span className="text-2xl text-purple-400/50 pb-1"><CurrencySymbol fallback="₹" /></span>
                 <input 
                   className="bg-transparent border-none focus:ring-0 text-3xl font-headline-md font-bold text-white w-full p-0 outline-none focus:text-purple-300 text-left" 
                   type="number" 
@@ -90,7 +90,7 @@ export default function IncomeTaxCalculator() {
             <div className="group relative bg-white/5 backdrop-blur-2xl p-6 rounded-3xl border border-white/10 hover:border-blue-500/50 transition-all duration-500 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
               <label className="block text-xs uppercase tracking-[0.2em] text-blue-400 font-label-md mb-4 font-bold">Exemptions</label>
               <div className="flex items-end gap-2 relative z-10">
-                <span className="text-2xl text-blue-400/50 pb-1"><CurrencySymbol fallback="$" /></span>
+                <span className="text-2xl text-blue-400/50 pb-1"><CurrencySymbol fallback="₹" /></span>
                 <input 
                   className="bg-transparent border-none focus:ring-0 text-3xl font-headline-md font-bold text-white w-full p-0 outline-none focus:text-blue-300 text-left" 
                   type="number" 
@@ -114,17 +114,16 @@ export default function IncomeTaxCalculator() {
             {/* Primary Result */}
             <div className="text-center mb-12">
               <p className="text-sm font-label-md uppercase tracking-[0.3em] text-white/40 mb-6 font-bold">Estimated Tax Liability</p>
-              <div className="font-headline-md text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,0.4)] tracking-tighter">
-                <CurrencySymbol fallback="$" />{totalTax.toLocaleString(currency.locale)}
+              <div className="text-6xl font-headline-md font-black text-white drop-shadow-[0_0_20px_rgba(34,211,238,0.3)] tracking-tight">
+                <CurrencySymbol fallback="₹" />{totalTax.toLocaleString(currency.locale)}
               </div>
             </div>
 
             {/* Breakdown Cards */}
-            <div className="grid grid-cols-2 gap-6 mb-12">
-              <div className="bg-white/5 backdrop-blur-xl border border-white/5 rounded-3xl p-6 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.8)]" />
-                <p className="text-xs uppercase tracking-[0.2em] text-white/40 font-bold mb-2">Taxable Base</p>
-                <p className="text-3xl font-headline-md font-bold text-white"><CurrencySymbol fallback="$" />{taxableIncome.toLocaleString(currency.locale)}</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white/5 border border-white/10 p-4 rounded-2xl">
+                <p className="text-white/40 text-xs uppercase tracking-wider mb-1 font-bold">Taxable Income</p>
+                <p className="text-3xl font-headline-md font-bold text-white"><CurrencySymbol fallback="₹" />{taxableIncome.toLocaleString(currency.locale)}</p>
               </div>
               <div className="bg-white/5 backdrop-blur-xl border border-white/5 rounded-3xl p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.8)]" />
@@ -174,3 +173,6 @@ export default function IncomeTaxCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Sandeep from Jabalpur uses this tool to check variables.

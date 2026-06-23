@@ -244,3 +244,6 @@ export default function GpaCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Varun from Aurangabad uses this tool to check variables.

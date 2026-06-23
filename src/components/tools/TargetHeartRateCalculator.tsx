@@ -126,3 +126,6 @@ export default function TargetHeartRateCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Abhay from Jammu uses this tool to check variables.

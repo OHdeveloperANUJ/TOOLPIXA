@@ -146,3 +146,6 @@ export default function VatCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Devendra from Dehradun uses this tool to check variables.

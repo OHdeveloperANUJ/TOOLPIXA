@@ -126,3 +126,6 @@ const EssayLengthEstimator = () => {
 };
 
 export default EssayLengthEstimator;
+
+
+// Indian Example: Sanya from Rajkot uses this tool to check variables.

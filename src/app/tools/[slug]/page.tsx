@@ -52,8 +52,11 @@ const getExternalLink = (category: string) => {
   return { name: 'ClearTax', url: 'https://cleartax.in/', icon: 'receipt_long', color: 'from-[#3b82f6] to-[#2563eb]' };
 };
 
-const getRelatedBlog = (category: string) => {
+const getRelatedBlog = (slug: string, category: string) => {
   const cat = category.toLowerCase();
+  if (slug === 'education-loan-emi-calculator') {
+    return { title: 'Section 80E — Complete Guide for Students', slug: 'section-80e-education-loan-tax-benefit' };
+  }
   if (cat === 'finance') return { title: 'Old vs New Tax Regime 2025-26', slug: 'old-vs-new-tax-regime-2025-26' };
   if (cat === 'student') return { title: 'How to Manage Student Loans Effectively', slug: 'how-to-manage-student-loans-effectively' };
   return { title: 'Mastering Personal Finance with Precision Tools', slug: 'mastering-personal-finance' };
@@ -180,6 +183,31 @@ const calculators = {
   'pdf-to-word-converter': dynamic(() => import('@/components/tools/PdfToWordConverter')),
 };
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const toolData = toolsRegistry[slug];
+  if (!toolData) return {};
+  
+  const title = toolData.seoTitle || `${toolData.title} - Free Online ${toolData.category.charAt(0).toUpperCase() + toolData.category.slice(1)} Tool | ToolPixa`;
+  const description = toolData.seoDescription || toolData.description;
+  const canonicalUrl = `https://toolpixa.space/tools/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      type: 'website',
+      siteName: 'ToolPixa',
+    },
+  };
+}
+
 export default async function ToolPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const toolData = toolsRegistry[slug];
@@ -261,6 +289,15 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       />
       <main className="pt-xxl pb-xxxl">
         <section className="max-w-7xl mx-auto px-margin items-start">
+          {/* Breadcrumb Navigation */}
+          <nav className="text-sm font-label-md text-text-secondary mb-md flex items-center gap-xs">
+            <a href="/" className="hover:text-primary transition-colors">Home</a>
+            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+            <a href={`/category/${toolData.category.toLowerCase()}`} className="hover:text-primary transition-colors capitalize">{toolData.category}</a>
+            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+            <span className="text-text-primary capitalize">{toolData.title}</span>
+          </nav>
+          
           <div className="fade-in-up mb-xl flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="space-y-md flex-1">
               <h1 className="font-display-lg text-4xl md:text-5xl font-bold text-text-primary tracking-tight leading-tight">
@@ -324,7 +361,13 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             <div className="lg:col-span-2 space-y-lg">
               <h2 className="font-headline-lg text-headline-lg text-text-primary">How it Works</h2>
               <div className="prose prose-invert max-w-none space-y-md">
-                <p className="font-body-lg text-body-lg text-text-secondary">A {toolData.title} consists of components defined by its mathematical formula. In the initial phases, understand the variables carefully.</p>
+                <p className="font-body-lg text-body-lg text-text-secondary">
+                  {toolData.category.toLowerCase() === 'pdf' 
+                    ? `The ${toolData.title} operates entirely client-side in your web browser. When you select a PDF document, our client-side processing script reads the file structure directly on your device, applies the requested actions (such as combining pages, splitting sheets, or compression), and generates a new download link. Since no files are sent to external servers, your data remains 100% secure and private.`
+                    : toolData.category.toLowerCase() === 'image'
+                    ? `The ${toolData.title} uses modern browser canvas and rendering APIs to process your graphics. When you load an image, it is drawn into an in-memory canvas element. The tool then applies mathematical transformations to compress, resize, flip, or rotate the pixels, and outputs the result in your requested format—all happening in real-time right on your computer.`
+                    : `The ${toolData.title} uses verified algorithms and industry-standard equations to analyze your inputs. Adjust the sliders or fill in the input fields above, and the tool will instantly recalculate the values and update the visualizations, charts, or detailed schedules in real-time.`}
+                </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
                   {toolData.formulaLegend?.map((legend, idx) => (
                     <div key={idx} className="glass-card p-md rounded-lg">
@@ -373,9 +416,9 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 </thead>
                 <tbody>
                   <tr className="border-b border-glass-border/50">
-                    <td className="py-3 px-4 text-text-secondary">Ad-Free Experience</td>
-                    <td className="py-3 px-4 text-green-400 font-medium">Yes (100% Clean)</td>
-                    <td className="py-3 px-4 text-red-400">Filled with Ads</td>
+                    <td className="py-3 px-4 text-text-secondary">No Intrusive Ads</td>
+                    <td className="py-3 px-4 text-green-400 font-medium">Yes (Clean Layout)</td>
+                    <td className="py-3 px-4 text-red-400">Intrusive Pop-ups / Banners</td>
                   </tr>
                   <tr className="border-b border-glass-border/50">
                     <td className="py-3 px-4 text-text-secondary">Data Privacy</td>
@@ -404,12 +447,12 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 <span className="material-symbols-outlined text-primary">auto_stories</span>
               </div>
               <div>
-                <h3 className="font-headline-md text-text-primary mb-1">Deep Dive: {getRelatedBlog(toolData.category).title}</h3>
+                <h3 className="font-headline-md text-text-primary mb-1">Deep Dive: {getRelatedBlog(slug, toolData.category).title}</h3>
                 <p className="font-body-sm text-text-secondary">Read our comprehensive guide and strategies related to this calculator.</p>
               </div>
             </div>
             <a 
-              href={`/blog/${getRelatedBlog(toolData.category).slug}`}
+              href={`/blog/${getRelatedBlog(slug, toolData.category).slug}`}
               className="mt-4 md:mt-0 shrink-0 px-6 py-2 border border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-all font-label-md"
             >
               Read Article

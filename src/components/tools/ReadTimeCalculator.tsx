@@ -107,3 +107,6 @@ export default function ReadTimeCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Meena from Cuttack uses this tool to check variables.

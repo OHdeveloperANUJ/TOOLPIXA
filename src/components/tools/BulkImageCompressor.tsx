@@ -231,3 +231,6 @@ export default function BulkImageCompressor() {
     </div>
   );
 }
+
+
+// Indian Example: Ishaan from Lucknow uses this tool to check variables.

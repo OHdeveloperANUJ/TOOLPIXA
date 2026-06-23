@@ -18,13 +18,13 @@ export const blogPosts: BlogPost[] = [
     title: 'SIP vs Lumpsum: Which Investment Strategy is Better?',
     description: 'A mathematical deep dive into Systematic Investment Plans versus Lumpsum investing. Which strategy yields the highest returns in a volatile market?',
     category: 'Finance',
-    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a2236b0?auto=format&fit=crop&q=80&w=1600&h=600',
+    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=1600&h=600',
     tags: ['finance', 'investing', 'mutual funds', 'sip', 'wealth'],
     date: '2026-06-22',
     author: 'ToolPixa',
     content: `# SIP vs Lumpsum: The Ultimate Showdown
 
-![Hero Image](https://images.unsplash.com/photo-1611974789855-9c2a0a2236b0?auto=format&fit=crop&q=80&w=1600&h=600)
+![Hero Image](https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=1600&h=600)
 
 **A mathematical deep dive into Systematic Investment Plans versus Lumpsum investing. Which strategy yields the highest returns in a volatile market?**
 
@@ -204,7 +204,7 @@ A robust financial model typically includes three main components:
 By mastering financial modeling, founders can confidently navigate the uncertainties of the startup journey and secure the funding they need to grow.
     `,
     author: 'ToolPixa',
-    date: 'Oct 15, 2026',
+    date: '2026-06-18',
     readTime: '12 min read',
     category: 'Insights',
     imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',

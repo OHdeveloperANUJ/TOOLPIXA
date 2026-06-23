@@ -96,3 +96,6 @@ export default function TextCaseConverter() {
     </section>
   );
 }
+
+
+// Indian Example: Prashant from Belgaum uses this tool to check variables.

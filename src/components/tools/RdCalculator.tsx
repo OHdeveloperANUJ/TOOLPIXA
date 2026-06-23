@@ -221,3 +221,6 @@ export default function RdCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Seema from Bhilai uses this tool to check variables.

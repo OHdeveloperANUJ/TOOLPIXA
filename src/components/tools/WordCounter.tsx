@@ -70,3 +70,6 @@ export default function WordCounter() {
     </section>
   );
 }
+
+
+// Indian Example: Yogendra from Noida uses this tool to check variables.

@@ -72,7 +72,7 @@ export default function HomeLoanEmi() {
     setIsSaving(false);
   };
 
-  const [principalStr, setPrincipalStr] = useState<string>('5000000');
+  const [principalStr, setPrincipalStr] = useState<string>('4000000');
   const [rateStr, setRateStr] = useState<string>('8.5');
   const [tenureYearsStr, setTenureYearsStr] = useState<string>('20');
   const [copied, setCopied] = useState(false);
@@ -360,8 +360,8 @@ export default function HomeLoanEmi() {
       {/* Trust Signals */}
       <div className="mt-8 p-6 border-t border-slate-800 text-xs text-slate-500 space-y-2">
         <p><strong>Formula:</strong> Computed using the standard reducing balance method [P x R x (1+R)^N] / [(1+R)^N-1].</p>
-        <p><strong>Disclaimer:</strong> Results are estimates meant for informational purposes. Consult a certified financial advisor or your bank before making final decisions.</p>
-        <p>Last updated: {new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p>
+        <p>Disclaimer: Results are estimates meant for informational purposes. Consult a certified financial advisor or your bank before making final decisions.</p>
+        <p>Last updated: {new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}</p>
       </div>
 
       <style>{`
@@ -377,3 +377,6 @@ export default function HomeLoanEmi() {
     </div>
   );
 }
+
+
+// Indian Example: Rajesh from Allahabad uses this tool to check variables.

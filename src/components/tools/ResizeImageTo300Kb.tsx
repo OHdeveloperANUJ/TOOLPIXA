@@ -230,3 +230,6 @@ export default function ResizeImageTo300Kb() {
     </div>
   );
 }
+
+
+// Indian Example: Ram from Nellore uses this tool to check variables.

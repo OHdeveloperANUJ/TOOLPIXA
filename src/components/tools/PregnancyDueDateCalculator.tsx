@@ -218,3 +218,6 @@ export default function PregnancyDueDateCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Rekha from Bikaner uses this tool to check variables.

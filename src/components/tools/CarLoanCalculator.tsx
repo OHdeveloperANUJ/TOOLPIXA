@@ -40,10 +40,10 @@ function useAnimatedNumber(value: number, duration: number = 800) {
 
 export default function CarLoanCalculator() {
   const { currency } = useStore();
-  const [price, setPrice] = useState<number>(30000);
-  const [downPayment, setDownPayment] = useState<number>(5000);
+  const [price, setPrice] = useState<number>(800000);
+  const [downPayment, setDownPayment] = useState<number>(150000);
   const [termMonths, setTermMonths] = useState<number>(60);
-  const [interestRate, setInterestRate] = useState<number>(5.5);
+  const [interestRate, setInterestRate] = useState<number>(9.5);
 
   const { monthlyPayment, totalInterest, totalCost, principal } = useMemo(() => {
     const p = Math.max(0, price - downPayment);
@@ -98,7 +98,7 @@ export default function CarLoanCalculator() {
                 <div className="flex justify-between items-center">
                   <label className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Vehicle Price</label>
                   <div className="relative w-1/2">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold"><CurrencySymbol fallback="$" /></span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold"><CurrencySymbol fallback="₹" /></span>
                     <input 
                       type="number" 
                       value={price || ''}
@@ -114,7 +114,7 @@ export default function CarLoanCalculator() {
                 <div className="flex justify-between items-center">
                   <label className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Down Payment</label>
                   <div className="relative w-1/2">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold"><CurrencySymbol fallback="$" /></span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold"><CurrencySymbol fallback="₹" /></span>
                     <input 
                       type="number" 
                       value={downPayment || ''}
@@ -190,18 +190,18 @@ export default function CarLoanCalculator() {
             <div className="mb-10 text-center">
               <p className="text-slate-500 dark:text-slate-400 text-sm mb-2 font-bold uppercase tracking-wider">Estimated Monthly Payment</p>
               <div className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white drop-shadow-sm break-words">
-                <CurrencySymbol fallback="$" />{fmt(animatedMonthly)}
+                <CurrencySymbol fallback="₹" />{fmt(animatedMonthly)}
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 text-center flex flex-col justify-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 font-bold">Total Interest</p>
-                <p className="text-xl md:text-2xl font-bold text-rose-600 dark:text-rose-400"><CurrencySymbol fallback="$" />{fmt(animatedInterest)}</p>
+                <p className="text-xl md:text-2xl font-bold text-rose-600 dark:text-rose-400"><CurrencySymbol fallback="₹" />{fmt(animatedInterest)}</p>
               </div>
               <div className="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 text-center flex flex-col justify-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 font-bold">Total Cost of Car</p>
-                <p className="text-xl md:text-2xl font-bold text-indigo-600 dark:text-indigo-400"><CurrencySymbol fallback="$" />{fmt(animatedCost)}</p>
+                <p className="text-xl md:text-2xl font-bold text-indigo-600 dark:text-indigo-400"><CurrencySymbol fallback="₹" />{fmt(animatedCost)}</p>
               </div>
             </div>
 
@@ -280,3 +280,6 @@ export default function CarLoanCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Karan from Nagpur uses this tool to check variables.

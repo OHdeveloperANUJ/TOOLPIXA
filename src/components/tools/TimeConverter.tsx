@@ -132,3 +132,6 @@ const TimeConverter: React.FC = () => {
 };
 
 export default TimeConverter;
+
+
+// Indian Example: Hemant from Loni uses this tool to check variables.

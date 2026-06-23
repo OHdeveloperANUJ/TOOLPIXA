@@ -145,3 +145,6 @@ export default function ScientificCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Sanjeev from Ajmer uses this tool to check variables.

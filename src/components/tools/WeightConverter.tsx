@@ -113,3 +113,6 @@ export default function WeightConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Rajendra from Salem uses this tool to check variables.

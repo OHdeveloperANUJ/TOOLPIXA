@@ -210,3 +210,6 @@ export default function ROICalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Mohan from Dehradun uses this tool to check variables.

@@ -138,3 +138,6 @@ export default function TemperatureConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Sunil from Mangalore uses this tool to check variables.

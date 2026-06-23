@@ -128,3 +128,6 @@ export default function PercentageCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Arpita from Mira uses this tool to check variables.

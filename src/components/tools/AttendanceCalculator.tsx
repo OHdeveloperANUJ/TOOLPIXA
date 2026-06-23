@@ -135,3 +135,6 @@ const AttendanceCalculator: React.FC = () => {
 };
 
 export default AttendanceCalculator;
+
+
+// Indian Example: Akash from Bangalore uses this tool to check variables.

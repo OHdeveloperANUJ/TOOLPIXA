@@ -118,3 +118,6 @@ export default function WaterIntakeCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Gajendra from Kochi uses this tool to check variables.

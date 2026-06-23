@@ -221,3 +221,6 @@ export default function FdCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Shreya from Kalyan uses this tool to check variables.

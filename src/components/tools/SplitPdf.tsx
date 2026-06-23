@@ -103,3 +103,6 @@ export default function SplitPdf() {
     </div>
   );
 }
+
+
+// Indian Example: Vijay from Loni uses this tool to check variables.

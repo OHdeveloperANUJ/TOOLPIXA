@@ -158,3 +158,6 @@ export default function LeanBodyMassCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Ramesh from Raipur uses this tool to check variables.

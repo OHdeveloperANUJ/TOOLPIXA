@@ -103,3 +103,6 @@ export default function DeletePdfPages() {
     </div>
   );
 }
+
+
+// Indian Example: Rohan from Nashik uses this tool to check variables.

@@ -141,3 +141,6 @@ export default function QrCodeGenerator() {
     </section>
   );
 }
+
+
+// Indian Example: Lata from Noida uses this tool to check variables.

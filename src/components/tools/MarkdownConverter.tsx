@@ -112,3 +112,6 @@ export default function MarkdownConverter() {
     </section>
   );
 }
+
+
+// Indian Example: Hari from Solapur uses this tool to check variables.

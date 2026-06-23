@@ -202,3 +202,6 @@ export default function ColorConverter() {
     </section>
   );
 }
+
+
+// Indian Example: Kavya from Indore uses this tool to check variables.

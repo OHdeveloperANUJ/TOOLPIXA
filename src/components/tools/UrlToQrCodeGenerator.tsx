@@ -126,3 +126,6 @@ export default function UrlToQrCodeGenerator() {
     </div>
   );
 }
+
+
+// Indian Example: Surendra from Nellore uses this tool to check variables.

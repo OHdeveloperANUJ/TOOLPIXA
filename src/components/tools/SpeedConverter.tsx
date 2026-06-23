@@ -141,3 +141,6 @@ export default function SpeedConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Satish from Ujjain uses this tool to check variables.

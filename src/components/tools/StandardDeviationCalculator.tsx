@@ -139,3 +139,6 @@ export default function StandardDeviationCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Ajay from Siliguri uses this tool to check variables.

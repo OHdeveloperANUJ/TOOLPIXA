@@ -272,3 +272,6 @@ export default function InflationCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Abhishek from Gwalior uses this tool to check variables.

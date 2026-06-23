@@ -227,3 +227,6 @@ export default function ImageGridMaker() {
     </div>
   );
 }
+
+
+// Indian Example: Anita from Howrah uses this tool to check variables.

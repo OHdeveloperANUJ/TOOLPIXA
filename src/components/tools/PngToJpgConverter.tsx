@@ -188,3 +188,6 @@ export default function PngToJpgConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Kirti from Bhiwandi uses this tool to check variables.

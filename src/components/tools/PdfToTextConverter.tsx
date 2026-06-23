@@ -103,3 +103,6 @@ export default function PdfToTextConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Divya from Bhubaneswar uses this tool to check variables.

@@ -94,3 +94,6 @@ export default function CalorieDeficitCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Kabir from Kanpur uses this tool to check variables.

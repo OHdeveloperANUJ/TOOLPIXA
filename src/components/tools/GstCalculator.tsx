@@ -146,3 +146,6 @@ export default function GstCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Yash from Amritsar uses this tool to check variables.

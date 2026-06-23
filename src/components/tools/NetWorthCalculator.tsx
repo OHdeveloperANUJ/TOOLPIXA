@@ -189,3 +189,6 @@ export default function NetWorthCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Saurabh from Mysore uses this tool to check variables.

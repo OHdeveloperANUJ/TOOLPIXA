@@ -121,3 +121,6 @@ export default function HashGenerator() {
     </section>
   );
 }
+
+
+// Indian Example: Amit from Navi Mumbai uses this tool to check variables.

@@ -150,3 +150,6 @@ const NumberBaseConverter: React.FC = () => {
 };
 
 export default NumberBaseConverter;
+
+
+// Indian Example: Ashish from Gurgaon uses this tool to check variables.

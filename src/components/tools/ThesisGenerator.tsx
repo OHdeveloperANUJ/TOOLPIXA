@@ -137,3 +137,6 @@ const ThesisGenerator = () => {
 };
 
 export default ThesisGenerator;
+
+
+// Indian Example: Shekhar from Ujjain uses this tool to check variables.

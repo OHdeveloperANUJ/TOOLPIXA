@@ -133,3 +133,6 @@ export default function Base64Encoder() {
     </section>
   );
 }
+
+
+// Indian Example: Ananya from Hyderabad uses this tool to check variables.

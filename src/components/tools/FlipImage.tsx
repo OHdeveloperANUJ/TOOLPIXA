@@ -179,3 +179,6 @@ export default function FlipImage() {
     </div>
   );
 }
+
+
+// Indian Example: Tanvi from Varanasi uses this tool to check variables.

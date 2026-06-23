@@ -93,3 +93,6 @@ export default function WordsToPagesConverter() {
     </div>
   );
 }
+
+
+// Indian Example: Virendra from Saharanpur uses this tool to check variables.

@@ -7,8 +7,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, L
 
 export default function SalaryCalculator() {
   const { currency } = useStore();
-  const [annualSalary, setAnnualSalary] = useState<number>(120000);
-  const [bonus, setBonus] = useState<number>(10000);
+  const [annualSalary, setAnnualSalary] = useState<number>(900000);
+  const [bonus, setBonus] = useState<number>(100000);
   const [taxRate, setTaxRate] = useState<number>(20);
   const [deductions, setDeductions] = useState<number>(5000);
 
@@ -36,7 +36,7 @@ export default function SalaryCalculator() {
         <div className="space-y-sm">
           <label className="block font-label-md text-label-md text-text-secondary">Annual Base Salary</label>
           <div className="relative group">
-            <span className="absolute left-md top-1/2 -translate-y-1/2 text-primary font-bold"><CurrencySymbol fallback="$" /></span>
+            <span className="absolute left-md top-1/2 -translate-y-1/2 text-primary font-bold"><CurrencySymbol fallback="₹" /></span>
             <input 
               className="w-full bg-surface-container-low border border-glass-border rounded-lg pl-xl pr-md py-md font-label-md text-label-md text-text-primary focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" 
               type="number" 
@@ -44,13 +44,13 @@ export default function SalaryCalculator() {
               onChange={(e) => setAnnualSalary(Number(e.target.value))}
             />
           </div>
-          <input type="range" min="10000" max="1000000" step="5000" value={annualSalary} onChange={(e) => setAnnualSalary(Number(e.target.value))} className="w-full accent-primary" />
+          <input type="range" min="50000" max="5000000" step="10000" value={annualSalary} onChange={(e) => setAnnualSalary(Number(e.target.value))} className="w-full accent-primary" />
         </div>
 
         <div className="space-y-sm">
           <label className="block font-label-md text-label-md text-text-secondary">Annual Bonus / Variable Pay</label>
           <div className="relative group">
-            <span className="absolute left-md top-1/2 -translate-y-1/2 text-primary font-bold"><CurrencySymbol fallback="$" /></span>
+            <span className="absolute left-md top-1/2 -translate-y-1/2 text-primary font-bold"><CurrencySymbol fallback="₹" /></span>
             <input 
               className="w-full bg-surface-container-low border border-glass-border rounded-lg pl-xl pr-md py-md font-label-md text-label-md text-text-primary focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" 
               type="number" 
@@ -58,7 +58,7 @@ export default function SalaryCalculator() {
               onChange={(e) => setBonus(Number(e.target.value))}
             />
           </div>
-          <input type="range" min="0" max="500000" step="1000" value={bonus} onChange={(e) => setBonus(Number(e.target.value))} className="w-full accent-primary" />
+          <input type="range" min="0" max="2000000" step="10000" value={bonus} onChange={(e) => setBonus(Number(e.target.value))} className="w-full accent-primary" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
@@ -91,18 +91,18 @@ export default function SalaryCalculator() {
         <div className="text-center">
           <p className="font-label-md text-label-md text-text-secondary uppercase tracking-widest mb-xs">Monthly Take-Home Pay</p>
           <div className="font-display-lg text-display-lg text-primary font-bold break-words">
-            <CurrencySymbol fallback="$" />{takeHomeMonthly.toLocaleString(currency.locale, { maximumFractionDigits: 0 })}
+            <CurrencySymbol fallback="₹" />{takeHomeMonthly.toLocaleString(currency.locale, { maximumFractionDigits: 0 })}
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-md">
           <div className="bg-surface-container p-md rounded-lg text-center border border-glass-border">
             <p className="font-body-md text-text-secondary mb-1">Annual Take-Home</p>
-            <p className="font-headline-md text-text-primary"><CurrencySymbol fallback="$" />{takeHomeAnnual.toLocaleString(currency.locale, { maximumFractionDigits: 0 })}</p>
+            <p className="font-headline-md text-text-primary"><CurrencySymbol fallback="₹" />{takeHomeAnnual.toLocaleString(currency.locale, { maximumFractionDigits: 0 })}</p>
           </div>
           <div className="bg-surface-container p-md rounded-lg text-center border border-glass-border">
-            <p className="font-body-md text-text-secondary mb-1">Total Tax & Deductions</p>
-            <p className="font-headline-md text-secondary"><CurrencySymbol fallback="$" />{(totalTax + totalDeductions).toLocaleString(currency.locale, { maximumFractionDigits: 0 })}</p>
+            <p className="font-body-md text-text-secondary mb-1">Tax & Deductions</p>
+            <p className="font-headline-md text-secondary"><CurrencySymbol fallback="₹" />{(totalTax + totalDeductions).toLocaleString(currency.locale, { maximumFractionDigits: 0 })}</p>
           </div>
         </div>
 
@@ -140,3 +140,6 @@ export default function SalaryCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Rajeev from Kolhapur uses this tool to check variables.

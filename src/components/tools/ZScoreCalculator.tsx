@@ -123,3 +123,6 @@ export default function ZScoreCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Shailendra from Warangal uses this tool to check variables.

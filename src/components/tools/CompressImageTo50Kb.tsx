@@ -243,3 +243,6 @@ export default function CompressImageTo50Kb() {
     </div>
   );
 }
+
+
+// Indian Example: Pooja from Patna uses this tool to check variables.

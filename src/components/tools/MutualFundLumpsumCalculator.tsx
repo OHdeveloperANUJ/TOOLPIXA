@@ -126,3 +126,6 @@ export default function MutualFundLumpsumCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Vivek from Moradabad uses this tool to check variables.

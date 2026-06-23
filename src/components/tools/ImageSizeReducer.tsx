@@ -179,3 +179,6 @@ export default function ImageSizeReducer() {
     </div>
   );
 }
+
+
+// Indian Example: Deepak from Coimbatore uses this tool to check variables.

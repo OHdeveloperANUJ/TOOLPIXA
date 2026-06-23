@@ -98,3 +98,6 @@ export default function BmrCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Dev from Surat uses this tool to check variables.

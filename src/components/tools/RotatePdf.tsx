@@ -149,3 +149,6 @@ export default function RotatePdf() {
     </div>
   );
 }
+
+
+// Indian Example: Pankaj from Rourkela uses this tool to check variables.

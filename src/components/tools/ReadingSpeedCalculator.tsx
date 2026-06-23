@@ -106,3 +106,6 @@ const ReadingSpeedCalculator: React.FC = () => {
 };
 
 export default ReadingSpeedCalculator;
+
+
+// Indian Example: Radha from Firozabad uses this tool to check variables.

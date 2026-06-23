@@ -103,3 +103,6 @@ export default function CompressPdfTo1Mb() {
     </div>
   );
 }
+
+
+// Indian Example: Priya from Ghaziabad uses this tool to check variables.

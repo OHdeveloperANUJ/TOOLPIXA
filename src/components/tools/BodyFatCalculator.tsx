@@ -116,3 +116,6 @@ export default function BodyFatCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Diya from Pune uses this tool to check variables.

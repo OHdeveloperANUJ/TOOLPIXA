@@ -111,3 +111,6 @@ export default function URLEncoder() {
     </section>
   );
 }
+
+
+// Indian Example: Ravindra from Ulhasnagar uses this tool to check variables.

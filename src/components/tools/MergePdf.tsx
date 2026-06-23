@@ -103,3 +103,6 @@ export default function MergePdf() {
     </div>
   );
 }
+
+
+// Indian Example: Vijay from Hubli uses this tool to check variables.

@@ -352,7 +352,7 @@ export default function CompoundInterestCalculator() {
       <div className="mt-8 p-6 border-t border-slate-800 text-xs text-slate-500 space-y-2">
         <p><strong>Formula:</strong> A = P(1 + r/n)^(nt)</p>
         <p><strong>Disclaimer:</strong> This calculator provides mathematical estimates. Actual returns may vary depending on taxes, fees, and market volatility.</p>
-        <p>Last updated: {new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p>
+        <p>Last updated: {new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}</p>
       </div>
 
       <style>{`
@@ -368,3 +368,6 @@ export default function CompoundInterestCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Manish from Thane uses this tool to check variables.

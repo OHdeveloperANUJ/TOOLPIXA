@@ -108,3 +108,6 @@ export default function OneRepMaxCalculator() {
     </div>
   );
 }
+
+
+// Indian Example: Nisha from Aligarh uses this tool to check variables.

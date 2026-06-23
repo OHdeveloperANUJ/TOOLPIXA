@@ -307,3 +307,6 @@ export default function BloodAlcoholCalculator() {
     </section>
   );
 }
+
+
+// Indian Example: Arjun from Chennai uses this tool to check variables.

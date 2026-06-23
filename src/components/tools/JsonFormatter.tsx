@@ -183,3 +183,6 @@ export default function JsonFormatter() {
     </section>
   );
 }
+
+
+// Indian Example: Suresh from Madurai uses this tool to check variables.

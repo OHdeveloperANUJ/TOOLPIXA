@@ -72,9 +72,9 @@ export default function PersonalLoanEmi() {
     setIsSaving(false);
   };
 
-  const [principalStr, setPrincipalStr] = useState<string>('5000000');
-  const [rateStr, setRateStr] = useState<string>('8.5');
-  const [tenureYearsStr, setTenureYearsStr] = useState<string>('20');
+  const [principalStr, setPrincipalStr] = useState<string>('500000');
+  const [rateStr, setRateStr] = useState<string>('12.5');
+  const [tenureYearsStr, setTenureYearsStr] = useState<string>('5');
   const [copied, setCopied] = useState(false);
   const [errorShake, setErrorShake] = useState(false);
   
@@ -183,7 +183,7 @@ export default function PersonalLoanEmi() {
                 }}
               />
             </div>
-            <input type="range" min="100000" max="20000000" step="100000" value={principal} onChange={(e) => setPrincipalStr(e.target.value)} className="w-full accent-cyan-400 h-2" />
+            <input type="range" min="50000" max="4000000" step="10000" value={principal} onChange={(e) => setPrincipalStr(e.target.value)} className="w-full accent-cyan-400 h-2" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -360,8 +360,8 @@ export default function PersonalLoanEmi() {
       {/* Trust Signals */}
       <div className="mt-8 p-6 border-t border-slate-800 text-xs text-slate-500 space-y-2">
         <p><strong>Formula:</strong> Computed using the standard reducing balance method [P x R x (1+R)^N] / [(1+R)^N-1].</p>
-        <p><strong>Disclaimer:</strong> Results are estimates meant for informational purposes. Consult a certified financial advisor or your bank before making final decisions.</p>
-        <p>Last updated: {new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p>
+        <p>Disclaimer: Results are estimates meant for informational purposes. Consult a certified financial advisor or your bank before making final decisions.</p>
+        <p>Last updated: {new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}</p>
       </div>
 
       <style>{`
@@ -377,3 +377,6 @@ export default function PersonalLoanEmi() {
     </div>
   );
 }
+
+
+// Indian Example: Priti from Guntur uses this tool to check variables.
