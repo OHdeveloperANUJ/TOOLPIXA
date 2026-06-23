@@ -162,9 +162,18 @@ export default function BikeLoanEmi() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         {/* Inputs Section */}
         <div className="glass-card p-8 rounded-2xl space-y-6">
-          <h3 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
-            Loan Details
-          </h3>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+              Loan Details
+            </h3>
+            <button 
+              onClick={handleSave} 
+              disabled={isSaving || hasError}
+              className="flex items-center gap-1 px-3 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/20 hover:border-cyan-500/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+            >
+              <Save size={14} /> Save
+            </button>
+          </div>
           
           <div className="space-y-2">
             <label className="block text-sm font-medium text-slate-400">Loan Amount (Principal)</label>

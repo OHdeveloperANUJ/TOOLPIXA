@@ -125,12 +125,12 @@ export default function Home() {
       <section className="px-margin max-w-7xl mx-auto mb-xxl text-center">
         <h4 className="font-label-md text-label-md text-text-secondary uppercase tracking-widest mb-lg">Trending Topics</h4>
         <div className="flex flex-wrap justify-center gap-md">
-          <button className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Loans</button>
-          <button className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Grades</button>
-          <button className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Tax</button>
-          <button className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Unit Conversion</button>
-          <button className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Investments</button>
-          <button className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Scientific</button>
+          <Link href="/category/finance?tab=Loans" className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary transition-colors">Loans</Link>
+          <Link href="/category/student?tab=Grades" className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary transition-colors">Grades</Link>
+          <Link href="/category/finance?tab=Tax" className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary transition-colors">Tax</Link>
+          <Link href="/category/converter?tab=Unit" className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary transition-colors">Unit Conversion</Link>
+          <Link href="/category/finance?tab=Investments" className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary transition-colors">Investments</Link>
+          <Link href="/tools/scientific-calculator" className="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary transition-colors">Scientific</Link>
         </div>
       </section>
 

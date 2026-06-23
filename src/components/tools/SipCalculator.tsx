@@ -4,10 +4,30 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
-import { Download, Table, PieChart as ChartIcon, Plus, Info } from 'lucide-react';
+import { Download, Table, PieChart as ChartIcon, Plus, Info, Save } from 'lucide-react';
 
 export default function SipCalculator() {
   const { currency } = useStore();
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'sip-calculator',
+        inputData: { monthlyInvestment: monthlyInvestmentStr, returnRate: returnRateStr, years: yearsStr },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
   const [monthlyInvestmentStr, setMonthlyInvestmentStr] = useState<string>('5000');
   const [returnRateStr, setReturnRateStr] = useState<string>('12');
   const [yearsStr, setYearsStr] = useState<string>('10');
@@ -95,11 +115,20 @@ export default function SipCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start min-h-[85vh] p-4 lg:p-8 rounded-[32px] bg-[#05050A]">
       {/* Input Section - Left Side */}
       <div className="lg:col-span-5 space-y-8 fade-in-up">
-        <div>
-          <h2 className="font-headline-md font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 tracking-tight mb-2">
-            SIP Engine
-          </h2>
-          <p className="text-white/40 font-body-md">Precision wealth projection matrix.</p>
+        <div className="flex justify-between items-start">
+          <div>
+            <h2 className="font-headline-md font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 tracking-tight mb-2">
+              SIP Engine
+            </h2>
+            <p className="text-white/40 font-body-md">Precision wealth projection matrix.</p>
+          </div>
+          <button 
+            onClick={handleSave} 
+            disabled={isSaving || monthlyInvestment <= 0 || returnRate < 0 || years <= 0}
+            className="flex items-center gap-1 px-3 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/20 hover:border-cyan-500/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50 mt-2"
+          >
+            <Save size={14} /> Save
+          </button>
         </div>
 
         <div className="space-y-6">

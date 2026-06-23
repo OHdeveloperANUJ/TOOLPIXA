@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
-import { Car, Info, PieChart as PieChartIcon, Table, Download, Plus, AlertCircle } from 'lucide-react';
+import { Car, Info, PieChart as PieChartIcon, Table, Download, Plus, AlertCircle, Save } from 'lucide-react';
 
 function useAnimatedNumber(value: number, duration: number = 800) {
   const [currentValue, setCurrentValue] = useState(0);
@@ -40,6 +40,26 @@ function useAnimatedNumber(value: number, duration: number = 800) {
 
 export default function CarLoanCalculator() {
   const { currency } = useStore();
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'car-loan-calculator',
+        inputData: { price: priceStr, downPayment: downPaymentStr, interestRate: interestRateStr, termMonths: termMonthsStr },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
   const [priceStr, setPriceStr] = useState<string>('800000');
   const [downPaymentStr, setDownPaymentStr] = useState<string>('150000');
   const [termMonthsStr, setTermMonthsStr] = useState<string>('60');
@@ -170,11 +190,20 @@ export default function CarLoanCalculator() {
         {/* Input Section */}
         <div className="xl:col-span-5 space-y-6">
           <div className="glass-card p-6 lg:p-8 rounded-[32px] border border-white/10 space-y-6">
-            <div>
-              <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2 mb-2">
-                <Car className="text-indigo-500" /> Car Loan Details
-              </h2>
-              <p className="text-sm text-slate-400">Configure your car loan values below.</p>
+            <div className="flex justify-between items-start">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2 mb-2">
+                  <Car className="text-indigo-500" /> Car Loan Details
+                </h2>
+                <p className="text-sm text-slate-400">Configure your car loan values below.</p>
+              </div>
+              <button 
+                onClick={handleSave} 
+                disabled={isSaving || hasError}
+                className="flex items-center gap-1 px-3 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/20 hover:border-indigo-500/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50 mt-1"
+              >
+                <Save size={14} /> Save
+              </button>
             </div>
 
             <div className="space-y-5">

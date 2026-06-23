@@ -28,7 +28,7 @@ export default function Footer() {
         </div>
         {/* Category Columns */}
         <div>
-          <h5 className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Finance</h5>
+          <p className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Finance</p>
           <ul className="space-y-sm font-body-md text-body-md">
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/home-loan-emi-calculator">Loan EMI</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/income-tax-calculator">Income Tax</Link></li>
@@ -37,7 +37,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h5 className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Student</h5>
+          <p className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Student</p>
           <ul className="space-y-sm font-body-md text-body-md">
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/gpa-calculator">CGPA Calc</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/percentage-calculator">Percentage</Link></li>
@@ -46,7 +46,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h5 className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Health</h5>
+          <p className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Health</p>
           <ul className="space-y-sm font-body-md text-body-md">
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/bmi-calculator">BMI Index</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/tools/calorie-deficit-surplus-calculator">Calories</Link></li>
@@ -55,7 +55,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h5 className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Legal</h5>
+          <p className="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Legal</p>
           <ul className="space-y-sm font-body-md text-body-md">
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/privacy">Privacy Policy</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/terms">Terms & Conditions</Link></li>

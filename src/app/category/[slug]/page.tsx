@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import CategoryToolsGrid from '@/components/CategoryToolsGrid';
 import { toolsRegistry } from '@/data/toolsRegistry';
@@ -42,7 +42,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
 
 
-<CategoryToolsGrid initialTools={categoryTools} category={slug} />
+<Suspense fallback={<div className="min-h-[500px] flex items-center justify-center"><div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full text-primary"></div></div>}>
+  <CategoryToolsGrid initialTools={categoryTools} category={slug} />
+</Suspense>
 
 <section className="max-w-7xl mx-auto px-margin mb-xxxl">
 <div className="glass-card p-xxl rounded-xl relative overflow-hidden flex flex-col md:flex-row items-center gap-xl justify-between">

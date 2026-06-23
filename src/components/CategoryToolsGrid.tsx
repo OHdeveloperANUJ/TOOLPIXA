@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import ToolCard from '@/components/ToolCard';
+import { useSearchParams } from 'next/navigation';
 
 interface CategoryToolsGridProps {
   initialTools: any[];
@@ -20,9 +21,23 @@ const CATEGORY_TABS: Record<string, string[]> = {
 };
 
 export default function CategoryToolsGrid({ initialTools, category }: CategoryToolsGridProps) {
-  const [activeTab, setActiveTab] = useState('All');
+  const searchParams = useSearchParams();
+  const tagParam = searchParams.get('tab') || searchParams.get('tag');
   
   const tabs = CATEGORY_TABS[category.toLowerCase()] || ['All', 'Popular', 'New'];
+
+  const [activeTab, setActiveTab] = useState('All');
+
+  useEffect(() => {
+    if (tagParam) {
+      const matched = tabs.find(t => t.toLowerCase() === tagParam.toLowerCase());
+      if (matched) {
+        setActiveTab(matched);
+      }
+    } else {
+      setActiveTab('All');
+    }
+  }, [tagParam, tabs]);
 
   const filteredTools = useMemo(() => {
     if (activeTab === 'All') return initialTools;

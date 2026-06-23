@@ -5,6 +5,15 @@ import Link from 'next/link';
 import { Clock, Calculator, ArrowRight, Trash2 } from 'lucide-react';
 import { toolsRegistry } from '@/data/toolsRegistry';
 
+const getNormalizedToolId = (toolId: string): string => {
+  const legacyMap: Record<string, string> = {
+    'home-loan-emi': 'home-loan-emi-calculator',
+    'bike-loan-emi': 'bike-loan-emi-calculator',
+    'personal-loan-emi': 'personal-loan-emi-calculator',
+  };
+  return legacyMap[toolId] || toolId;
+};
+
 interface HistoryItem {
   id: string;
   toolId: string;
@@ -79,7 +88,7 @@ export default function ProfilePage() {
             <Calculator className="mx-auto text-text-secondary/50 mb-4" size={48} />
             <p className="text-text-secondary font-body-md mb-6">You haven't saved any calculations on this device yet.</p>
             <Link 
-              href="/tools/bike-loan-emi" 
+              href="/tools/bike-loan-emi-calculator" 
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-medium hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20"
             >
               Try a Calculator <ArrowRight size={18} />
@@ -88,7 +97,8 @@ export default function ProfilePage() {
         ) : (
           <div className="grid gap-4">
             {history.map((item) => {
-              const toolInfo = toolsRegistry[item.toolId];
+              const normalizedToolId = getNormalizedToolId(item.toolId);
+              const toolInfo = toolsRegistry[normalizedToolId];
               const date = new Date(item.createdAt);
               
               return (
@@ -122,7 +132,7 @@ export default function ProfilePage() {
                       <Trash2 size={18} />
                     </button>
                     <Link 
-                      href={`/tools/${item.toolId}`} 
+                      href={`/tools/${normalizedToolId}`} 
                       className="px-4 py-2 bg-primary/10 text-primary rounded-lg font-medium hover:bg-primary/20 transition-colors flex items-center gap-2 text-sm"
                     >
                       Open
