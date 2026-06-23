@@ -42,14 +42,14 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
 <div className="bg-surface-container-high p-md border-b border-glass-border">
 <div className="flex items-center gap-sm mb-xs">
 <span className="material-symbols-outlined text-primary" >home</span>
-<h3 className="font-headline-md text-headline-md text-primary">{tool1}</h3>
+<h2 className="font-headline-md text-headline-md text-primary">{tool1}</h2>
 </div>
 <p className="text-label-md font-label-md text-on-surface-variant opacity-70">Asset Building</p>
 </div>
 <div className="bg-surface-container-high p-md border-b border-glass-border">
 <div className="flex items-center gap-sm mb-xs">
 <span className="material-symbols-outlined text-secondary" >payments</span>
-<h3 className="font-headline-md text-headline-md text-secondary">{tool2}</h3>
+<h2 className="font-headline-md text-headline-md text-secondary">{tool2}</h2>
 </div>
 <p className="text-label-md font-label-md text-on-surface-variant opacity-70">Quick Liquidity</p>
 </div>
@@ -121,17 +121,17 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
 <h2 className="font-headline-lg text-headline-lg text-text-primary mb-md mt-sm">The Verdict</h2>
 <div className="grid md:grid-cols-2 gap-lg text-left">
 <div className="p-md bg-white/5 rounded-xl border border-white/5">
-<h4 className="text-primary font-bold mb-xs flex items-center gap-xs">
+<h3 className="text-primary font-bold mb-xs flex items-center gap-xs">
 <span className="material-symbols-outlined text-sm">check_circle</span> Home Loan
-                        </h4>
+                        </h3>
 <p className="text-body-md text-on-surface-variant leading-relaxed">
                             Choose a Home Loan for long-term property investment with tax advantages. Ideal for building multi-generational equity.
                         </p>
 </div>
 <div className="p-md bg-white/5 rounded-xl border border-white/5">
-<h4 className="text-secondary font-bold mb-xs flex items-center gap-xs">
+<h3 className="text-secondary font-bold mb-xs flex items-center gap-xs">
 <span className="material-symbols-outlined text-sm">bolt</span> Personal Loan
-                        </h4>
+                        </h3>
 <p className="text-body-md text-on-surface-variant leading-relaxed">
                             Choose a Personal Loan for fast, unsecured funding with shorter commitments. Best for emergencies or bridge financing.
                         </p>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { Save } from 'lucide-react';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
@@ -8,6 +9,27 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, L
 type CalculatorType = 'FD' | 'RD';
 
 export default function RdCalculator() {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'rd-calculator',
+        inputData: { calcType, fdPrincipal, fdRate, fdYears, rdMonthly, rdRate, rdYears },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const { currency } = useStore();
   const [calcType, setCalcType] = useState<CalculatorType>('FD');
   
@@ -79,9 +101,18 @@ export default function RdCalculator() {
           </button>
         </div>
 
-        <h3 className="font-headline-md text-headline-md text-text-primary mb-sm">
-          {calcType === 'FD' ? 'FD Details' : 'RD Details'}
-        </h3>
+        <div className="flex justify-between items-center mb-sm">
+          <h3 className="font-headline-md text-headline-md text-text-primary">
+            {calcType === 'FD' ? 'FD Details' : 'RD Details'}
+          </h3>
+          <button 
+            onClick={handleSave} 
+            disabled={isSaving || (calcType === 'FD' ? fdPrincipal <= 0 || fdRate < 0 || fdYears <= 0 : rdMonthly <= 0 || rdRate < 0 || rdYears <= 0)}
+            className="flex items-center gap-1 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+          >
+            <Save size={14} /> Save
+          </button>
+        </div>
         
         {calcType === 'FD' ? (
           <>

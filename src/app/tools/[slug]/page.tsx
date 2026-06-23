@@ -374,10 +374,10 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             {/* Amazon Affiliate */}
             <div className="glass-card rounded-2xl p-lg flex flex-col justify-between border border-orange-500/20 bg-gradient-to-br from-orange-500/5 to-transparent hover:border-orange-500/40 transition-all">
               <div>
-                <h3 className="font-headline-sm text-text-primary mb-1 flex items-center gap-2">
+                <h2 className="font-headline-sm text-text-primary mb-1 flex items-center gap-2">
                   <span className="material-symbols-outlined text-orange-400">shopping_bag</span>
                   Shop Related Products
-                </h3>
+                </h2>
                 <p className="text-text-secondary text-sm mb-4">Find top-rated equipment on Amazon India to support your needs.</p>
               </div>
               <a 
@@ -393,10 +393,10 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             {/* External Authority Affiliate */}
             <div className="glass-card rounded-2xl p-lg flex flex-col justify-between border border-green-500/20 bg-gradient-to-br from-green-500/5 to-transparent hover:border-green-500/40 transition-all">
               <div>
-                <h3 className="font-headline-sm text-text-primary mb-1 flex items-center gap-2">
+                <h2 className="font-headline-sm text-text-primary mb-1 flex items-center gap-2">
                   <span className="material-symbols-outlined text-green-400">{getExternalLink(toolData.category).icon}</span>
                   Recommended Platform
-                </h3>
+                </h2>
                 <p className="text-text-secondary text-sm mb-4">Take the next step with {getExternalLink(toolData.category).name}'s specialized services.</p>
               </div>
               <a 
@@ -427,7 +427,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
                   {toolData.formulaLegend?.map((legend, idx) => (
                     <div key={idx} className="glass-card p-md rounded-lg">
-                      <h4 className="font-headline-md text-headline-md text-primary mb-xs">{legend.label}</h4>
+                      <h3 className="font-headline-md text-headline-md text-primary mb-xs">{legend.label}</h3>
                       <p className="font-body-md text-body-md text-text-secondary">{legend.desc}</p>
                     </div>
                   ))}
@@ -517,7 +517,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           
           {/* Related Tools */}
           <div className="mt-xxxl pt-xl border-t border-glass-border">
-            <h3 className="font-display-sm text-3xl font-bold text-text-primary mb-lg">More {toolData.category} Tools</h3>
+            <h2 className="font-display-sm text-3xl font-bold text-text-primary mb-lg">More {toolData.category} Tools</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
               {Object.entries(toolsRegistry)
                 .filter(([key, t]) => t.category === toolData.category && key !== slug)

@@ -47,7 +47,7 @@ export default function CategoriesPage() {
                 <div className={`w-16 h-16 rounded-2xl ${cat.bg} flex items-center justify-center mb-md border ${cat.border}`}>
                   <span className={`material-symbols-outlined ${cat.textClass} text-3xl`}>{cat.icon}</span>
                 </div>
-                <h3 className="font-headline-md text-headline-md text-text-primary text-[20px] mb-xs">{cat.title}</h3>
+                <h2 className="font-headline-md text-headline-md text-text-primary text-[20px] mb-xs">{cat.title}</h2>
                 <p className="font-label-md text-label-md text-text-secondary">{count} Live Tools</p>
               </TiltCard>
             );

@@ -32,7 +32,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-md border border-primary/20 group-hover:bg-primary/20 transition-colors">
 <span className="material-symbols-outlined text-primary text-[28px]">home_max</span>
 </div>
-<h3 className="font-headline-md text-headline-md text-text-primary mb-xs">Home Loan EMI</h3>
+<h2 className="font-headline-md text-headline-md text-text-primary mb-xs">Home Loan EMI</h2>
 <p className="font-body-md text-on-surface-variant mb-xl flex-grow">
                         Calculate monthly installments for your dream home with advanced amortization schedules.
                     </p>
@@ -49,7 +49,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
 <div className="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center mb-md border border-tertiary/20 group-hover:bg-tertiary/20 transition-colors">
 <span className="material-symbols-outlined text-tertiary text-[28px]">person</span>
 </div>
-<h3 className="font-headline-md text-headline-md text-text-primary mb-xs">Personal Loan EMI</h3>
+<h2 className="font-headline-md text-headline-md text-text-primary mb-xs">Personal Loan EMI</h2>
 <p className="font-body-md text-on-surface-variant mb-xl flex-grow">
                         Quick estimates for personal expenses, medical bills, or travel funding with flexible interest inputs.
                     </p>
@@ -66,7 +66,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
 <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-md border border-secondary/20 group-hover:bg-secondary/20 transition-colors">
 <span className="material-symbols-outlined text-secondary text-[28px]">directions_car</span>
 </div>
-<h3 className="font-headline-md text-headline-md text-text-primary mb-xs">Car Loan EMI</h3>
+<h2 className="font-headline-md text-headline-md text-text-primary mb-xs">Car Loan EMI</h2>
 <p className="font-body-md text-on-surface-variant mb-xl flex-grow">
                         Analyze down payments and tenure options for your next vehicle purchase.
                     </p>
@@ -83,7 +83,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
 <div className="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-md border border-primary-container/20 group-hover:bg-primary-container/20 transition-colors">
 <span className="material-symbols-outlined text-primary-container text-[28px]">domain</span>
 </div>
-<h3 className="font-headline-md text-headline-md text-text-primary mb-xs">Business Loan EMI</h3>
+<h2 className="font-headline-md text-headline-md text-text-primary mb-xs">Business Loan EMI</h2>
 <p className="font-body-md text-on-surface-variant mb-xl flex-grow">
                         Scale your enterprise with precision calculations for working capital and expansion loans.
                     </p>

@@ -804,7 +804,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online Flip image tool. Flip your any image online quickly. Secure calculation, responsive design, and 100% free with no signup required. Try ToolPix`,
     description: `Flip your any image online quickly.`,
     category: `image`,
-    icon: `FlipHorizontal`,
+    icon: `swap_horiz`,
     formula: `I_{new}(x,y) = I_{old}(W-x, y)`,
     formulaTitle: `Horizontal Pixel Mapping`,
     formulaLegend: [
@@ -1016,7 +1016,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online Image Grid Maker tool. Create Drawing Grids Instantly on Images. Secure calculation, responsive design, and 100% free with no signup required.`,
     description: `Create Drawing Grids Instantly on Images.`,
     category: `image`,
-    icon: `Grid`,
+    icon: `grid_view`,
     formula: `W_{grid} = n_c \\times w + (n_c - 1) \\times g`,
     formulaTitle: `Grid Dimension Formula`,
     formulaLegend: [
@@ -1147,7 +1147,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online JPG to PNG Converter tool. Convert your JPG file to PNG file quickly. Secure calculation, responsive design, and 100% free with no signup requ...`,
     description: `Convert your JPG file to PNG file quickly.`,
     category: `image`,
-    icon: `FileImage`,
+    icon: `image`,
     formula: `\\text{PNG} = \\text{Re-encode}(JPG)`,
     formulaTitle: `Format Conversion Flow`,
     formulaLegend: [
@@ -1655,7 +1655,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online PNG to JPG Converter tool. Convert your PNG file to JPG file quickly. Secure calculation, responsive design, and 100% free with no signup requ...`,
     description: `Convert your PNG file to JPG file quickly.`,
     category: `image`,
-    icon: `FileImage`,
+    icon: `image`,
     formula: `\\text{JPG} = \\text{LossyEncode}(PNG, Q)`,
     formulaTitle: `Encoding Format Pipeline`,
     formulaLegend: [
@@ -1911,7 +1911,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online Resize Image for Passport Size tool. Resize your any image to passport size quickly. Secure calculation, responsive design, and 100% free with...`,
     description: `Resize your any image to passport size quickly.`,
     category: `image`,
-    icon: `Crop`,
+    icon: `crop`,
     formula: `W \\times H = 3.5\\text{cm} \\times 4.5\\text{cm}`,
     formulaTitle: `Standard Indian Passport Scaling Dimensions`,
     formulaLegend: [
@@ -2039,7 +2039,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online Rotate Image tool. Rotate any image instantly online. Secure calculation, responsive design, and 100% free with no signup required. Try ToolPi`,
     description: `Rotate any image instantly online.`,
     category: `image`,
-    icon: `RotateCw`,
+    icon: `rotate_right`,
     formula: `x_{new} = x \\cos \\theta - y \\sin \\theta`,
     formulaTitle: `Coordinate Rotation Matrix`,
     formulaLegend: [
@@ -2476,7 +2476,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online Text to QR Code Generator tool. Generate QR Code from your text quickly. Secure calculation, responsive design, and 100% free with no signup r...`,
     description: `Generate QR Code from your text quickly.`,
     category: `converter`,
-    icon: `QrCode`,
+    icon: `qr_code`,
     formula: `QR = \\text{Encode}(Text)`,
     formulaTitle: `QR Code Matrix Algorithm`,
     formulaLegend: [
@@ -2625,7 +2625,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online URL to QR Code Generator tool. Generate QR Code from any link/URL quickly. Secure calculation, responsive design, and 100% free with no signup...`,
     description: `Generate QR Code from any link/URL quickly.`,
     category: `converter`,
-    icon: `QrCode`,
+    icon: `qr_code`,
     formula: `QR = \\text{Encode}(URL)`,
     formulaTitle: `QR Code Matrix Algorithm`,
     formulaLegend: [
@@ -2848,7 +2848,7 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     seoDescription: `Free online YouTube Thumbnail Downloader tool. Download YouTube Thumbnail. Secure calculation, responsive design, and 100% free with no signup required.`,
     description: `Download YouTube Thumbnail.`,
     category: `video`,
-    icon: `Youtube`,
+    icon: `youtube`,
     formula: `U_{thumb} = \\text{https://img.youtube.com/vi/}{id}\\text{/maxresdefault.jpg}`,
     formulaTitle: `YouTube CDN Resolution URL mapping`,
     formulaLegend: [

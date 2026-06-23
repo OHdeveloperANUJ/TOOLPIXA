@@ -83,10 +83,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             
             {/* Mobile Table of Contents (Visible only on small screens) */}
             <div className="block lg:hidden mb-12 p-6 rounded-xl bg-surface-container/50 border border-white/5">
-               <h4 className="text-primary font-label-md mb-4 flex items-center gap-2 text-sm tracking-widest uppercase">
+               <p className="text-primary font-label-md mb-4 flex items-center gap-2 text-sm tracking-widest uppercase font-bold">
                  <span className="material-symbols-outlined text-[18px]">format_list_bulleted</span>
                  Table of Contents
-               </h4>
+               </p>
                <ul className="space-y-3">
                  {extractToc(post.content).map(item => (
                    <li key={item.id} className={item.level === 3 ? "ml-4" : ""}>
@@ -152,7 +152,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               
               <div className="relative z-10 flex-1">
                 <div className="flex items-center gap-2 mb-2">
-                  <h4 className="text-white font-headline-md text-xl font-bold tracking-wide">{post.author}</h4>
+                  <h2 className="text-white font-headline-md text-xl font-bold tracking-wide">{post.author}</h2>
                   <span className="material-symbols-outlined text-primary text-[18px]" title="Verified Editorial Team">verified</span>
                 </div>
                 <p className="text-on-surface-variant text-sm leading-relaxed mb-5 max-w-2xl font-body-md">
@@ -167,10 +167,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Desktop Sticky Sidebar */}
         <aside className="hidden lg:block w-1/3 xl:w-1/4 sticky top-24">
           <div className="p-6 rounded-2xl bg-surface-container/30 border border-white/5 shadow-2xl backdrop-blur-md">
-             <h4 className="text-primary font-label-md mb-6 flex items-center gap-2 text-sm tracking-widest uppercase border-b border-white/10 pb-4">
+             <p className="text-primary font-label-md mb-6 flex items-center gap-2 text-sm tracking-widest uppercase border-b border-white/10 pb-4 font-bold">
                <span className="material-symbols-outlined text-[18px]">menu_book</span>
                In This Article
-             </h4>
+             </p>
              <ul className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
                {extractToc(post.content).map(item => (
                  <li key={item.id} className={item.level === 3 ? "ml-4" : ""}>

@@ -1,9 +1,30 @@
 'use client';
 
 import React, { useState } from 'react';
-import { GraduationCap, Percent, Calendar, IndianRupee, PieChart } from 'lucide-react';
+import { GraduationCap, Percent, Calendar, IndianRupee, PieChart, Save } from 'lucide-react';
 
 const StudentLoanCalculator: React.FC = () => {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'student-loan-calculator',
+        inputData: { principal, rate, years },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const [principal, setPrincipal] = useState<number | ''>(500000);
   const [rate, setRate] = useState<number | ''>(10.5);
   const [years, setYears] = useState<number | ''>(5);
@@ -42,7 +63,16 @@ const StudentLoanCalculator: React.FC = () => {
           <div className="p-3 bg-emerald-500/20 rounded-xl">
             <GraduationCap className="w-6 h-6 text-emerald-400" />
           </div>
-          <h2 className="text-2xl font-bold text-white">Student Loan EMI</h2>
+          <div className="flex justify-between items-center w-full">
+            <h2 className="text-2xl font-bold text-white">Student Loan EMI</h2>
+            <button 
+              onClick={handleSave} 
+              disabled={isSaving || !principal || !rate || !years || Number(principal) <= 0 || Number(rate) <= 0 || Number(years) <= 0}
+              className="flex items-center gap-1 px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/20 hover:border-emerald-500/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+            >
+              <Save size={14} /> Save
+            </button>
+          </div>
         </div>
 
         <div className="space-y-6 relative z-10">

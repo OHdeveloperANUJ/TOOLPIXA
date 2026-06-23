@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-import { Share2, Copy, Check, AlertCircle, Download } from 'lucide-react';
+import { Share2, Copy, Check, AlertCircle, Download, Save } from 'lucide-react';
 
 function useAnimatedNumber(value: number, duration: number = 800) {
   const [currentValue, setCurrentValue] = useState(0);
@@ -39,6 +39,27 @@ function useAnimatedNumber(value: number, duration: number = 800) {
 }
 
 export default function CompoundInterestCalculator() {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'compound-interest-calculator',
+        inputData: { principal: principalStr, rate: rateStr, years: yearsStr, frequency: frequencyStr },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const { currency } = useStore();
   const [principalStr, setPrincipalStr] = useState<string>('100000');
   const [rateStr, setRateStr] = useState<string>('12');
@@ -151,9 +172,18 @@ export default function CompoundInterestCalculator() {
         
         {/* Inputs */}
         <div className="lg:col-span-5 glass-card p-8 rounded-2xl space-y-6">
-          <h3 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
-            Investment Details
-          </h3>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+              Investment Details
+            </h3>
+            <button 
+              onClick={handleSave} 
+              disabled={isSaving || hasError}
+              className="flex items-center gap-1 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+            >
+              <Save size={14} /> Save
+            </button>
+          </div>
 
           <div className="space-y-2">
             <label className="block text-sm font-medium text-slate-400">Principal Investment</label>

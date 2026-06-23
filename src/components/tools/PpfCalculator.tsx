@@ -1,11 +1,33 @@
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
+import { Save } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 
 export default function PpfCalculator() {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'ppf-calculator',
+        inputData: { yearlyInvestment, years },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const { currency } = useStore();
   const [yearlyInvestment, setYearlyInvestment] = useState<number>(150000);
   const [years, setYears] = useState<number>(15);
@@ -47,11 +69,20 @@ export default function PpfCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start min-h-[80vh] p-4 lg:p-8 rounded-[32px] bg-[#05050A]">
       {/* Input Section - Left Side */}
       <div className="lg:col-span-5 space-y-8 fade-in-up">
-        <div>
-          <h2 className="font-headline-md font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 tracking-tight mb-2">
-            PPF Vault
-          </h2>
-          <p className="text-white/40 font-body-md">Calculate your secure, tax-free returns.</p>
+        <div className="flex justify-between items-start w-full">
+          <div>
+            <h2 className="font-headline-md font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 tracking-tight mb-2">
+              PPF Vault
+            </h2>
+            <p className="text-white/40 font-body-md">Calculate your secure, tax-free returns.</p>
+          </div>
+          <button 
+            onClick={handleSave} 
+            disabled={isSaving || yearlyInvestment <= 0 || years <= 0}
+            className="flex items-center gap-1 px-3 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/20 hover:border-cyan-500/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50 mt-2"
+          >
+            <Save size={14} /> Save
+          </button>
         </div>
 
         <div className="space-y-6">

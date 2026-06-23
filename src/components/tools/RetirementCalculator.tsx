@@ -1,11 +1,33 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { Save } from 'lucide-react';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 
 export default function RetirementCalculator() {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'retirement-calculator',
+        inputData: { currentAge, retirementAge, monthlyExpenses, inflationRate, postRetirementReturn },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const { currency } = useStore();
   const [currentAge, setCurrentAge] = useState<number>(30);
   const [retirementAge, setRetirementAge] = useState<number>(60);
@@ -51,7 +73,16 @@ export default function RetirementCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-xl items-start">
       {/* Inputs Section */}
       <div className="glass-card p-xl rounded-xl space-y-md fade-in-up">
-        <h3 className="font-headline-md text-headline-md text-text-primary mb-sm">Retirement Planning</h3>
+        <div className="flex justify-between items-center mb-sm">
+          <h3 className="font-headline-md text-headline-md text-text-primary">Retirement Planning</h3>
+          <button 
+            onClick={handleSave} 
+            disabled={isSaving || monthlyExpenses <= 0 || inflationRate < 0 || postRetirementReturn < 0}
+            className="flex items-center gap-1 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+          >
+            <Save size={14} /> Save
+          </button>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
           <div className="space-y-sm">

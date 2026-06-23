@@ -1,11 +1,33 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { Save } from 'lucide-react';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 
 export default function GstCalculator() {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'gst-calculator',
+        inputData: { amount, taxRate },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const { currency } = useStore();
   const [amount, setAmount] = useState<number>(1000);
   const [taxRate, setTaxRate] = useState<number>(18);
@@ -52,7 +74,16 @@ export default function GstCalculator() {
           </button>
         </div>
 
-        <h3 className="font-headline-md text-headline-md text-text-primary mb-sm">Tax Details</h3>
+        <div className="flex justify-between items-center mb-sm">
+          <h3 className="font-headline-md text-headline-md text-text-primary">Tax Details</h3>
+          <button 
+            onClick={handleSave} 
+            disabled={isSaving || amount <= 0 || taxRate < 0}
+            className="flex items-center gap-1 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+          >
+            <Save size={14} /> Save
+          </button>
+        </div>
         
         <div className="space-y-sm">
           <label className="block font-label-md text-label-md text-text-secondary">

@@ -1,9 +1,30 @@
 'use client';
 
 import React, { useState } from 'react';
-import { TrendingUp, Info, RefreshCw, Calculator } from 'lucide-react';
+import { TrendingUp, Info, RefreshCw, Calculator, Save } from 'lucide-react';
 
 export default function RuleOf72Calculator() {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'rule-of-72-calculator',
+        inputData: { rate, years },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const [rate, setRate] = useState<string>('8');
   const [years, setYears] = useState<string>('9');
   const [lastEdited, setLastEdited] = useState<'rate' | 'years'>('rate');
@@ -37,14 +58,23 @@ export default function RuleOf72Calculator() {
 
   return (
     <div className="glass-card p-6 md:p-8 rounded-2xl w-full max-w-4xl mx-auto flex flex-col gap-8">
-      <div className="flex items-center gap-4">
-        <div className="p-3 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl text-emerald-400 ring-1 ring-emerald-500/20">
-          <TrendingUp className="w-6 h-6" />
+      <div className="flex justify-between items-start">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl text-emerald-400 ring-1 ring-emerald-500/20">
+            <TrendingUp className="w-6 h-6" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-white tracking-tight">Rule of 72 Calculator</h2>
+            <p className="text-slate-400 text-sm mt-1">Estimate how fast your investment will double</p>
+          </div>
         </div>
-        <div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">Rule of 72 Calculator</h2>
-          <p className="text-slate-400 text-sm mt-1">Estimate how fast your investment will double</p>
-        </div>
+        <button 
+          onClick={handleSave} 
+          disabled={isSaving || !rate || !years || parseFloat(rate) <= 0 || parseFloat(years) <= 0}
+          className="flex items-center gap-1 px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 hover:border-emerald-500/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50 mt-1"
+        >
+          <Save size={14} /> Save
+        </button>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">

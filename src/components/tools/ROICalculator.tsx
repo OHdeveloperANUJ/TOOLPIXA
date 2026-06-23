@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip } from 'recharts';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
-import { TrendingUp, PieChart as PieChartIcon, Info } from 'lucide-react';
+import { TrendingUp, PieChart as PieChartIcon, Info, Save } from 'lucide-react';
 
 function useAnimatedNumber(value: number, duration: number = 800) {
   const [currentValue, setCurrentValue] = useState(0);
@@ -39,6 +39,27 @@ function useAnimatedNumber(value: number, duration: number = 800) {
 }
 
 export default function ROICalculator() {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      const newItem = {
+        id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+        toolId: 'roi-calculator',
+        inputData: { invested, returned },
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('toolpixa_history', JSON.stringify([newItem, ...existingHistory]));
+      alert('Calculation saved to this device!');
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save calculation.');
+    }
+    setIsSaving(false);
+  };
+
   const { currency } = useStore();
   const [invested, setInvested] = useState<number>(10000);
   const [returned, setReturned] = useState<number>(12500);
@@ -66,11 +87,20 @@ export default function ROICalculator() {
         {/* Input Section */}
         <div className="xl:col-span-5 space-y-6">
           <div className="glass-card p-8 rounded-3xl space-y-8">
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2 mb-2">
-                <TrendingUp className="text-emerald-500" /> ROI Calculator
-              </h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Calculate the Return on Investment (ROI) and profitability of your investments.</p>
+            <div className="flex justify-between items-start mb-2 w-full">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2 mb-2">
+                  <TrendingUp className="text-emerald-500" /> ROI Calculator
+                </h2>
+                <p className="text-sm text-slate-500 dark:text-slate-400">Calculate the Return on Investment (ROI) and profitability of your investments.</p>
+              </div>
+              <button 
+                onClick={handleSave} 
+                disabled={isSaving || invested <= 0}
+                className="flex items-center gap-1 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+              >
+                <Save size={14} /> Save
+              </button>
             </div>
 
             <div className="space-y-6">
