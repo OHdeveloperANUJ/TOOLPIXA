@@ -264,3 +264,46 @@
   --on-tertiary-fixed: #311400;
   --primary-fixed: #d8e2ff;
 }
+
+@media print {
+  header, footer, nav, button, .amazon-affiliate-link,
+  .verdict-glow, .faq-section, .related-section, .seo-section,
+  .no-print, [title*="Share"], [title*="Save"], [title*="CSV"],
+  .share-button, .save-button {
+    display: none !important;
+  }
+
+  body, main, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, span, td, th, li {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  .max-w-7xl, .max-w-4xl, .max-w-3xl {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .glass-card {
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+  }
+
+  .grid {
+    display: block !important;
+  }
+
+  .recharts-responsive-container, table, tr, img {
+    page-break-inside: avoid !important;
+  }
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Save } from 'lucide-react';
+import { Save, Download, Table, PieChart as ChartIcon } from 'lucide-react';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
@@ -31,7 +31,7 @@ export default function RdCalculator() {
   };
 
   const { currency } = useStore();
-  const [calcType, setCalcType] = useState<CalculatorType>('FD');
+  const [calcType, setCalcType] = useState<CalculatorType>('RD');
   
   // FD Inputs
   const [fdPrincipal, setFdPrincipal] = useState<number>(100000);
@@ -81,6 +81,61 @@ export default function RdCalculator() {
       };
     }
   }, [calcType, fdPrincipal, fdRate, fdYears, rdMonthly, rdRate, rdYears]);
+
+  const [activeTab, setActiveTab] = useState<'chart' | 'table'>('chart');
+
+  const yearlySchedule = useMemo(() => {
+    const schedule = [];
+    if (calcType === 'FD') {
+      const P = fdPrincipal;
+      const r = fdRate / 100;
+      const t = fdYears;
+      const n = 4; // Quarterly compounding
+      if (P <= 0 || r < 0 || t <= 0) return [];
+      for (let y = 1; y <= Math.ceil(t); y++) {
+        const val = P * Math.pow(1 + r / n, n * y);
+        const inv = P;
+        schedule.push({
+          year: `Year ${y}`,
+          invested: Math.round(inv),
+          interest: Math.round(val - inv),
+          total: Math.round(val),
+        });
+      }
+    } else {
+      const R = rdMonthly;
+      const r = rdRate / 100;
+      const t = rdYears;
+      const i = r / 12;
+      if (R <= 0 || r < 0 || t <= 0) return [];
+      for (let y = 1; y <= Math.ceil(t); y++) {
+        const months = y * 12;
+        const val = R * ((Math.pow(1 + i, months) - 1) / i) * (1 + i);
+        const inv = R * months;
+        schedule.push({
+          year: `Year ${y}`,
+          invested: Math.round(inv),
+          interest: Math.round(val - inv),
+          total: Math.round(val),
+        });
+      }
+    }
+    return schedule;
+  }, [calcType, fdPrincipal, fdRate, fdYears, rdMonthly, rdRate, rdYears]);
+
+  const handleDownloadCsv = () => {
+    if (yearlySchedule.length === 0) return;
+    let csv = 'Year,Invested Amount,Interest Earned,Maturity Value\n';
+    yearlySchedule.forEach(row => {
+      csv += `${row.year},${row.invested},${row.interest},${row.total}\n`;
+    });
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${calcType.toLowerCase()}_maturity_schedule_${currency.code}.csv`;
+    a.click();
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-xl items-start">
@@ -220,7 +275,25 @@ export default function RdCalculator() {
           </div>
         </div>
 
-        <div className="h-64 mt-8">
+        
+        {/* Tab Selection */}
+        <div className="flex bg-surface-container-low p-1 rounded-lg border border-glass-border my-md">
+          <button
+            onClick={() => setActiveTab('chart')}
+            className={`flex-1 py-1.5 px-3 rounded-md text-xs font-bold transition-all flex items-center justify-center gap-1 ${activeTab === 'chart' ? 'bg-primary text-on-primary' : 'text-text-secondary'}`}
+          >
+            <ChartIcon size={14} /> Chart
+          </button>
+          <button
+            onClick={() => setActiveTab('table')}
+            className={`flex-1 py-1.5 px-3 rounded-md text-xs font-bold transition-all flex items-center justify-center gap-1 ${activeTab === 'table' ? 'bg-primary text-on-primary' : 'text-text-secondary'}`}
+          >
+            <Table size={14} /> Schedule
+          </button>
+        </div>
+
+        {activeTab === 'chart' ? (
+          <div className="h-64 mt-8">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -248,6 +321,41 @@ export default function RdCalculator() {
             </PieChart>
           </ResponsiveContainer>
         </div>
+        ) : (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-xs text-text-secondary">Yearly breakdown</span>
+              <button 
+                onClick={handleDownloadCsv}
+                className="flex items-center gap-1 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-bold transition-all"
+              >
+                <Download size={12} /> Export CSV
+              </button>
+            </div>
+            <div className="max-h-[300px] overflow-y-auto border border-glass-border rounded-xl custom-scrollbar">
+              <table className="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr className="border-b border-glass-border bg-surface-container-high text-text-primary">
+                    <th className="py-2.5 px-3">Year</th>
+                    <th className="py-2.5 px-3 text-right">Invested</th>
+                    <th className="py-2.5 px-3 text-right">Interest</th>
+                    <th className="py-2.5 px-3 text-right">Maturity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {yearlySchedule.map((row, idx) => (
+                    <tr key={idx} className="border-b border-glass-border/30 hover:bg-white/5 text-text-secondary">
+                      <td className="py-2 px-3 font-medium text-text-primary">{row.year}</td>
+                      <td className="py-2 px-3 text-right"><CurrencySymbol />{row.invested.toLocaleString(currency.locale)}</td>
+                      <td className="py-2 px-3 text-right text-secondary"><CurrencySymbol />{row.interest.toLocaleString(currency.locale)}</td>
+                      <td className="py-2 px-3 text-right text-primary font-medium"><CurrencySymbol />{row.total.toLocaleString(currency.locale)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

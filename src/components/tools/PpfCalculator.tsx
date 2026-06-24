@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { Save } from 'lucide-react';
+import { Save, Download, Table, PieChart as ChartIcon } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
@@ -64,6 +64,49 @@ export default function PpfCalculator() {
       totalValue: Math.round(A),
     };
   }, [yearlyInvestment, years]);
+
+  const [activeTab, setActiveTab] = useState<'chart' | 'table'>('chart');
+
+  const yearlySchedule = useMemo(() => {
+    const schedule = [];
+    const P = yearlyInvestment;
+    const r = returnRate / 100;
+    const n = years;
+    if (P <= 0 || n <= 0) return [];
+    
+    let balance = 0;
+    let totalInvestedAcc = 0;
+    for (let y = 1; y <= n; y++) {
+      // Deposit at start of year, interest compounded at end of year
+      const openingBalance = balance;
+      const deposit = P;
+      const interest = (openingBalance + deposit) * r;
+      balance = openingBalance + deposit + interest;
+      totalInvestedAcc += deposit;
+      
+      schedule.push({
+        year: `Year ${y}`,
+        invested: Math.round(totalInvestedAcc),
+        interest: Math.round(balance - totalInvestedAcc),
+        total: Math.round(balance)
+      });
+    }
+    return schedule;
+  }, [yearlyInvestment, years]);
+
+  const handleDownloadCsv = () => {
+    if (yearlySchedule.length === 0) return;
+    let csv = 'Year,Invested Amount,Interest Earned,Maturity Value\n';
+    yearlySchedule.forEach(row => {
+      csv += `${row.year},${row.invested},${row.interest},${row.total}\n`;
+    });
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ppf_maturity_schedule_${currency.code}.csv`;
+    a.click();
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start min-h-[80vh] p-4 lg:p-8 rounded-[32px] bg-[#05050A]">
@@ -168,7 +211,25 @@ export default function PpfCalculator() {
             </div>
 
             {/* Chart */}
-            <div className="h-[250px] relative">
+            
+            {/* Tab Selection */}
+            <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 my-md z-10 relative">
+              <button
+                onClick={() => setActiveTab('chart')}
+                className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 ${activeTab === 'chart' ? 'bg-cyan-500 text-black' : 'text-white/60 hover:text-white'}`}
+              >
+                <ChartIcon size={14} /> Chart
+              </button>
+              <button
+                onClick={() => setActiveTab('table')}
+                className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 ${activeTab === 'table' ? 'bg-cyan-500 text-black' : 'text-white/60 hover:text-white'}`}
+              >
+                <Table size={14} /> Schedule
+              </button>
+            </div>
+
+            {activeTab === 'chart' ? (
+              <div className="h-[250px] relative">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -201,6 +262,41 @@ export default function PpfCalculator() {
                 <span className="text-2xl font-bold text-white">{(totalInvested > 0 ? (interestEarned/totalValue)*100 : 0).toFixed(0)}%</span>
               </div>
             </div>
+            ) : (
+              <div className="space-y-4 z-10 relative">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-white/40">Yearly breakdown</span>
+                  <button 
+                    onClick={handleDownloadCsv}
+                    className="flex items-center gap-1 px-3 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/20 rounded-xl text-xs font-bold transition-all"
+                  >
+                    <Download size={12} /> Export CSV
+                  </button>
+                </div>
+                <div className="max-h-[220px] overflow-y-auto border border-white/10 rounded-2xl custom-scrollbar bg-black/40">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-white/10 bg-white/5 text-white">
+                        <th className="py-2.5 px-3">Year</th>
+                        <th className="py-2.5 px-3 text-right">Invested</th>
+                        <th className="py-2.5 px-3 text-right">Interest</th>
+                        <th className="py-2.5 px-3 text-right">Maturity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {yearlySchedule.map((row, idx) => (
+                        <tr key={idx} className="border-b border-white/5 hover:bg-white/5 text-white/60">
+                          <td className="py-2 px-3 font-medium text-white">{row.year}</td>
+                          <td className="py-2 px-3 text-right"><CurrencySymbol />{row.invested.toLocaleString(currency.locale)}</td>
+                          <td className="py-2 px-3 text-right text-cyan-400"><CurrencySymbol />{row.interest.toLocaleString(currency.locale)}</td>
+                          <td className="py-2 px-3 text-right text-white font-medium"><CurrencySymbol />{row.total.toLocaleString(currency.locale)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
             
           </div>
         </div>

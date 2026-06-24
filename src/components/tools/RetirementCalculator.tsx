@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Save } from 'lucide-react';
+import { Save, Download, Table, FileText } from 'lucide-react';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { useStore } from '@/store/useStore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
@@ -68,6 +68,65 @@ export default function RetirementCalculator() {
       requiredCorpus: Math.round(Math.max(0, corpus)),
     };
   }, [currentAge, retirementAge, lifeExpectancy, monthlyExpenses, inflationRate, postRetirementReturn]);
+
+  const [activeTab, setActiveTab] = useState<'summary' | 'table'>('summary');
+
+  const yearlySchedule = useMemo(() => {
+    const schedule = [];
+    const inflation = inflationRate / 100;
+    const postReturn = postRetirementReturn / 100;
+    const yearsToRetire = Math.max(0, retirementAge - currentAge);
+    const yearsInRetirement = Math.max(0, lifeExpectancy - retirementAge);
+    
+    let currentExpense = monthlyExpenses;
+    let balance = requiredCorpus;
+    
+    // Accumulation Phase: show inflated monthly expense
+    for (let y = 1; y <= yearsToRetire; y++) {
+      currentExpense = currentExpense * (1 + inflation);
+      schedule.push({
+        phase: 'Accumulation',
+        age: currentAge + y,
+        expense: Math.round(currentExpense),
+        balance: 0
+      });
+    }
+    
+    // Retirement Phase: drawdown corpus
+    let retirementExpense = futureMonthlyExpenses * 12; // Annual
+    for (let y = 1; y <= yearsInRetirement; y++) {
+      const opening = balance;
+      const expenseDraw = retirementExpense;
+      const interestEarned = Math.max(0, (opening - expenseDraw) * postReturn);
+      balance = opening - expenseDraw + interestEarned;
+      if (balance < 0) balance = 0;
+      
+      schedule.push({
+        phase: 'Retirement',
+        age: retirementAge + y,
+        expense: Math.round(retirementExpense / 12),
+        balance: Math.round(balance)
+      });
+      // Inflate the expense for the next year
+      retirementExpense = retirementExpense * (1 + inflation);
+    }
+    
+    return schedule;
+  }, [currentAge, retirementAge, lifeExpectancy, monthlyExpenses, inflationRate, postRetirementReturn, futureMonthlyExpenses, requiredCorpus]);
+
+  const handleDownloadCsv = () => {
+    if (yearlySchedule.length === 0) return;
+    let csv = 'Age,Phase,Monthly Expense (Inflated),Corpus Balance\n';
+    yearlySchedule.forEach(row => {
+      csv += `${row.age},${row.phase},${row.expense},${row.balance}\n`;
+    });
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `retirement_schedule_${currency.code}.csv`;
+    a.click();
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-xl items-start">
@@ -173,13 +232,72 @@ export default function RetirementCalculator() {
           </div>
         </div>
 
-        <div className="bg-surface-container-low p-md rounded-lg border border-glass-border mt-4">
+        
+        {/* Tab Selection */}
+        <div className="flex bg-surface-container-low p-1 rounded-lg border border-glass-border my-md">
+          <button
+            onClick={() => setActiveTab('summary')}
+            className={`flex-1 py-1.5 px-3 rounded-md text-xs font-bold transition-all flex items-center justify-center gap-1 ${activeTab === 'summary' ? 'bg-primary text-on-primary' : 'text-text-secondary'}`}
+          >
+            <FileText size={14} /> Summary
+          </button>
+          <button
+            onClick={() => setActiveTab('table')}
+            className={`flex-1 py-1.5 px-3 rounded-md text-xs font-bold transition-all flex items-center justify-center gap-1 ${activeTab === 'table' ? 'bg-primary text-on-primary' : 'text-text-secondary'}`}
+          >
+            <Table size={14} /> Schedule
+          </button>
+        </div>
+
+        {activeTab === 'summary' ? (
+          <div className="bg-surface-container-low p-md rounded-lg border border-glass-border mt-4">
           <h4 className="font-label-lg text-text-primary mb-sm">Why this corpus?</h4>
           <p className="text-body-sm text-text-secondary leading-relaxed">
             Due to an inflation rate of {inflationRate}%, your current monthly expenses of <CurrencySymbol fallback="$" />{monthlyExpenses.toLocaleString(currency.locale)} will grow to <CurrencySymbol fallback="$" />{futureMonthlyExpenses.toLocaleString(currency.locale)} by the time you retire at age {retirementAge}. 
             To sustain this lifestyle for {Math.max(0, lifeExpectancy - retirementAge)} years in retirement (assuming a {postRetirementReturn}% return on your investments), you will need a total corpus of <CurrencySymbol fallback="$" />{requiredCorpus.toLocaleString(currency.locale)}.
           </p>
         </div>
+        ) : (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-xs text-text-secondary">Yearly breakdown</span>
+              <button 
+                onClick={handleDownloadCsv}
+                className="flex items-center gap-1 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-bold transition-all"
+              >
+                <Download size={12} /> Export CSV
+              </button>
+            </div>
+            <div className="max-h-[300px] overflow-y-auto border border-glass-border rounded-xl custom-scrollbar">
+              <table className="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr className="border-b border-glass-border bg-surface-container-high text-text-primary">
+                    <th className="py-2.5 px-3">Age</th>
+                    <th className="py-2.5 px-3">Phase</th>
+                    <th className="py-2.5 px-3 text-right">Monthly Exp</th>
+                    <th className="py-2.5 px-3 text-right">Corpus Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {yearlySchedule.map((row, idx) => (
+                    <tr key={idx} className="border-b border-glass-border/30 hover:bg-white/5 text-text-secondary">
+                      <td className="py-2 px-3 font-medium text-text-primary">Age {row.age}</td>
+                      <td className="py-2 px-3">
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${row.phase === 'Accumulation' ? 'bg-blue-500/10 text-blue-400' : 'bg-green-500/10 text-green-400'}`}>
+                          {row.phase}
+                        </span>
+                      </td>
+                      <td className="py-2 px-3 text-right"><CurrencySymbol />{row.expense.toLocaleString(currency.locale)}</td>
+                      <td className="py-2 px-3 text-right text-primary font-medium">
+                        {row.phase === 'Accumulation' ? '-' : <><CurrencySymbol />{row.balance.toLocaleString(currency.locale)}</>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import { CurrencyProvider } from "@/components/CurrencyProvider";
 import Script from "next/script";
 import "./globals.css";
 import PwaRegistry from "@/components/PwaRegistry";
+import OfflineBanner from "@/components/OfflineBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -66,7 +67,8 @@ export default function RootLayout({
         <PwaRegistry />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <CurrencyProvider>
-          <AmazonGlobalRouter />
+            <OfflineBanner />
+            <AmazonGlobalRouter />
             <Header />
             <div className="flex-1 w-full flex flex-col">
               {children}

@@ -2892,5 +2892,71 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       { question: `Can I use the Z-Score Calculator offline?`, answer: `Once the page is fully loaded in your browser, the math powering the Z-Score Calculator runs locally, meaning you can often continue using it even if your internet connection temporarily drops.` },
       { question: `Are the conversion formulas standard?`, answer: `Absolutely. We strictly adhere to the International System of Units (SI) and other universally accepted standard measurement systems for the Z-Score Calculator.` }
     ]
+  },
+  'step-up-sip-calculator': {
+    id: 'step-up-sip-calculator',
+    slug: 'step-up-sip-calculator',
+    title: `Step-Up SIP Calculator`,
+    seoTitle: `Step-Up SIP Calculator — Plan Annual Investment Growth | ToolPixa`,
+    seoDescription: `Free online Step-Up SIP Calculator. Model mutual fund investments where the contribution increases annually by a percentage. Secure, 100% free.`,
+    description: `Model mutual fund investments where the monthly contribution increases annually by a percentage.`,
+    category: `finance`,
+    icon: `trending_up`,
+    formula: `FV = \\sum_{y=1}^{Y} \\sum_{m=1}^{12} P_y \\times (1 + r)^{12(Y - y) + (12 - m)}`,
+    formulaTitle: `Step-Up Systematic Investment Plan Formula`,
+    formulaLegend: [
+      { label: `FV`, desc: `Future value of step-up investment` },
+      { label: `P_y`, desc: `Monthly contribution in year y` },
+      { label: `r`, desc: `Monthly rate of return (annual return / 12)` },
+      { label: `Y`, desc: `Total investment period in years` }
+    ],
+    faqs: [
+      { question: `What is a Step-Up SIP?`, answer: `A Step-Up SIP is an investment method where you increase your monthly Systematic Investment Plan (SIP) contribution by a fixed percentage (e.g., 10%) every year.` },
+      { question: `How does the Step-Up SIP Calculator help?`, answer: `It projects how much faster your wealth compiles when you increase your contributions in line with annual salary increases.` },
+      { question: `Is there any fee or limit?`, answer: `No, this calculator is completely free with no usage limits.` },
+      { question: `Does it run offline?`, answer: `Yes, all calculations run client-side, making it fully functional offline.` }
+    ]
+  },
+  'sip-delay-calculator': {
+    id: 'sip-delay-calculator',
+    slug: 'sip-delay-calculator',
+    title: `SIP Delay Cost Calculator`,
+    seoTitle: `SIP Delay Cost Calculator — Price of Procrastination | ToolPixa`,
+    seoDescription: `Calculate the financial cost of delaying your SIP investment. See how delaying by 1 to 10 years reduces final wealth accumulation.`,
+    description: `See how delaying an investment by 1 to 10 years reduces final wealth accumulation.`,
+    category: `finance`,
+    icon: `schedule`,
+    formula: `C_{delay} = FV_{original} - FV_{delayed}`,
+    formulaTitle: `Cost of Investment Delay Formula`,
+    formulaLegend: [
+      { label: `C_delay`, desc: `The net financial cost of delaying investment` },
+      { label: `FV_original`, desc: `Future value of standard SIP duration` },
+      { label: `FV_delayed`, desc: `Future value of shorter (delayed) SIP duration` }
+    ],
+    faqs: [
+      { question: `What is the cost of delay in SIP?`, answer: `The cost of delay is the difference in final accumulated wealth when you delay starting your SIP by months or years, losing compounding benefits.` },
+      { question: `How much does delaying a SIP by 5 years cost?`, answer: `For a typical 20-year investment period, delaying by 5 years can reduce final wealth by more than 40% due to loss of compounding.` }
+    ]
+  },
+  'direct-vs-regular-calculator': {
+    id: 'direct-vs-regular-calculator',
+    slug: 'direct-vs-regular-calculator',
+    title: `Direct vs Regular Mutual Fund Calculator`,
+    seoTitle: `Direct vs Regular Mutual Fund Calculator — Compare Expense Ratios | ToolPixa`,
+    seoDescription: `Compare Direct vs Regular mutual funds. Visualize how higher regular fund expense ratios eat into compounding returns over 10-30 years.`,
+    description: `Visualize how regular fund expense ratios eat into compounding returns over 10-30 years.`,
+    category: `finance`,
+    icon: `compare`,
+    formula: `D_{gain} = FV_{direct} - FV_{regular}`,
+    formulaTitle: `Direct Mutual Fund Wealth Advantage Formula`,
+    formulaLegend: [
+      { label: `D_gain`, desc: `Additional wealth accumulated by investing in Direct funds` },
+      { label: `FV_direct`, desc: `Future value at net return rate (Base Return - Direct Expense)` },
+      { label: `FV_regular`, desc: `Future value at net return rate (Base Return - Regular Expense)` }
+    ],
+    faqs: [
+      { question: `What is the difference between Direct and Regular mutual funds?`, answer: `Direct mutual funds are bought directly from the fund house, while Regular funds include intermediary commissions.` },
+      { question: `Why is the Direct option better?`, answer: `Direct funds have lower expense ratios, meaning more of your money compounds over time, leading to significantly higher maturity values.` }
+    ]
   }
 };
