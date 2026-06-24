@@ -85,7 +85,6 @@ export default function ResizeImageTo300Kb() {
       let compressed: File;
       try {
         // Attempt to use browser-image-compression if installed
-        // @ts-ignore
         const imageCompression = (await import('browser-image-compression')).default;
         const options = {
           maxSizeMB: 0.3, // Precisely under 300KB

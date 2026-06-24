@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import FaqAccordion from '@/components/FaqAccordion';
@@ -350,9 +351,9 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
         <section className="max-w-7xl mx-auto px-margin items-start">
           {/* Breadcrumb Navigation */}
           <nav className="text-sm font-label-md text-text-secondary mb-md flex items-center gap-xs">
-            <a href="/" className="hover:text-primary transition-colors">Home</a>
+            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
             <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-            <a href={`/category/${toolData.category.toLowerCase()}`} className="hover:text-primary transition-colors capitalize">{toolData.category}</a>
+            <Link href={`/category/${toolData.category.toLowerCase()}`} className="hover:text-primary transition-colors capitalize">{toolData.category}</Link>
             <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             <span className="text-text-primary capitalize">{toolData.title}</span>
           </nav>
