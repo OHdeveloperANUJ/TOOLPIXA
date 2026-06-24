@@ -122,6 +122,13 @@
 @layer components {
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-style: normal;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
   }
   .glass-card {
     background: var(--glass-surface);
