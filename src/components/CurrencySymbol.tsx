@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '@/store/useStore';
 
-export default function CurrencySymbol({ fallback = '$' }: { fallback?: string }) {
+export default function CurrencySymbol({ fallback = '₹' }: { fallback?: string }) {
   const [mounted, setMounted] = useState(false);
   const currency = useStore((state) => state.currency);
 
