@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ToolPixa | 600+ Precision Calculators &amp; Tools</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Outfit:wght@500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d4e3ff",
+                    "on-tertiary": "#502400",
+                    "background": "#0d1323",
+                    "on-primary": "#002e6a",
+                    "on-secondary-fixed": "#001c39",
+                    "on-error": "#690005",
+                    "surface-tint": "#adc6ff",
+                    "outline": "#8c909f",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#24293b",
+                    "error-container": "#93000a",
+                    "primary-container": "#4d8eff",
+                    "inverse-surface": "#dde2f9",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-surface-variant": "#c2c6d6",
+                    "on-tertiary-container": "#461f00",
+                    "outline-variant": "#424754",
+                    "on-secondary-container": "#d6e5ff",
+                    "surface-container-lowest": "#080e1d",
+                    "surface-bright": "#33394a",
+                    "tertiary-container": "#df7412",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#191f30",
+                    "tertiary": "#ffb786",
+                    "tertiary-fixed-dim": "#ffb786",
+                    "secondary-container": "#0267b8",
+                    "on-primary-container": "#00285d",
+                    "primary": "#adc6ff",
+                    "glass-surface": "rgba(255, 255, 255, 0.05)",
+                    "on-tertiary-fixed-variant": "#723600",
+                    "inverse-primary": "#005ac2",
+                    "tertiary-fixed": "#ffdcc6",
+                    "text-primary": "#ffffff",
+                    "on-secondary": "#00315d",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "glass-border": "rgba(255, 255, 255, 0.1)",
+                    "text-secondary": "#94a3b8",
+                    "on-primary-fixed": "#001a42",
+                    "on-background": "#dde2f9",
+                    "surface-variant": "#2f3446",
+                    "on-surface": "#dde2f9",
+                    "surface-container-low": "#151b2c",
+                    "on-secondary-fixed-variant": "#004883",
+                    "surface": "#0d1323",
+                    "secondary": "#a4c9ff",
+                    "on-primary-fixed-variant": "#004395",
+                    "inverse-on-surface": "#2a3041",
+                    "surface-container-highest": "#2f3446",
+                    "on-tertiary-fixed": "#311400",
+                    "surface-dim": "#0d1323",
+                    "primary-fixed": "#d8e2ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "lg": "32px",
+                    "margin": "32px",
+                    "xs": "8px",
+                    "xxxl": "96px",
+                    "gutter": "24px",
+                    "xl": "48px",
+                    "xxl": "64px",
+                    "md": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "display-lg": ["Outfit"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Outfit"],
+                    "headline-lg": ["Outfit"],
+                    "headline-md": ["Outfit"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0b1121;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .search-glow:focus-within {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-glass-surface backdrop-blur-md border-b border-glass-border shadow-xl">
+<div class="flex justify-between items-center h-16 px-margin max-w-full mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-2 font-headline-md text-headline-md font-bold text-text-primary">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">build</span>
+<span class="tracking-tight">ToolPixa</span>
+</div>
+<!-- Search Bar (Centered per prompt instructions) -->
+<div class="hidden md:flex flex-1 max-w-md mx-xl">
+<div class="relative w-full group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-text-secondary">search</span>
+<input class="w-full bg-surface-container border border-glass-border rounded-xl py-2 pl-10 pr-4 font-label-md text-label-md text-text-primary focus:outline-none focus:border-primary transition-all" placeholder="Search tools... Cmd+K" type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 hidden lg:block">
+<span class="px-2 py-0.5 rounded-lg border border-glass-border text-[10px] font-label-md text-text-secondary bg-surface-container-high uppercase tracking-widest">Cmd+K</span>
+</div>
+</div>
+</div>
+<!-- Navigation & Actions -->
+<nav class="flex items-center gap-lg">
+<div class="hidden lg:flex items-center gap-lg font-label-md text-label-md">
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Calculators</a>
+<a class="text-text-secondary hover:text-text-primary transition-colors" href="#">Tools</a>
+<a class="text-text-secondary hover:text-text-primary transition-colors" href="#">Categories</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-glass-surface transition-colors text-text-secondary" title="Language">language</button>
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-glass-surface transition-colors text-text-secondary" title="Toggle Theme">dark_mode</button>
+<button class="md:hidden material-symbols-outlined p-2" title="Menu">menu</button>
+</div>
+</nav>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-32 pb-xxl">
+<!-- Hero Section -->
+<section class="px-margin max-w-7xl mx-auto text-center mb-xxl animate-fade-in-up">
+<h1 class="font-headline-lg text-headline-lg md:text-display-lg font-bold text-text-primary mb-sm leading-tight">
+                600+ Free Calculators &amp; Tools
+            </h1>
+<p class="font-body-lg text-body-lg text-text-secondary mb-xl max-w-2xl mx-auto">
+                Instant. No Signups. Engineered for Precision. Every tool you'll ever need, delivered in a refined glass-grade interface.
+            </p>
+<!-- Central Hero Search -->
+<div class="max-w-2xl mx-auto relative group search-glow">
+<input class="w-full bg-glass-surface border border-glass-border backdrop-blur-xl rounded-2xl py-lg px-xl text-body-lg font-body-lg text-text-primary placeholder:text-text-secondary focus:outline-none transition-all" placeholder="What can we calculate for you today?" type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded-xl hover:scale-105 active:scale-95 transition-all">
+                    Find Tool
+                </button>
+</div>
+</section>
+<!-- Category Grid -->
+<section class="px-margin max-w-7xl mx-auto mb-xxl">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-md text-headline-md text-text-primary">Core Categories</h2>
+<a class="font-label-md text-label-md text-primary flex items-center gap-1 hover:underline" href="#">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-gutter">
+<!-- Finance -->
+<div class="glass-card p-lg rounded-2xl flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-md border border-primary/20">
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary text-[20px] mb-xs">Finance</h3>
+<p class="font-label-md text-label-md text-text-secondary">120 Live Tools</p>
+</div>
+<!-- Student -->
+<div class="glass-card p-lg rounded-2xl flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-tertiary/10 flex items-center justify-center mb-md border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary text-3xl">school</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary text-[20px] mb-xs">Student</h3>
+<p class="font-label-md text-label-md text-text-secondary">85 Live Tools</p>
+</div>
+<!-- Health -->
+<div class="glass-card p-lg rounded-2xl flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center mb-md border border-secondary/20">
+<span class="material-symbols-outlined text-secondary text-3xl">health_and_safety</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary text-[20px] mb-xs">Health</h3>
+<p class="font-label-md text-label-md text-text-secondary">42 Live Tools</p>
+</div>
+<!-- Converter -->
+<div class="glass-card p-lg rounded-2xl flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-md border border-primary/20">
+<span class="material-symbols-outlined text-primary text-3xl">sync_alt</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary text-[20px] mb-xs">Converter</h3>
+<p class="font-label-md text-label-md text-text-secondary">210 Live Tools</p>
+</div>
+<!-- Developer -->
+<div class="glass-card p-lg rounded-2xl flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-secondary-fixed/10 flex items-center justify-center mb-md border border-secondary-fixed/20">
+<span class="material-symbols-outlined text-secondary-fixed text-3xl">code</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary text-[20px] mb-xs">Developer</h3>
+<p class="font-label-md text-label-md text-text-secondary">150 Live Tools</p>
+</div>
+</div>
+</section>
+<!-- Explore by Topic (Chips) -->
+<section class="px-margin max-w-7xl mx-auto mb-xxl text-center">
+<h4 class="font-label-md text-label-md text-text-secondary uppercase tracking-widest mb-lg">Trending Topics</h4>
+<div class="flex flex-wrap justify-center gap-md">
+<button class="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Loans</button>
+<button class="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Grades</button>
+<button class="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Tax</button>
+<button class="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Unit Conversion</button>
+<button class="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Investments</button>
+<button class="px-lg py-2 rounded-full glass-card border border-glass-border font-label-md text-label-md text-text-primary hover:text-primary hover:border-primary">Scientific</button>
+</div>
+</section>
+<!-- Most Used Section -->
+<section class="px-margin max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-lg gap-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-text-primary mb-xs">Most Popular Tools</h2>
+<p class="font-body-md text-body-md text-text-secondary">Highly-optimized calculations used by thousands daily.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Tool Card 1 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">home_work</span>
+<span class="material-symbols-outlined text-text-secondary text-sm opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">Home Loan EMI</h4>
+<p class="font-label-md text-label-md text-text-secondary">Precision monthly amortizations</p>
+</a>
+<!-- Tool Card 2 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">percent</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">CGPA to Percentage</h4>
+<p class="font-label-md text-label-md text-text-secondary">Academic scale conversions</p>
+</a>
+<!-- Tool Card 3 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">monitor_weight</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">BMI Calculator</h4>
+<p class="font-label-md text-label-md text-text-secondary">Health index metrics</p>
+</a>
+<!-- Tool Card 4 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">currency_exchange</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">GST Calculator</h4>
+<p class="font-label-md text-label-md text-text-secondary">Quick tax computation</p>
+</a>
+<!-- Tool Card 5 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">calendar_today</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">Age Calculator</h4>
+<p class="font-label-md text-label-md text-text-secondary">Chronological time tracking</p>
+</a>
+<!-- Tool Card 6 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">key</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">Password Generator</h4>
+<p class="font-label-md text-label-md text-text-secondary">Entropy-secured keys</p>
+</a>
+<!-- Tool Card 7 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">straighten</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">Unit Converter</h4>
+<p class="font-label-md text-label-md text-text-secondary">Length, weight, volume</p>
+</a>
+<!-- Tool Card 8 -->
+<a class="glass-card group p-lg rounded-2xl block relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-md">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">terminal</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-[18px] text-text-primary mb-xs">JSON Formatter</h4>
+<p class="font-label-md text-label-md text-text-secondary">Beautify raw code</p>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl mt-xxl border-t border-glass-border bg-surface-container-lowest">
+<div class="grid grid-cols-2 md:grid-cols-5 gap-gutter px-margin max-w-7xl mx-auto">
+<!-- Branding Column -->
+<div class="col-span-2 md:col-span-1 mb-lg">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-md">ToolPixa</div>
+<p class="font-body-md text-body-md text-text-secondary mb-lg">© 2024 ToolPixa. Premium Precision Tools for everyday engineering.</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">share</span>
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">mail</span>
+</div>
+</div>
+<!-- Category Columns -->
+<div>
+<h5 class="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Finance</h5>
+<ul class="space-y-sm font-body-md text-body-md">
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Loan EMI</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Income Tax</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">SIP Planner</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Compound Interest</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Student</h5>
+<ul class="space-y-sm font-body-md text-body-md">
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">CGPA Calc</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Percentage</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Scientific Calc</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Essay Helper</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Health</h5>
+<ul class="space-y-sm font-body-md text-body-md">
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">BMI Index</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Calories</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Water Intake</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Pregnancy Due</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-text-primary font-bold mb-md uppercase tracking-wider">Converter</h5>
+<ul class="space-y-sm font-body-md text-body-md">
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Length</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Weight</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Temperature</a></li>
+<li><a class="text-text-secondary hover:text-primary transition-colors" href="#">Developer</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Keyboard shortcut listener for Cmd+K
+            document.addEventListener('keydown', (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                    e.preventDefault();
+                    document.querySelector('input[placeholder*="Search"]').focus();
+                }
+            });
+
+            // Smooth parallax effect for glass cards on mouse move
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    card.style.transform = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) scale(1) rotateX(0) rotateY(0)';
+                });
+            });
+        });
+    </script>
+</body></html>
