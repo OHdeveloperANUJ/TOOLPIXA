@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { toolsRegistry } from '@/data/toolsRegistry';
 import { blogPosts } from '@/data/blogData';
-import tags from '../../../tags.json';
+import tags from '../../../../tags.json';
 
 const HOST = 'www.toolpixa.space';
 const BASE_URL = `https://${HOST}`;
