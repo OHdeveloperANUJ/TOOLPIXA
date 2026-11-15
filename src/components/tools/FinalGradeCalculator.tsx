@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 
 export default function FinalGradeCalculator() {
-  const [currentGrade, setCurrentGrade] = useState<number | ''>('');
-  const [targetGrade, setTargetGrade] = useState<number | ''>('');
-  const [finalWeight, setFinalWeight] = useState<number | ''>('');
+  const [currentGrade, setCurrentGrade] = useState<number | ''>(85);
+  const [targetGrade, setTargetGrade] = useState<number | ''>(90);
+  const [finalWeight, setFinalWeight] = useState<number | ''>(20);
 
   const calculateRequired = () => {
     if (currentGrade === '' || targetGrade === '' || finalWeight === '') return null;

@@ -4,25 +4,49 @@ import React, { useState } from 'react';
 import { calculateHealthMetrics, BmiInputs } from '@/utils/bmiLogic';
 
 export default function TdeeCalculator() {
-  const [inputs, setInputs] = useState<BmiInputs>({ heightCm: 170, weightKg: 70, age: 25, gender: 'male', activityLevel: 1.2 });
+  const [inputs, setInputs] = useState<BmiInputs>({ heightCm: 172, weightKg: 72, age: 27, gender: 'male', activityLevel: 1.55 });
+  const [saved, setSaved] = useState(false);
   const result = calculateHealthMetrics(inputs);
-  const updateInput = (f: keyof BmiInputs, v: any) => setInputs(p => ({ ...p, [f]: v }));
+  const updateInput = (f: keyof BmiInputs, v: any) => {
+    setInputs(p => ({ ...p, [f]: v }));
+    setSaved(false);
+  };
+
+  const handleCalibrate = () => {
+    try {
+      const history = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      localStorage.setItem(
+        'toolpixa_history',
+        JSON.stringify([
+          {
+            id: Date.now().toString(),
+            toolId: 'tdee-calculator',
+            inputData: { ...inputs, bmr: result?.bmr, tdee: result?.tdee },
+            createdAt: new Date().toISOString(),
+          },
+          ...history,
+        ])
+      );
+    } catch {}
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2500);
+  };
 
   return (
-    <div className="min-h-screen bg-[#050505] p-4 md:p-8 font-[Inter] text-slate-300 selection:bg-cyan-500/30">
+    <div className="p-2 md:p-4 font-[Inter] text-slate-300 selection:bg-cyan-500/30">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Left Side: Inputs */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl shadow-black/50">
-            <h2 className="font-[Outfit] text-3xl font-black text-white mb-8 tracking-tight">Metabolic Engine</h2>
+          <div className="bg-slate-900/90 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
+            <h2 className="font-[Outfit] text-3xl font-black text-white mb-8 tracking-tight">TDEE Energy Matrix</h2>
             
             <div className="space-y-6">
               <div>
                 <label className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3 block">Gender</label>
                 <div className="flex gap-4">
-                  <button onClick={() => updateInput('gender', 'male')} className={`flex-1 py-4 rounded-2xl font-bold transition-all duration-300 ${inputs.gender === 'male' ? 'bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.2)]' : 'bg-white/5 border border-white/5 text-slate-400 hover:bg-white/10'}`}>MALE</button>
-                  <button onClick={() => updateInput('gender', 'female')} className={`flex-1 py-4 rounded-2xl font-bold transition-all duration-300 ${inputs.gender === 'female' ? 'bg-purple-500/20 border border-purple-400/50 text-purple-300 shadow-[0_0_20px_rgba(192,38,211,0.2)]' : 'bg-white/5 border border-white/5 text-slate-400 hover:bg-white/10'}`}>FEMALE</button>
+                  <button type="button" onClick={() => updateInput('gender', 'male')} className={`flex-1 py-4 rounded-2xl font-bold transition-all duration-300 ${inputs.gender === 'male' ? 'bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.2)]' : 'bg-white/5 border border-white/5 text-slate-400 hover:bg-white/10'}`}>MALE</button>
+                  <button type="button" onClick={() => updateInput('gender', 'female')} className={`flex-1 py-4 rounded-2xl font-bold transition-all duration-300 ${inputs.gender === 'female' ? 'bg-purple-500/20 border border-purple-400/50 text-purple-300 shadow-[0_0_20px_rgba(192,38,211,0.2)]' : 'bg-white/5 border border-white/5 text-slate-400 hover:bg-white/10'}`}>FEMALE</button>
                 </div>
               </div>
 
@@ -56,8 +80,8 @@ export default function TdeeCalculator() {
                 </select>
               </div>
 
-              <button className="w-full mt-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-2xl px-8 py-5 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(56,189,248,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
-                Calibrate Output
+              <button type="button" onClick={handleCalibrate} className="w-full mt-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-2xl px-8 py-5 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(56,189,248,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
+                {saved ? '✓ TDEE Saved to History' : 'Save & Lock TDEE Output'}
               </button>
             </div>
           </div>

@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { Divide } from 'lucide-react';
 
 export default function FractionCalculator() {
-  const [num1, setNum1] = useState<string>('');
-  const [den1, setDen1] = useState<string>('');
+  const [num1, setNum1] = useState<string>('1');
+  const [den1, setDen1] = useState<string>('2');
   const [op, setOp] = useState<string>('+');
-  const [num2, setNum2] = useState<string>('');
-  const [den2, setDen2] = useState<string>('');
+  const [num2, setNum2] = useState<string>('3');
+  const [den2, setDen2] = useState<string>('4');
 
   function gcd(a: number, b: number): number {
     return b === 0 ? a : gcd(b, a % b);

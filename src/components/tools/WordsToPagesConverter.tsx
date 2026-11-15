@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 
 export default function WordsToPagesConverter() {
-  const [words, setWords] = useState<number | ''>('');
-  const [spacing, setSpacing] = useState<number>(1);
+  const [words, setWords] = useState<number | ''>(1500);
+  const [spacing, setSpacing] = useState<number>(1.5);
   const [fontSize, setFontSize] = useState<number>(12);
+  const [copied, setCopied] = useState(false);
 
   const baseWordsPerPage = 500;
   
@@ -18,10 +19,16 @@ export default function WordsToPagesConverter() {
 
   const pages = calculatePages();
 
+  const handleCopyResult = () => {
+    navigator.clipboard?.writeText(`${words || 0} words = ${pages.toFixed(1)} pages (${spacing}x spacing, ${fontSize}pt)`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-fade-in-up font-inter">
       <div className="lg:col-span-7 space-y-6">
-        <div className="bg-white/5 backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-[0_0_30px_-10px_rgba(59,130,246,0.1)] relative">
+        <div className="bg-slate-900/90 backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-[0_0_30px_-10px_rgba(59,130,246,0.1)] relative">
           <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
           
           <h2 className="text-xl font-bold text-white mb-8 tracking-wide">Document Metrics</h2>
@@ -44,6 +51,7 @@ export default function WordsToPagesConverter() {
                 {[1, 1.5, 2].map((s) => (
                   <button
                     key={s}
+                    type="button"
                     onClick={() => setSpacing(s)}
                     className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 border ${spacing === s ? 'bg-purple-500/20 border-purple-500/50 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.3)]' : 'bg-black/30 border-white/5 text-white/50 hover:bg-white/5 hover:text-white/80'}`}
                   >
@@ -59,6 +67,7 @@ export default function WordsToPagesConverter() {
                 {[10, 11, 12, 14].map((size) => (
                   <button
                     key={size}
+                    type="button"
                     onClick={() => setFontSize(size)}
                     className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 border ${fontSize === size ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.3)]' : 'bg-black/30 border-white/5 text-white/50 hover:bg-white/5 hover:text-white/80'}`}
                   >
@@ -85,8 +94,8 @@ export default function WordsToPagesConverter() {
             Calculated for standard academic margins.
           </p>
 
-          <button className="mt-10 w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 text-white font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] z-10">
-            Calculate
+          <button type="button" onClick={handleCopyResult} className="mt-10 w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 text-white font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] z-10">
+            {copied ? '✓ Copied Page Estimate' : 'Copy Page Estimate'}
           </button>
         </div>
       </div>

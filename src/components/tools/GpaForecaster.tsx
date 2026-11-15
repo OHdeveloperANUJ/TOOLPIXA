@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { Calculator, Target, BookOpen, GraduationCap } from 'lucide-react';
 
 const GpaForecaster = () => {
-  const [currentGpa, setCurrentGpa] = useState<string>('');
-  const [completedCredits, setCompletedCredits] = useState<string>('');
-  const [targetGpa, setTargetGpa] = useState<string>('');
-  const [remainingCredits, setRemainingCredits] = useState<string>('');
+  const [currentGpa, setCurrentGpa] = useState<string>('3.2');
+  const [completedCredits, setCompletedCredits] = useState<string>('60');
+  const [targetGpa, setTargetGpa] = useState<string>('3.5');
+  const [remainingCredits, setRemainingCredits] = useState<string>('60');
 
   const calculateRequiredGpa = () => {
     const current = parseFloat(currentGpa);

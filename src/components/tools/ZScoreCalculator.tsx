@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { Activity, AlertCircle, Info } from 'lucide-react';
 
 export default function ZScoreCalculator() {
-  const [x, setX] = useState<number | ''>('');
-  const [mean, setMean] = useState<number | ''>('');
-  const [sd, setSd] = useState<number | ''>('');
+  const [x, setX] = useState<number | ''>(85);
+  const [mean, setMean] = useState<number | ''>(70);
+  const [sd, setSd] = useState<number | ''>(10);
 
   const calculateZScore = () => {
     if (x === '' || mean === '' || sd === '') return null;

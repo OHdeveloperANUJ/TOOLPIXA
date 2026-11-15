@@ -141,7 +141,7 @@ export default function CompoundInterestCalculator() {
   };
 
   const handleCopy = () => {
-    const text = `📊 Compound Interest Result\nPrincipal: ${currency.symbol}${fmt(totalInvested)}\nTotal Interest: ${currency.symbol}${fmt(estimatedReturns)}\nFuture Wealth: ${currency.symbol}${fmt(totalValue)}\n─────────────────\nTry free: toolpixa.space/tools/compound-interest`;
+    const text = `📊 Compound Interest Result\nPrincipal: ${currency.symbol}${fmt(totalInvested)}\nTotal Interest: ${currency.symbol}${fmt(estimatedReturns)}\nFuture Wealth: ${currency.symbol}${fmt(totalValue)}\n─────────────────\nTry free: https://www.toolpixa.space/tools/compound-interest-calculator`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

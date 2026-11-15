@@ -29,21 +29,43 @@ export default function BodyFatCalculator() {
   const fatMass = wKg * (bfPercent / 100);
   const leanMass = wKg - fatMass;
 
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    try {
+      const history = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      localStorage.setItem(
+        'toolpixa_history',
+        JSON.stringify([
+          {
+            id: Date.now().toString(),
+            toolId: 'body-fat-calculator',
+            inputData: { gender, weight, height, neck, waist, bfPercent: bfPercent.toFixed(1) },
+            createdAt: new Date().toISOString(),
+          },
+          ...history,
+        ])
+      );
+    } catch {}
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2500);
+  };
+
   return (
-    <div className="min-h-screen bg-[#050505] p-4 md:p-8 font-[Inter] text-slate-300 selection:bg-emerald-500/30">
+    <div className="p-2 md:p-4 font-[Inter] text-slate-300 selection:bg-emerald-500/30">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Left Side */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl shadow-black/50">
+          <div className="bg-slate-900/90 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
             <h2 className="font-[Outfit] text-3xl font-black text-white mb-8 tracking-tight">Biometric Scanner</h2>
             
             <div className="space-y-5">
               <div>
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 block">Subject Gender</label>
                 <div className="flex gap-4">
-                  <button onClick={() => setGender('male')} className={`flex-1 py-3 rounded-xl font-bold tracking-wider transition-all duration-300 ${gender === 'male' ? 'bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'bg-black/30 border border-white/5 text-slate-500'}`}>MALE</button>
-                  <button onClick={() => setGender('female')} className={`flex-1 py-3 rounded-xl font-bold tracking-wider transition-all duration-300 ${gender === 'female' ? 'bg-rose-500/20 border border-rose-400/50 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.2)]' : 'bg-black/30 border border-white/5 text-slate-500'}`}>FEMALE</button>
+                  <button type="button" onClick={() => setGender('male')} className={`flex-1 py-3 rounded-xl font-bold tracking-wider transition-all duration-300 ${gender === 'male' ? 'bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'bg-black/30 border border-white/5 text-slate-500'}`}>MALE</button>
+                  <button type="button" onClick={() => setGender('female')} className={`flex-1 py-3 rounded-xl font-bold tracking-wider transition-all duration-300 ${gender === 'female' ? 'bg-rose-500/20 border border-rose-400/50 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.2)]' : 'bg-black/30 border border-white/5 text-slate-500'}`}>FEMALE</button>
                 </div>
               </div>
 
@@ -76,8 +98,8 @@ export default function BodyFatCalculator() {
                 </div>
               )}
 
-              <button className="w-full mt-6 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl px-8 py-4 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
-                Scan Composition
+              <button type="button" onClick={handleSave} className="w-full mt-6 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl px-8 py-4 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
+                {saved ? '✓ Body Fat Scan Saved' : 'Save Scan Composition'}
               </button>
             </div>
           </div>

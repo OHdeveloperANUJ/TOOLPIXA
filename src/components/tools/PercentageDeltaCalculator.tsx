@@ -4,8 +4,8 @@ import React, { useState, useMemo } from 'react';
 import { Percent, TrendingUp, TrendingDown, ArrowRight } from 'lucide-react';
 
 const PercentageDeltaCalculator = () => {
-  const [value1, setValue1] = useState<string>('');
-  const [value2, setValue2] = useState<string>('');
+  const [value1, setValue1] = useState<string>('100');
+  const [value2, setValue2] = useState<string>('150');
 
   const result = useMemo(() => {
     const v1 = parseFloat(value1);

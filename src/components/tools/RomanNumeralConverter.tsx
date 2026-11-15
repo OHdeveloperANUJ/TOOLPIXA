@@ -5,8 +5,8 @@ import { Type, RefreshCw } from 'lucide-react';
 
 const RomanNumeralConverter: React.FC = () => {
   const [mode, setMode] = useState<'toRoman' | 'toInteger'>('toRoman');
-  const [inputValue, setInputValue] = useState<string>('');
-  const [outputValue, setOutputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('2026');
+  const [outputValue, setOutputValue] = useState<string>('MMXXVI');
   const [error, setError] = useState<string>('');
 
   const intToRoman = (num: number): string => {

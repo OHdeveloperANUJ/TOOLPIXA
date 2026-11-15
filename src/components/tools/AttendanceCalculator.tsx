@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { Calculator, Target, BookOpen, AlertCircle, CheckCircle2, Info } from 'lucide-react';
 
 const AttendanceCalculator: React.FC = () => {
-  const [attended, setAttended] = useState<number | ''>('');
-  const [total, setTotal] = useState<number | ''>('');
+  const [attended, setAttended] = useState<number | ''>(45);
+  const [total, setTotal] = useState<number | ''>(60);
   const [target, setTarget] = useState<number | ''>(75);
 
   const calculateResult = () => {

@@ -3,14 +3,14 @@
 import React, { useState } from 'react';
 
 export default function PercentageCalculator() {
-  const [val1A, setVal1A] = useState<number | ''>('');
-  const [val1B, setVal1B] = useState<number | ''>('');
+  const [val1A, setVal1A] = useState<number | ''>(20);
+  const [val1B, setVal1B] = useState<number | ''>(500);
   
-  const [val2A, setVal2A] = useState<number | ''>('');
-  const [val2B, setVal2B] = useState<number | ''>('');
+  const [val2A, setVal2A] = useState<number | ''>(75);
+  const [val2B, setVal2B] = useState<number | ''>(300);
   
-  const [val3A, setVal3A] = useState<number | ''>('');
-  const [val3B, setVal3B] = useState<number | ''>('');
+  const [val3A, setVal3A] = useState<number | ''>(100);
+  const [val3B, setVal3B] = useState<number | ''>(150);
 
   const res1 = (val1A !== '' && val1B !== '') ? ((Number(val1A) / 100) * Number(val1B)) : null;
   const res2 = (val2A !== '' && val2B !== '' && Number(val2B) !== 0) ? ((Number(val2A) / Number(val2B)) * 100) : null;

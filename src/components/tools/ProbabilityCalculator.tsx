@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { Dices, AlertCircle, Info } from 'lucide-react';
 
 export default function ProbabilityCalculator() {
-  const [favorable, setFavorable] = useState<number | ''>('');
-  const [total, setTotal] = useState<number | ''>('');
+  const [favorable, setFavorable] = useState<number | ''>(1);
+  const [total, setTotal] = useState<number | ''>(6);
 
   const calculateProbability = () => {
     if (favorable === '' || total === '') return null;

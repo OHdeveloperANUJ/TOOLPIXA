@@ -127,7 +127,7 @@ export default function BikeLoanEmi() {
   const fmt = (val: number) => Math.round(val).toLocaleString(currency.locale);
 
   const handleCopy = () => {
-    const text = `📊 Bike Loan EMI Result\nEMI: ${currency.symbol}${fmt(emi)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\nTotal Payment: ${currency.symbol}${fmt(totalPayment)}\n─────────────────\nTry free: toolpixa.space/tools/home-loan-emi`;
+    const text = `📊 Bike Loan EMI Result\nEMI: ${currency.symbol}${fmt(emi)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\nTotal Payment: ${currency.symbol}${fmt(totalPayment)}\n─────────────────\nTry free: https://www.toolpixa.space/tools/bike-loan-emi-calculator`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

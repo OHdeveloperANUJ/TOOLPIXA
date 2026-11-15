@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { Calculator, AlertCircle, Info } from 'lucide-react';
 
 export default function QuadraticEquationSolver() {
-  const [a, setA] = useState<number | ''>('');
-  const [b, setB] = useState<number | ''>('');
-  const [c, setC] = useState<number | ''>('');
+  const [a, setA] = useState<number | ''>(1);
+  const [b, setB] = useState<number | ''>(-3);
+  const [c, setC] = useState<number | ''>(2);
 
   const calculateRoots = () => {
     if (a === '' || b === '' || c === '') return null;

@@ -1,108 +1,135 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { FileDown, UploadCloud, FileType2, Settings, ArrowRight } from 'lucide-react';
+import { UploadCloud, FileType2, Download, CheckCircle2, RefreshCw } from 'lucide-react';
+import { extractTextFromWordOrTextFile, createPdfFromText } from '@/utils/pdfEngine';
 
 export default function WordToPdfConverter() {
-  const [file, setFile] = useState<File | null>(null);
+  const [title, setTitle] = useState<string>('Document Report');
+  const [bodyText, setBodyText] = useState<string>(
+    'Paste your document content here or upload a .DOCX, .TXT, or .MD file above to generate a formatted A4 PDF locally in your browser.'
+  );
+  const [fileName, setFileName] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selected = event.target.files?.[0];
-    if (selected) {
-      setFile(selected);
-      setError(null);
+    if (!selected) return;
+    setFileName(selected.name);
+    setTitle(selected.name.replace(/\.[^/.]+$/, ''));
+    setDownloadUrl(null);
+    setIsProcessing(true);
+    try {
+      const extracted = await extractTextFromWordOrTextFile(selected);
+      setBodyText(extracted || 'Document loaded.');
+    } finally {
+      setIsProcessing(false);
     }
   };
 
-  const processFile = () => {
-    if (!file) return;
+  const generatePdf = async () => {
     setIsProcessing(true);
-    setTimeout(() => {
+    try {
+      const pdfBytes = await createPdfFromText(title, bodyText);
+      const blob = new Blob([pdfBytes as unknown as BlobPart], { type: 'application/pdf' });
+      setDownloadUrl(URL.createObjectURL(blob));
+    } finally {
       setIsProcessing(false);
-      setError("Advanced PDF processing requires a Premium Backend API. Please try using CloudConvert or smallpdf for complex PDF manipulations.");
-    }, 2000);
+    }
   };
 
   return (
-    <div className="glass-card p-6 md:p-8 rounded-2xl w-full max-w-4xl mx-auto shadow-xl border border-white/20 bg-white/10 backdrop-blur-lg">
-      <div className="flex flex-col md:flex-row items-center justify-between mb-8 pb-6 border-b border-gray-200/20">
-        <div className="flex items-center gap-4">
-          <div className="p-3 bg-red-500/20 rounded-xl text-red-600 dark:text-red-400">
-            <FileType2 size={28} />
-          </div>
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Word to PDF Converter</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">Easily process and convert your PDF files securely in your browser.</p>
-          </div>
+    <div className="glass-card p-6 md:p-8 rounded-2xl w-full max-w-4xl mx-auto shadow-xl border border-glass-border">
+      <div className="flex items-center gap-4 mb-8 pb-6 border-b border-glass-border">
+        <div className="p-3 bg-indigo-500/20 rounded-xl text-indigo-500">
+          <FileType2 size={28} />
+        </div>
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold text-text-primary">Word to PDF Converter</h2>
+          <p className="text-sm text-text-secondary mt-1">
+            Convert .DOCX, .TXT, or .MD files (or typed text) into paginated A4 PDF documents in your browser.
+          </p>
         </div>
       </div>
 
-      <div className="space-y-8">
-        {!file ? (
-          <div 
-            className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-12 text-center hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer group"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <input 
-              type="file" 
-              ref={fileInputRef}
-              onChange={handleFileUpload} 
-              accept=".pdf,.doc,.docx" 
-              className="hidden" 
+      <div className="space-y-6">
+        <div
+          onClick={() => fileInputRef.current?.click()}
+          className="border-2 border-dashed border-glass-border rounded-2xl p-6 text-center hover:border-primary transition-colors cursor-pointer bg-surface-container/40"
+        >
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileUpload}
+            accept=".docx,.doc,.txt,.md,.html"
+            className="hidden"
+          />
+          <UploadCloud className="text-indigo-500 mx-auto mb-2" size={28} />
+          <p className="text-sm font-semibold text-text-primary">
+            {fileName ? `Loaded: ${fileName} (Click to change)` : 'Click to upload .DOCX, .TXT, or .MD file'}
+          </p>
+          <p className="text-xs text-text-secondary mt-1">Or edit/paste your document content directly below</p>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="text-xs font-semibold text-text-secondary block mb-1.5">Document Heading</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                setDownloadUrl(null);
+              }}
+              className="w-full px-4 py-2.5 rounded-xl bg-surface-container border border-glass-border text-text-primary font-semibold text-sm"
             />
-            <div className="bg-red-100 dark:bg-red-900/30 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <UploadCloud className="text-red-500 dark:text-red-400" size={32} />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2">Upload a file to begin</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Click or drag and drop your file here</p>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4">
-                <div className="flex items-center justify-between text-sm font-medium text-gray-700 dark:text-gray-200">
-                  <span className="flex items-center gap-2"><Settings size={16} /> Target Format</span>
-                  <span className="text-red-500 font-semibold">WordToPdfConverter</span>
-                </div>
-                
-                <button
-                  onClick={processFile}
-                  disabled={isProcessing}
-                  className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-red-500/25 disabled:opacity-50"
-                >
-                  {isProcessing ? 'Processing...' : 'Start Process'}
-                </button>
-              </div>
 
-              <button 
-                  onClick={() => setFile(null)}
-                  className="text-sm text-red-600 dark:text-red-400 hover:underline w-full text-center"
-                >
-                  Cancel and Upload Different File
-              </button>
-            </div>
+          <div>
+            <label className="text-xs font-semibold text-text-secondary block mb-1.5">Document Body</label>
+            <textarea
+              value={bodyText}
+              onChange={(e) => {
+                setBodyText(e.target.value);
+                setDownloadUrl(null);
+              }}
+              rows={9}
+              className="w-full p-4 rounded-xl bg-surface-container border border-glass-border text-text-primary text-sm leading-relaxed"
+            />
+          </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-center text-center">
-              {error ? (
-                <div className="bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 p-4 rounded-xl text-sm border border-yellow-200 dark:border-yellow-800/50">
-                  {error}
-                </div>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={generatePdf}
+              disabled={isProcessing}
+              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold inline-flex items-center gap-2 shadow-lg"
+            >
+              {isProcessing ? (
+                <>
+                  <RefreshCw size={16} className="animate-spin" /> Generating PDF...
+                </>
               ) : (
-                <div className="text-gray-500 dark:text-gray-400 flex flex-col items-center gap-3">
-                  <FileDown size={48} className="opacity-20" />
-                  <p>Your processed file will appear here</p>
-                </div>
+                'Convert to A4 PDF'
               )}
-            </div>
+            </button>
+
+            {downloadUrl && (
+              <a
+                href={downloadUrl}
+                download={`${(title || 'document').replace(/[^a-z0-9-_]/gi, '_')}.pdf`}
+                className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold inline-flex items-center gap-2 shadow-lg"
+              >
+                <CheckCircle2 size={18} />
+                <Download size={18} />
+                <span>Download PDF</span>
+              </a>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
 }
-
-
-// Indian Example: Satendra from Bhubaneswar uses this tool to check variables.

@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 
 export default function StudyTimeEstimator() {
-  const [pages, setPages] = useState<number | ''>('');
-  const [words, setWords] = useState<number | ''>('');
-  const [topics, setTopics] = useState<number | ''>('');
+  const [pages, setPages] = useState<number | ''>(20);
+  const [words, setWords] = useState<number | ''>(500);
+  const [topics, setTopics] = useState<number | ''>(2);
 
   const pagesTime = (Number(pages) || 0) * 3; // 3 mins per page
   const wordsTime = ((Number(words) || 0) / 100) * 15; // 15 mins per 100 words

@@ -12,13 +12,35 @@ export default function CalorieDeficitCalculator() {
   const f = Math.round((target * 0.3) / 9);
   const c = Math.round((target * 0.4) / 4);
 
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    try {
+      const history = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      localStorage.setItem(
+        'toolpixa_history',
+        JSON.stringify([
+          {
+            id: Date.now().toString(),
+            toolId: 'calorie-deficit-surplus-calculator',
+            inputData: { tdee, goal, deficit, targetCalories: target },
+            createdAt: new Date().toISOString(),
+          },
+          ...history,
+        ])
+      );
+    } catch {}
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2500);
+  };
+
   return (
-    <div className="min-h-screen bg-[#050505] p-4 md:p-8 font-[Inter] text-slate-300 selection:bg-purple-500/30">
+    <div className="p-2 md:p-4 font-[Inter] text-slate-300 selection:bg-purple-500/30">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Left Side */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl shadow-black/50">
+          <div className="bg-slate-900/90 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
             <h2 className="font-[Outfit] text-3xl font-black text-white mb-8 tracking-tight">Phase Architect</h2>
             
             <div className="space-y-8">
@@ -33,8 +55,8 @@ export default function CalorieDeficitCalculator() {
               <div>
                 <label className="text-xs font-bold text-purple-400 uppercase tracking-widest mb-3 block">Protocol</label>
                 <div className="flex gap-4 p-2 bg-black/40 rounded-2xl border border-white/5">
-                  <button onClick={() => setGoal('cut')} className={`flex-1 py-4 rounded-xl font-bold tracking-wider transition-all duration-300 ${goal === 'cut' ? 'bg-cyan-500/20 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.2)]' : 'text-slate-500 hover:text-slate-300'}`}>SHRED</button>
-                  <button onClick={() => setGoal('bulk')} className={`flex-1 py-4 rounded-xl font-bold tracking-wider transition-all duration-300 ${goal === 'bulk' ? 'bg-rose-500/20 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.2)]' : 'text-slate-500 hover:text-slate-300'}`}>MASS</button>
+                  <button type="button" onClick={() => setGoal('cut')} className={`flex-1 py-4 rounded-xl font-bold tracking-wider transition-all duration-300 ${goal === 'cut' ? 'bg-cyan-500/20 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.2)]' : 'text-slate-500 hover:text-slate-300'}`}>SHRED</button>
+                  <button type="button" onClick={() => setGoal('bulk')} className={`flex-1 py-4 rounded-xl font-bold tracking-wider transition-all duration-300 ${goal === 'bulk' ? 'bg-rose-500/20 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.2)]' : 'text-slate-500 hover:text-slate-300'}`}>MASS</button>
                 </div>
               </div>
 
@@ -50,8 +72,8 @@ export default function CalorieDeficitCalculator() {
                 </div>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-purple-600 via-fuchsia-500 to-rose-500 rounded-2xl px-8 py-5 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(217,70,239,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
-                Initialize Protocol
+              <button type="button" onClick={handleSave} className="w-full bg-gradient-to-r from-purple-600 via-fuchsia-500 to-rose-500 rounded-2xl px-8 py-5 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(217,70,239,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
+                {saved ? '✓ Protocol Saved to History' : 'Save Calorie Protocol'}
               </button>
             </div>
           </div>

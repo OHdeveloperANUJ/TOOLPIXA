@@ -17,13 +17,35 @@ export default function MacroNutrientCalculator() {
   const fGrams = Math.round((targetCalories * (plan.f / 100)) / 9);
   const cGrams = Math.round((targetCalories * (plan.c / 100)) / 4);
 
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    try {
+      const history = JSON.parse(localStorage.getItem('toolpixa_history') || '[]');
+      localStorage.setItem(
+        'toolpixa_history',
+        JSON.stringify([
+          {
+            id: Date.now().toString(),
+            toolId: 'macro-nutrient-calculator',
+            inputData: { targetCalories, diet, protein: pGrams, fat: fGrams, carbs: cGrams },
+            createdAt: new Date().toISOString(),
+          },
+          ...history,
+        ])
+      );
+    } catch {}
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2500);
+  };
+
   return (
-    <div className="min-h-screen bg-[#030712] p-4 md:p-8 font-[Inter] text-slate-300 selection:bg-blue-500/30">
+    <div className="p-2 md:p-4 font-[Inter] text-slate-300 selection:bg-blue-500/30">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Left Side */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl shadow-black/50">
+          <div className="bg-slate-900/90 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
             <h2 className="font-[Outfit] text-3xl font-black text-white mb-8 tracking-tight">Macro Synthesizer</h2>
             
             <div className="space-y-8">
@@ -35,14 +57,14 @@ export default function MacroNutrientCalculator() {
               <div>
                 <label className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3 block">Configuration</label>
                 <div className="space-y-3">
-                  <button onClick={() => setDiet('balanced')} className={`w-full py-4 rounded-xl font-bold tracking-wider transition-all duration-300 border ${diet === 'balanced' ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.2)]' : 'bg-black/30 border-white/5 text-slate-500 hover:border-white/20'}`}>BALANCED (30/30/40)</button>
-                  <button onClick={() => setDiet('high-protein')} className={`w-full py-4 rounded-xl font-bold tracking-wider transition-all duration-300 border ${diet === 'high-protein' ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.2)]' : 'bg-black/30 border-white/5 text-slate-500 hover:border-white/20'}`}>HIGH PROTEIN (40/30/30)</button>
-                  <button onClick={() => setDiet('keto')} className={`w-full py-4 rounded-xl font-bold tracking-wider transition-all duration-300 border ${diet === 'keto' ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'bg-black/30 border-white/5 text-slate-500 hover:border-white/20'}`}>KETOGENIC (20/75/5)</button>
+                  <button type="button" onClick={() => setDiet('balanced')} className={`w-full py-4 rounded-xl font-bold tracking-wider transition-all duration-300 border ${diet === 'balanced' ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.2)]' : 'bg-black/30 border-white/5 text-slate-500 hover:border-white/20'}`}>BALANCED (30/30/40)</button>
+                  <button type="button" onClick={() => setDiet('high-protein')} className={`w-full py-4 rounded-xl font-bold tracking-wider transition-all duration-300 border ${diet === 'high-protein' ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.2)]' : 'bg-black/30 border-white/5 text-slate-500 hover:border-white/20'}`}>HIGH PROTEIN (40/30/30)</button>
+                  <button type="button" onClick={() => setDiet('keto')} className={`w-full py-4 rounded-xl font-bold tracking-wider transition-all duration-300 border ${diet === 'keto' ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'bg-black/30 border-white/5 text-slate-500 hover:border-white/20'}`}>KETOGENIC (20/75/5)</button>
                 </div>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl px-8 py-5 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(79,70,229,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
-                Synthesize Macros
+              <button type="button" onClick={handleSave} className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl px-8 py-5 font-bold tracking-widest uppercase text-white hover:shadow-[0_0_40px_rgba(79,70,229,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 border border-white/20">
+                {saved ? '✓ Macro Split Saved' : 'Save Macro Split'}
               </button>
             </div>
           </div>

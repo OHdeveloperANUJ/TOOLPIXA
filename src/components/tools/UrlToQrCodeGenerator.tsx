@@ -5,7 +5,7 @@ import { QRCodeCanvas } from 'qrcode.react';
 import { Download, Link, QrCode } from 'lucide-react';
 
 export default function UrlToQrCodeGenerator() {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState('https://www.toolpixa.space');
   const [fgColor, setFgColor] = useState('#000000');
   const [bgColor, setBgColor] = useState('#ffffff');
   const qrRef = useRef<HTMLCanvasElement>(null);

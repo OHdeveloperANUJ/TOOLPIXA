@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Sigma } from 'lucide-react';
 
 export default function StandardDeviationCalculator() {
-  const [inputData, setInputData] = useState<string>('');
+  const [inputData, setInputData] = useState<string>('10, 20, 30, 40, 50');
 
   let mean: number | null = null;
   let popSd: number | null = null;

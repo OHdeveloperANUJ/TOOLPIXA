@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, Download, Image as ImageIcon, Trash2, Activity, CheckCircle2 } from 'lucide-react';
-import imageCompression from 'browser-image-compression';
+import { compressImageToTargetKB } from '@/utils/imageCompressor';
 
 export default function CompressImageTo20Kb() {
   const [originalFile, setOriginalFile] = useState<File | null>(null);
@@ -33,15 +33,7 @@ export default function CompressImageTo20Kb() {
   const compressImage = async (file: File) => {
     setIsCompressing(true);
     try {
-      const options = {
-        maxSizeMB: 0.02, // 20KB
-        maxWidthOrHeight: 1920,
-        useWebWorker: true,
-        alwaysKeepResolution: true
-      };
-
-      const compressed = await imageCompression(file, options);
-      
+      const compressed = await compressImageToTargetKB(file, 20);
       setCompressedFile(compressed);
       setCompressedPreview(URL.createObjectURL(compressed));
     } catch (err) {

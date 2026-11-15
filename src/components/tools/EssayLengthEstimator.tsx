@@ -32,7 +32,7 @@ function calcWordsPerPage(font: FontType, spacing: Spacing): number {
 }
 
 const EssayLengthEstimator = () => {
-  const [wordCount, setWordCount] = useState<string>('');
+  const [wordCount, setWordCount] = useState<string>('1500');
   const [spacing, setSpacing] = useState<Spacing>('double');
   const [font, setFont] = useState<FontType>('times');
   const [fontSize, setFontSize] = useState<number>(12);
