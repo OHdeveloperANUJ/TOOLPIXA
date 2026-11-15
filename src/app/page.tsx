@@ -188,10 +188,14 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { href: '/compare/home-loan-emi-vs-personal-loan-emi', title: 'Home Loan vs Personal Loan', sub: 'Rates, tenure & Sec 24b tax rules' },
-              { href: '/compare/sip-vs-lumpsum', title: 'SIP vs Lumpsum Investing', sub: 'Rupee cost averaging vs early compounding' },
-              { href: '/compare/ppf-vs-fd', title: 'PPF vs Fixed Deposit (FD)', sub: 'EEE tax-free vs taxable bank yields' },
-              { href: '/compare/old-tax-regime-vs-new-tax-regime', title: 'Old vs New Tax Regime', sub: 'FY 2025-26 ₹12.75L rebate vs 80C/HRA' },
+              { href: '/compare/old-tax-regime-vs-new-tax-regime', title: 'Old vs New Tax Regime', sub: 'FY 2025-26 ₹12.75L zero-tax rebate vs 80C' },
+              { href: '/compare/50-lakh-home-loan-emi-10-15-20-years', title: '₹50 Lakh Home Loan EMI', sub: '10, 15, 20 & 25-year EMI & prepayment table' },
+              { href: '/compare/12-lakh-15-lakh-20-lakh-in-hand-salary', title: '₹12L, ₹15L & ₹20L In-Hand Pay', sub: 'Monthly take-home salary after PF & tax' },
+              { href: '/compare/sbi-vs-hdfc-home-loan-emi', title: 'SBI vs HDFC Home Loan', sub: '8.35% EBLR vs 8.40% RLLR & MaxGain' },
+              { href: '/compare/sip-vs-lumpsum', title: 'SIP vs Lumpsum Investing', sub: '10Y, 15Y & 20Y compounding showdown' },
+              { href: '/compare/ppf-vs-fd', title: 'PPF vs Fixed Deposit (FD)', sub: '7.1% tax-free EEE vs 30%-slab bank FD' },
+              { href: '/compare/vtu-anna-sppu-cbse-cgpa-to-percentage', title: 'CGPA to Percentage Table', sub: 'CBSE, VTU, Anna, SPPU & AICTE formulas' },
+              { href: '/compare/ssc-upsc-neet-photo-signature-size-20kb-50kb', title: 'SSC, UPSC & NEET Photo Size', sub: '20KB, 50KB & 200KB official exam specs' },
             ].map((comp) => (
               <Link
                 key={comp.href}
@@ -205,7 +209,7 @@ export default function Home() {
                   <p className="text-xs text-text-secondary">{comp.sub}</p>
                 </div>
                 <span className="mt-4 text-xs font-label-md text-primary inline-flex items-center gap-1">
-                  Compare <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                  View Table <span className="material-symbols-outlined text-xs">arrow_forward</span>
                 </span>
               </Link>
             ))}

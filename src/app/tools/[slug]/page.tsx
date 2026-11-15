@@ -301,6 +301,117 @@ function getCompetitorLabel(category: string): string {
   return 'Traditional Online Tools';
 }
 
+interface RefTableData {
+  heading: string;
+  caption: string;
+  headers: string[];
+  rows: string[][];
+}
+
+function getQuickReferenceTable(slug: string, category: string, title: string): RefTableData {
+  const cat = category.toLowerCase();
+  if (slug.includes('loan') || slug.includes('emi')) {
+    return {
+      heading: `${title} — Quick Reference EMI Table (@ 8.50% p.a.)`,
+      caption: 'Pre-calculated monthly EMI installments across standard loan amounts and tenures.',
+      headers: ['Loan Principal', '5 Years EMI', '10 Years EMI', '15 Years EMI', '20 Years EMI'],
+      rows: [
+        ['₹5,00,000 (₹5 Lakh)', '₹10,258 / mo', '₹6,199 / mo', '₹4,924 / mo', '₹4,339 / mo'],
+        ['₹10,00,000 (₹10 Lakh)', '₹20,517 / mo', '₹12,399 / mo', '₹9,847 / mo', '₹8,678 / mo'],
+        ['₹20,00,000 (₹20 Lakh)', '₹41,033 / mo', '₹24,797 / mo', '₹19,695 / mo', '₹17,356 / mo'],
+        ['₹30,00,000 (₹30 Lakh)', '₹61,550 / mo', '₹37,196 / mo', '₹29,542 / mo', '₹26,035 / mo'],
+        ['₹50,00,000 (₹50 Lakh)', '₹1,02,583 / mo', '₹61,993 / mo', '₹49,237 / mo', '₹43,391 / mo'],
+        ['₹75,00,000 (₹75 Lakh)', '₹1,53,874 / mo', '₹92,989 / mo', '₹73,855 / mo', '₹65,087 / mo'],
+        ['₹1,00,00,000 (₹1 Crore)', '₹2,05,165 / mo', '₹1,23,986 / mo', '₹98,474 / mo', '₹86,782 / mo'],
+      ],
+    };
+  }
+  if (slug.includes('tax') || slug.includes('salary')) {
+    return {
+      heading: `${title} — FY 2025–26 Salaried Tax & In-Hand Reference Table`,
+      caption: 'Comparison of annual tax liability and monthly take-home pay under the FY 2025–26 New Tax Regime (with ₹75,000 Standard Deduction).',
+      headers: ['Annual Gross Salary (CTC)', 'Taxable Income', 'New Regime Tax (FY 25-26)', 'Approx. Monthly In-Hand'],
+      rows: [
+        ['₹8,00,000 (₹8 Lakh)', '₹7,25,000', '₹0 (Sec 87A Rebate)', '₹63,800 / mo'],
+        ['₹10,00,000 (₹10 Lakh)', '₹9,25,000', '₹0 (Sec 87A Rebate)', '₹79,500 / mo'],
+        ['₹12,75,000 (₹12.75 Lakh)', '₹12,00,000', '₹0 (Sec 87A Rebate)', '₹1,01,200 / mo'],
+        ['₹15,00,000 (₹15 Lakh)', '₹14,25,000', '₹97,500 (incl. 4% Cess)', '₹1,12,800 / mo'],
+        ['₹20,00,000 (₹20 Lakh)', '₹19,25,000', '₹1,95,000 (incl. 4% Cess)', '₹1,46,200 / mo'],
+        ['₹25,00,000 (₹25 Lakh)', '₹24,25,000', '₹3,35,400 (incl. 4% Cess)', '₹1,75,500 / mo'],
+      ],
+    };
+  }
+  if (cat === 'finance') {
+    return {
+      heading: `${title} — Compounding Wealth Reference Table (@ 12% p.a.)`,
+      caption: 'Projected maturity corpus across monthly investment levels and multi-year horizons.',
+      headers: ['Monthly Investment', '5 Years Corpus', '10 Years Corpus', '15 Years Corpus', '20 Years Corpus'],
+      rows: [
+        ['₹2,000 / month', '₹1,64,973', '₹4,64,678', '₹10,09,152', '₹19,98,296'],
+        ['₹5,000 / month', '₹4,12,432', '₹11,61,695', '₹25,22,880', '₹49,95,740'],
+        ['₹10,000 / month', '₹8,24,864', '₹23,23,391', '₹50,45,760', '₹99,91,479'],
+        ['₹15,000 / month', '₹12,37,295', '₹34,85,086', '₹75,68,640', '₹1,49,87,219'],
+        ['₹25,000 / month', '₹20,62,159', '₹58,08,477', '₹1,26,14,400', '₹2,49,78,698'],
+        ['₹50,000 / month', '₹41,24,318', '₹1,16,16,954', '₹2,52,28,800', '₹4,99,57,396'],
+      ],
+    };
+  }
+  if (cat === 'student') {
+    return {
+      heading: `${title} — CGPA to Percentage & Grade Reference Table`,
+      caption: 'Standard academic conversion benchmarks across CBSE, UGC, VTU, AICTE, and 4.0 GPA scales.',
+      headers: ['10-Point CGPA', 'CBSE / UGC (× 9.5)', 'AICTE / GTU ((CGPA−0.5)×10)', 'VTU ((CGPA−0.75)×10)', 'US 4.0 GPA Scale'],
+      rows: [
+        ['6.5 CGPA', '61.75%', '60.00%', '57.50%', '2.60 GPA (B−)'],
+        ['7.0 CGPA', '66.50%', '65.00%', '62.50%', '2.80 GPA (B)'],
+        ['7.5 CGPA', '71.25%', '70.00%', '67.50%', '3.00 GPA (B)'],
+        ['8.0 CGPA', '76.00%', '75.00%', '72.50%', '3.20 GPA (B+)'],
+        ['8.5 CGPA', '80.75%', '80.00%', '77.50%', '3.40 GPA (A−)'],
+        ['9.0 CGPA', '85.50%', '85.00%', '82.50%', '3.65 GPA (A)'],
+        ['9.5 CGPA', '90.25%', '90.00%', '87.50%', '3.85 GPA (A+)'],
+      ],
+    };
+  }
+  if (cat === 'image' || cat === 'pdf') {
+    return {
+      heading: `${title} — Official Indian Exam & Portal File Size Chart (2026)`,
+      caption: 'Required KB file size, pixel dimensions, and format specifications for major government and academic portals.',
+      headers: ['Exam / Portal Name', 'Photo Size Limit', 'Signature Size Limit', 'PDF Document Limit'],
+      rows: [
+        ['SSC CGL / CHSL / MTS', '20 KB – 50 KB (3.5×4.5 cm)', '10 KB – 20 KB (4.0×2.0 cm)', 'Under 200 KB – 500 KB'],
+        ['UPSC CSE / NDA / CDS', '20 KB – 300 KB (350×350 px+)', '20 KB – 300 KB (JPG)', 'ID Proof PDF < 300 KB'],
+        ['IBPS PO / Clerk & SBI PO', '20 KB – 50 KB (200×230 px)', '10 KB – 20 KB (140×60 px)', 'Thumb Impression 20–50 KB'],
+        ['NTA NEET UG & JEE Main', '10 KB – 200 KB (Passport JPG)', '4 KB – 30 KB (JPG)', 'Category Cert 50–300 KB PDF'],
+        ['PAN Card (NSDL / UTIITSL)', 'Under 50 KB (213×213 px, 300 DPI)', 'Under 50 KB (400×200 px)', 'Supporting Proof < 1 MB PDF'],
+      ],
+    };
+  }
+  if (cat === 'health') {
+    return {
+      heading: `${title} — Clinical BMI, Calorie & Metabolic Reference Chart`,
+      caption: 'Comparison of WHO International vs ICMR Asian-Indian BMI thresholds and baseline daily energy requirements.',
+      headers: ['Classification', 'WHO Global BMI Range', 'Asian-Indian (ICMR) Range', 'Recommended Daily Action'],
+      rows: [
+        ['Underweight', 'Below 18.5 kg/m²', 'Below 18.5 kg/m²', '+300 to +500 kcal/day nutrient surplus'],
+        ['Normal / Healthy Weight', '18.5 – 24.9 kg/m²', '18.5 – 22.9 kg/m²', 'Maintenance TDEE + 1.6g/kg protein'],
+        ['Overweight / At-Risk', '25.0 – 29.9 kg/m²', '23.0 – 24.9 kg/m²', '−300 to −400 kcal/day + 150 min/wk cardio'],
+        ['Obesity Class I', '30.0+ kg/m²', '25.0 – 29.9 kg/m²', '−500 kcal/day deficit + resistance training'],
+      ],
+    };
+  }
+  return {
+    heading: `${title} — Precision Conversion & Benchmark Reference`,
+    caption: 'Standard SI, imperial, and digital reference equivalents used by this calculator.',
+    headers: ['Input Benchmark', 'Metric / SI Equivalent', 'Imperial / US Equivalent', 'Precision Standard'],
+    rows: [
+      ['Length / Distance', '1 Meter = 100 cm = 1,000 mm', '3.28084 Feet = 39.3701 Inches', 'NIST / BIPM Exact Constant'],
+      ['Area / Land', '1 Acre = 4,046.86 sq. meters', '43,560 sq. feet = 4,840 sq. yards', 'Indian Revenue & SI Standard'],
+      ['Mass / Weight', '1 Kilogram = 1,000 Grams', '2.20462 Pounds (lbs) = 35.274 oz', 'IEEE 754 Double Precision'],
+      ['Digital / Encoding', '1 UTF-8 Byte = 8 Bits', '4 Base64 Chars = 3 Raw Bytes', 'RFC 4648 / ISO Standard'],
+    ],
+  };
+}
+
 export default async function ToolPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const toolData = toolsRegistry[slug];
@@ -527,6 +638,45 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
               </div>
             )}
           </div>
+
+          {/* Pre-Calculated Quick Reference Table for Featured Snippets */}
+          {(() => {
+            const refTable = getQuickReferenceTable(slug, toolData.category, toolData.title);
+            return (
+              <div className="glass-card rounded-xl p-xl border border-glass-border">
+                <h2 className="font-headline-md text-headline-md text-text-primary mb-1">
+                  {refTable.heading}
+                </h2>
+                <p className="font-body-md text-text-secondary mb-lg">
+                  {refTable.caption}
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse text-sm">
+                    <thead>
+                      <tr className="border-b border-glass-border bg-surface-container-high/50">
+                        {refTable.headers.map((h, i) => (
+                          <th key={i} className="py-3 px-4 font-headline-sm text-text-primary font-bold">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {refTable.rows.map((r, rIdx) => (
+                        <tr key={rIdx} className="border-b border-glass-border/50 last:border-0 hover:bg-surface-container/40 transition-colors">
+                          {r.map((cell, cIdx) => (
+                            <td key={cIdx} className={`py-3 px-4 tabular-nums ${cIdx === 0 ? 'font-bold text-text-primary' : 'text-text-secondary font-mono'}`}>
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            );
+          })()}
 
           <div className="space-y-lg">
             <h2 className="font-headline-lg text-headline-lg text-text-primary">

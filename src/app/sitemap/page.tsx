@@ -98,12 +98,20 @@ export default function HTMLSitemap() {
             </div>
           </div>
           <div className="pt-3 border-t border-glass-border">
-            <p className="text-xs font-label-md uppercase tracking-wider text-text-secondary mb-2">Side-by-Side Comparisons</p>
+            <p className="text-xs font-label-md uppercase tracking-wider text-text-secondary mb-2">Comparisons &amp; Reference Tables</p>
             <ul className="space-y-1.5 text-sm text-text-secondary">
               <li><Link href="/compare/home-loan-emi-vs-personal-loan-emi" className="hover:text-primary transition-colors">Home Loan EMI vs Personal Loan EMI</Link></li>
               <li><Link href="/compare/sip-vs-lumpsum" className="hover:text-primary transition-colors">SIP vs Lumpsum Investment</Link></li>
               <li><Link href="/compare/ppf-vs-fd" className="hover:text-primary transition-colors">PPF vs Fixed Deposit (FD)</Link></li>
-              <li><Link href="/compare/old-tax-regime-vs-new-tax-regime" className="hover:text-primary transition-colors">Old vs New Income Tax Regime</Link></li>
+              <li><Link href="/compare/old-tax-regime-vs-new-tax-regime" className="hover:text-primary transition-colors">Old vs New Income Tax Regime (FY 2025–26)</Link></li>
+              <li><Link href="/compare/sbi-vs-hdfc-home-loan-emi" className="hover:text-primary transition-colors">SBI vs HDFC Home Loan EMI &amp; Rates</Link></li>
+              <li><Link href="/compare/50-lakh-home-loan-emi-10-15-20-years" className="hover:text-primary transition-colors">₹50 Lakh Home Loan EMI (10, 15, 20, 25 Years)</Link></li>
+              <li><Link href="/compare/30-lakh-home-loan-emi-calculator" className="hover:text-primary transition-colors">₹30 Lakh Home Loan EMI Table</Link></li>
+              <li><Link href="/compare/direct-vs-regular-mutual-fund" className="hover:text-primary transition-colors">Direct vs Regular Mutual Fund Returns</Link></li>
+              <li><Link href="/compare/12-lakh-15-lakh-20-lakh-in-hand-salary" className="hover:text-primary transition-colors">₹12L, ₹15L &amp; ₹20L CTC to In-Hand Salary</Link></li>
+              <li><Link href="/compare/vtu-anna-sppu-cbse-cgpa-to-percentage" className="hover:text-primary transition-colors">CBSE, VTU, Anna &amp; SPPU CGPA to Percentage</Link></li>
+              <li><Link href="/compare/ssc-upsc-neet-photo-signature-size-20kb-50kb" className="hover:text-primary transition-colors">SSC, UPSC, NEET &amp; IBPS Photo Size (20KB–50KB)</Link></li>
+              <li><Link href="/compare/gold-loan-vs-personal-loan-emi" className="hover:text-primary transition-colors">Gold Loan vs Personal Loan EMI</Link></li>
             </ul>
           </div>
         </section>

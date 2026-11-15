@@ -23,6 +23,14 @@ const COMPARISONS = [
   'sip-vs-lumpsum',
   'ppf-vs-fd',
   'old-tax-regime-vs-new-tax-regime',
+  'sbi-vs-hdfc-home-loan-emi',
+  '50-lakh-home-loan-emi-10-15-20-years',
+  '30-lakh-home-loan-emi-calculator',
+  'direct-vs-regular-mutual-fund',
+  '12-lakh-15-lakh-20-lakh-in-hand-salary',
+  'vtu-anna-sppu-cbse-cgpa-to-percentage',
+  'ssc-upsc-neet-photo-signature-size-20kb-50kb',
+  'gold-loan-vs-personal-loan-emi',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
