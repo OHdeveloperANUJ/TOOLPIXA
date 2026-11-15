@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { toolsRegistry } from '@/data/toolsRegistry';
 import { blogPosts } from '@/data/blogData';
+import { programmaticSlugs } from '@/data/programmaticSeo';
 import tags from '../../../../tags.json';
 
 const HOST = 'www.toolpixa.space';
@@ -26,6 +27,7 @@ const COMPARISONS = [
 export async function GET() {
   const urlList: string[] = [
     BASE_URL,
+    `${BASE_URL}/calculate`,
     `${BASE_URL}/categories`,
     `${BASE_URL}/blog`,
     `${BASE_URL}/sitemap`,
@@ -33,6 +35,7 @@ export async function GET() {
     `${BASE_URL}/contact`,
     ...CATEGORIES.map((c) => `${BASE_URL}/category/${c}`),
     ...Object.keys(toolsRegistry).map((s) => `${BASE_URL}/tools/${s}`),
+    ...programmaticSlugs.map((s) => `${BASE_URL}/calculate/${s}`),
     ...blogPosts.map((b) => `${BASE_URL}/blog/${b.slug}`),
     ...Object.keys(tags).map((t) => `${BASE_URL}/tag/${t}`),
     ...COMPARISONS.map((c) => `${BASE_URL}/compare/${c}`),

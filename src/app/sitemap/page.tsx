@@ -2,11 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import { toolsRegistry } from '@/data/toolsRegistry';
 import { blogPosts } from '@/data/blogData';
+import { programmaticPages } from '@/data/programmaticSeo';
 import tags from '../../../tags.json';
 
 export const metadata = {
-  title: 'HTML Sitemap — Complete Directory of 115+ Calculators & Guides',
-  description: 'Browse the complete directory of 115+ free online calculators, converters, PDF & image tools, categories, and expert financial guides on ToolPixa.',
+  title: 'HTML Sitemap — Complete Directory of 275+ Calculators, Exact Tables & Guides',
+  description: 'Browse the complete directory of 115+ free online calculators, 105+ pre-calculated EMI, Salary, FD, SIP & CGPA reference tables, and expert financial guides on ToolPixa.',
 };
 
 const CATEGORY_ORDER = [
@@ -22,6 +23,7 @@ const CATEGORY_ORDER = [
 
 export default function HTMLSitemap() {
   const allTools = Object.values(toolsRegistry);
+  const allProgrammatic = Object.values(programmaticPages);
   const toolsByTag = tags as Record<string, string[]>;
 
   return (
@@ -34,10 +36,10 @@ export default function HTMLSitemap() {
 
       <header className="mb-xl animate-fade-in-up">
         <h1 className="font-headline-lg text-4xl md:text-5xl font-bold text-text-primary mb-sm leading-tight">
-          Complete ToolPixa Directory ({allTools.length} Tools)
+          Complete ToolPixa Directory ({allTools.length + allProgrammatic.length + blogPosts.length}+ Indexed Pages)
         </h1>
         <p className="font-body-lg text-body-lg text-text-secondary max-w-3xl">
-          Every calculator, converter, document utility, and editorial guide indexed in one place for fast navigation and search discovery.
+          Every calculator, pre-computed EMI &amp; salary table, converter, document utility, and editorial guide indexed in one place for fast navigation and search discovery.
         </p>
       </header>
 
@@ -49,6 +51,7 @@ export default function HTMLSitemap() {
           </h2>
           <ul className="space-y-2 font-body-md text-text-secondary">
             <li><Link href="/" className="hover:text-primary transition-colors">Home — All Calculators</Link></li>
+            <li><Link href="/calculate" className="hover:text-primary transition-colors font-semibold text-primary">Exact Calculations &amp; Tables ({allProgrammatic.length} Pages)</Link></li>
             <li><Link href="/categories" className="hover:text-primary transition-colors">All Tool Categories</Link></li>
             <li><Link href="/blog" className="hover:text-primary transition-colors">Insights &amp; Guides Blog ({blogPosts.length} Articles)</Link></li>
             <li><Link href="/profile" className="hover:text-primary transition-colors">Saved Calculation History</Link></li>
@@ -146,6 +149,25 @@ export default function HTMLSitemap() {
             );
           })}
         </div>
+      </section>
+
+      {/* All 105 Pre-Calculated Exact Calculation & Exam Guides */}
+      <section className="glass-card p-lg rounded-2xl border border-glass-border mb-xxl">
+        <div className="flex items-center justify-between border-b border-glass-border pb-3 mb-4">
+          <Link href="/calculate" className="font-headline-md text-2xl font-bold text-text-primary hover:text-primary transition-colors">
+            Exact Financial Calculations, Salary Slips &amp; Exam Guides
+          </Link>
+          <span className="text-xs font-mono text-text-secondary">{allProgrammatic.length} pages</span>
+        </div>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 text-sm text-text-secondary">
+          {allProgrammatic.map((item) => (
+            <li key={item.slug}>
+              <Link href={`/calculate/${item.slug}`} className="hover:text-primary transition-colors block truncate">
+                {item.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* All Blog Posts */}

@@ -61,6 +61,12 @@ export default function Header() {
               All Tools
             </Link>
             <Link
+              href="/calculate"
+              className="hover:text-text-primary hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-primary font-semibold"
+            >
+              Tables &amp; Slips
+            </Link>
+            <Link
               href="/category/finance"
               className="hover:text-text-primary hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >

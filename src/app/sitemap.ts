@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { toolsRegistry } from '@/data/toolsRegistry';
 import { blogPosts } from '@/data/blogData';
+import { programmaticSlugs } from '@/data/programmaticSeo';
 import tags from '../../tags.json';
 
 export const dynamic = 'force-static';
@@ -42,6 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'daily',
       priority: 1.0,
+    },
+    {
+      url: `${BASE_URL}/calculate`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.95,
     },
     {
       url: `${BASE_URL}/categories`,
@@ -89,7 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/sitemap`,
       lastModified: now,
       changeFrequency: 'weekly',
-      priority: 0.5,
+      priority: 0.8,
     },
   ];
 
@@ -107,6 +114,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   Object.keys(toolsRegistry).forEach((slug) => {
     sitemapEntries.push({
       url: `${BASE_URL}/tools/${slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    });
+  });
+
+  // Add all 105 programmatic exact-calculation & exam pages
+  programmaticSlugs.forEach((slug) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/calculate/${slug}`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.85,
@@ -140,7 +157,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/compare/${comp}`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.75,
     });
   });
 

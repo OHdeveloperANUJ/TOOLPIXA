@@ -95,12 +95,12 @@ export default function Footer() {
         <div>
           <p className="font-label-md text-xs text-text-primary font-bold mb-md uppercase tracking-wider">Resources</p>
           <ul className="space-y-2 text-sm">
+            <li><Link className="text-primary font-semibold hover:underline transition-colors" href="/calculate">105+ Exact Tables</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/categories">All Categories</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/blog">Editorial Blog</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/sitemap">Full HTML Sitemap</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/about">About Us</Link></li>
             <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/contact">Contact Us</Link></li>
-            <li><Link className="text-text-secondary hover:text-primary transition-colors" href="/privacy">Privacy &amp; Terms</Link></li>
           </ul>
         </div>
       </div>

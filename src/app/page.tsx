@@ -217,6 +217,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 105+ Pre-Calculated Exact Indian EMI, Salary, FD, SIP & Exam Guides */}
+      <section className="px-margin max-w-7xl mx-auto mb-xxl">
+        <div className="glass-card rounded-2xl p-lg md:p-xl border border-glass-border">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-lg">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-primary block mb-1">
+                105+ Instant Lookup Tables · FY 2025–26 Verified
+              </span>
+              <h2 className="font-headline-md text-2xl md:text-3xl font-bold text-text-primary mb-1">
+                Exact Loan EMIs, In-Hand Salary Slips &amp; Exam Specs
+              </h2>
+              <p className="text-sm text-text-secondary">
+                Pre-computed tables for India&apos;s most searched loan amounts, CTC packages, FD monthly payouts, and exam document sizes.
+              </p>
+            </div>
+            <Link
+              href="/calculate"
+              className="font-label-md text-sm text-primary flex items-center gap-1 hover:underline shrink-0"
+            >
+              View All 105 Tables <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { href: '/calculate/30-lakh-home-loan-emi', label: '₹30 Lakh Home Loan EMI', tag: '₹26,035/mo (20Y)' },
+              { href: '/calculate/50-lakh-home-loan-emi', label: '₹50 Lakh Home Loan EMI', tag: '₹43,391/mo (20Y)' },
+              { href: '/calculate/75-lakh-home-loan-emi', label: '₹75 Lakh Home Loan EMI', tag: '₹65,087/mo (20Y)' },
+              { href: '/calculate/1-crore-home-loan-emi', label: '₹1 Crore Home Loan EMI', tag: '₹86,782/mo (20Y)' },
+              { href: '/calculate/8-lakh-in-hand-salary', label: '₹8 Lakh CTC In-Hand Salary', tag: '₹0 Tax · New Regime' },
+              { href: '/calculate/12-lakh-in-hand-salary', label: '₹12 Lakh CTC In-Hand Salary', tag: '₹0 Tax · Sec 87A' },
+              { href: '/calculate/15-lakh-in-hand-salary', label: '₹15 Lakh CTC In-Hand Salary', tag: 'FY 2025-26 Slip' },
+              { href: '/calculate/20-lakh-in-hand-salary', label: '₹20 Lakh CTC In-Hand Salary', tag: 'New vs Old Regime' },
+              { href: '/calculate/5-lakh-fd-interest-per-month', label: '₹5 Lakh FD Monthly Interest', tag: '7.10% – 7.60% p.a.' },
+              { href: '/calculate/10-lakh-fd-interest-per-month', label: '₹10 Lakh FD Monthly Interest', tag: 'SBI, HDFC & PO' },
+              { href: '/calculate/5000-per-month-sip-calculator', label: '₹5,000/Month SIP for 10–25Y', tag: '12% & 15% CAGR' },
+              { href: '/calculate/10000-per-month-sip-calculator', label: '₹10,000/Month SIP Calculator', tag: 'Step-Up vs Normal' },
+              { href: '/calculate/8-0-cgpa-in-percentage', label: '8.0 CGPA in Percentage', tag: '76% CBSE · 72.5% VTU' },
+              { href: '/calculate/8-5-cgpa-in-percentage', label: '8.5 CGPA in Percentage', tag: '80.75% CBSE Formula' },
+              { href: '/calculate/ssc-cgl-chsl-photo-signature-size-kb', label: 'SSC CGL Photo & Sign Size', tag: '20–50KB & 10–20KB' },
+              { href: '/calculate/upsc-ias-photo-signature-pdf-size', label: 'UPSC IAS Photo & PDF Size', tag: '20–300KB Official' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="p-3.5 rounded-xl bg-surface-container border border-glass-border hover:border-primary transition-colors flex flex-col justify-between group"
+              >
+                <span className="font-headline-md text-sm font-semibold text-text-primary group-hover:text-primary transition-colors">
+                  {item.label}
+                </span>
+                <span className="font-mono text-xs text-primary mt-1">{item.tag}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Latest Insights (Blog) */}
       <section className="px-margin max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-lg gap-sm">

@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import FaqAccordion from '@/components/FaqAccordion';
 import CurrencySymbol from '@/components/CurrencySymbol';
 import { toolsRegistry } from '@/data/toolsRegistry';
+import { programmaticPages } from '@/data/programmaticSeo';
 import ShareButton from '@/components/ShareButton';
 import ToolCard from '@/components/ToolCard';
 
@@ -747,6 +748,47 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             </Link>
           </div>
           
+          {/* Pre-Calculated Exact Amount & Exam Lookup Tables */}
+          {(() => {
+            const directMatches = Object.values(programmaticPages).filter((p) => p.toolSlug === slug);
+            const fallbackMatches = Object.values(programmaticPages).filter((p) => {
+              if (catLower === 'finance') return ['home-loan', 'salary', 'fd', 'sip', 'loan'].includes(p.category);
+              if (catLower === 'student') return p.category === 'cgpa' || p.category === 'exam';
+              if (catLower === 'image' || catLower === 'pdf') return p.category === 'exam';
+              return true;
+            });
+            const tablesToShow = (directMatches.length > 0 ? directMatches : fallbackMatches).slice(0, 12);
+
+            return (
+              <div className="mt-xxl glass-card rounded-2xl p-lg border border-glass-border">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-md border-b border-glass-border pb-3">
+                  <div>
+                    <h2 className="font-headline-md text-xl font-bold text-text-primary">
+                      Exact Pre-Calculated Reference Tables &amp; Schedules
+                    </h2>
+                    <p className="text-xs text-text-secondary">
+                      Instant lookup tables for popular loan amounts, CTC packages, SIP goals, and exam dimensions:
+                    </p>
+                  </div>
+                  <Link href="/calculate" className="text-xs font-label-md text-primary hover:underline shrink-0">
+                    All 105 Reference Tables →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
+                  {tablesToShow.map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={`/calculate/${item.slug}`}
+                      className="p-3 rounded-xl bg-surface-container border border-glass-border hover:border-primary text-xs font-medium text-text-secondary hover:text-text-primary transition-colors truncate"
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
           {/* Related Tools */}
           <div className="mt-xxxl pt-xl border-t border-glass-border">
             <div className="flex items-center justify-between mb-lg">
