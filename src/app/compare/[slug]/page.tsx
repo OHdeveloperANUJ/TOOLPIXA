@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { toolsRegistry } from '@/data/toolsRegistry';
 
-const BASE_URL = 'https://toolpixa.space';
+const BASE_URL = 'https://www.toolpixa.space';
 
 interface ComparisonConfig {
   title1: string;

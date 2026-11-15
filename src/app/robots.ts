@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://toolpixa.space';
+export const dynamic = 'force-static';
+
+const BASE_URL = 'https://www.toolpixa.space';
 
 export default function robots(): MetadataRoute.Robots {
   return {

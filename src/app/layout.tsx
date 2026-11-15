@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
-const siteUrl = "https://toolpixa.space";
+const siteUrl = 'https://www.toolpixa.space';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

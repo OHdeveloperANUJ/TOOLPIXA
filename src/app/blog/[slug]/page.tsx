@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/blogData';
 import { ShareButtons, FollowButton } from '@/components/blog/BlogActions';
 
-const BASE_URL = 'https://toolpixa.space';
+const BASE_URL = 'https://www.toolpixa.space';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({

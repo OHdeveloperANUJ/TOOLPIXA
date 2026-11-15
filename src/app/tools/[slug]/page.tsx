@@ -255,7 +255,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const toolData = toolsRegistry[slug];
   if (!toolData) return {};
   
-  const baseUrl = 'https://toolpixa.space';
+  const baseUrl = 'https://www.toolpixa.space';
   const title = toolData.seoTitle || `${toolData.title} — Free Online ${toolData.category.charAt(0).toUpperCase() + toolData.category.slice(1)} Tool | ToolPixa`;
   const description = toolData.seoDescription || toolData.description;
   const canonicalUrl = `${baseUrl}/tools/${slug}`;
@@ -346,7 +346,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
     return <div className="p-xl text-center">Tool under construction</div>;
   }
 
-  const baseUrl = 'https://toolpixa.space';
+  const baseUrl = 'https://www.toolpixa.space';
   const competitorLabel = getCompetitorLabel(toolData.category);
   const relatedBlog = getRelatedBlog(slug, toolData.category);
   const legendItems = toolData.formulaLegend || [];

@@ -4,7 +4,7 @@ import ToolCard from '@/components/ToolCard';
 import { toolsRegistry } from '@/data/toolsRegistry';
 import tags from '../../../../tags.json';
 
-const BASE_URL = 'https://toolpixa.space';
+const BASE_URL = 'https://www.toolpixa.space';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

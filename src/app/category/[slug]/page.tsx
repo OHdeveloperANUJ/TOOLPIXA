@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const baseUrl = 'https://toolpixa.space';
+  const baseUrl = 'https://www.toolpixa.space';
   const categoryName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const canonicalUrl = `${baseUrl}/category/${slug.toLowerCase()}`;
 

@@ -3,7 +3,9 @@ import { toolsRegistry } from '@/data/toolsRegistry';
 import { blogPosts } from '@/data/blogData';
 import tags from '../../tags.json';
 
-const BASE_URL = 'https://toolpixa.space';
+export const dynamic = 'force-static';
+
+const BASE_URL = 'https://www.toolpixa.space';
 
 const CATEGORIES = [
   'finance',
