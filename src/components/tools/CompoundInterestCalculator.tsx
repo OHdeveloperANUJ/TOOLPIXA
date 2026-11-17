@@ -148,7 +148,7 @@ export default function CompoundInterestCalculator() {
   };
 
   const handleShare = () => {
-    const text = `📊 Power of Compounding! — ToolPixa\nInvest ${currency.symbol}${fmt(principal)}\nFor ${years} years @ ${rate}%\n\nTotal Wealth: ${currency.symbol}${fmt(totalValue)} 🚀\n─────────────────\nTry free: https://toolpixa.space/tools/compound-interest-calculator`;
+    const text = `📊 Power of Compounding! — ToolPixa\nInvest ${currency.symbol}${fmt(principal)}\nFor ${years} years @ ${rate}%\n\nTotal Wealth: ${currency.symbol}${fmt(totalValue)} 🚀\n─────────────────\nTry free: https://www.toolpixa.space/tools/compound-interest-calculator`;
     const a = document.createElement('a');
     a.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     a.target = '_blank';

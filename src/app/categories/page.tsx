@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import TiltCard from '@/components/TiltCard';
+import CategoriesSearchSection from '@/components/CategoriesSearchSection';
 import { toolsRegistry } from '@/data/toolsRegistry';
 
 export const metadata = {
-  title: 'All Tool Categories - ToolPixa',
-  description: 'Explore precision financial, academic, and scientific calculators across all categories.',
+  title: 'All Tool Categories',
+  description: 'Explore precision financial, academic, health, PDF, image, developer, and converter tools across all 8 categories on ToolPixa.',
+  alternates: {
+    canonical: 'https://www.toolpixa.space/categories',
+  },
 };
 
 export default function CategoriesPage() {
@@ -30,8 +34,11 @@ export default function CategoriesPage() {
           Explore Categories
         </h1>
         <p className="font-body-lg text-body-lg text-text-secondary mb-xl max-w-2xl mx-auto">
-          Every tool you'll ever need, organized by domain for rapid access.
+          Every tool you&apos;ll ever need, organized by domain for rapid access.
         </p>
+        <Suspense fallback={null}>
+          <CategoriesSearchSection />
+        </Suspense>
       </section>
 
       <section className="px-margin max-w-7xl mx-auto mb-xxl">

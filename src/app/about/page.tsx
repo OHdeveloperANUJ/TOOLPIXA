@@ -1,8 +1,9 @@
 import React from 'react';
 
 export const metadata = {
-    title: "About Us | ToolPixa",
+    title: "About Us",
     description: "Read the About Us of ToolPixa.",
+    alternates: { canonical: "https://www.toolpixa.space/about" },
 };
 
 export default function AboutPage() {

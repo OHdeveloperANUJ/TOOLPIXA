@@ -162,14 +162,14 @@ export default function EducationLoanEmi() {
   const fmt = (val: number) => Math.round(val).toLocaleString(currency.locale);
 
   const handleCopy = () => {
-    const text = `📊 Education Loan EMI Result\nDuring Course EMI: ${currency.symbol}${fmt(moratoriumEmi)}\nPost Course EMI: ${currency.symbol}${fmt(postMoratoriumEmi)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\nTax Saved (80E): ${currency.symbol}${fmt(taxSaved80E)}\n─────────────────\nTry free: toolpixa.space/tools/education-loan-emi-calculator`;
+    const text = `📊 Education Loan EMI Result\nDuring Course EMI: ${currency.symbol}${fmt(moratoriumEmi)}\nPost Course EMI: ${currency.symbol}${fmt(postMoratoriumEmi)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\nTax Saved (80E): ${currency.symbol}${fmt(taxSaved80E)}\n─────────────────\nTry free: https://www.toolpixa.space/tools/education-loan-emi-calculator`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleShare = () => {
-    const text = `📊 Education Loan EMI Result — ToolPixa\nPost-Course EMI: ${currency.symbol}${fmt(postMoratoriumEmi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTax Saved (80E): ${currency.symbol}${fmt(taxSaved80E)}\n─────────────────\nTry free: https://toolpixa.space/tools/education-loan-emi-calculator`;
+    const text = `📊 Education Loan EMI Result — ToolPixa\nPost-Course EMI: ${currency.symbol}${fmt(postMoratoriumEmi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTax Saved (80E): ${currency.symbol}${fmt(taxSaved80E)}\n─────────────────\nTry free: https://www.toolpixa.space/tools/education-loan-emi-calculator`;
     const a = document.createElement('a');
     a.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     a.target = '_blank';

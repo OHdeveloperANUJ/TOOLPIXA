@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { QrCode, Download, Link2, Type } from 'lucide-react';
 
 export default function QrCodeGenerator() {
-  const [data, setData] = useState<string>('https://toolpixa.space');
+  const [data, setData] = useState<string>('https://www.toolpixa.space');
   const [size, setSize] = useState<string>('300x300');
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
 

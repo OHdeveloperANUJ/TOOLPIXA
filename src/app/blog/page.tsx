@@ -7,6 +7,7 @@ import { blogPosts } from '@/data/blogData';
 export const metadata = {
   title: 'Financial, Academic & Technical Guides — ToolPixa Blog',
   description: 'Deep-dive guides on SIP vs Lumpsum, Home Loan Prepayment, Old vs New Tax Regime, PPF vs FD, CGPA conversions, and Indian BMI cutoffs.',
+  alternates: { canonical: 'https://www.toolpixa.space/blog' },
 };
 
 export default function BlogHome() {

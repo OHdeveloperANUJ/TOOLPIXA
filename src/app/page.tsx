@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import TiltCard from '@/components/TiltCard';
@@ -6,6 +7,12 @@ import ToolCard from '@/components/ToolCard';
 import HeroSearch from '@/components/HeroSearch';
 import { toolsRegistry } from '@/data/toolsRegistry';
 import { blogPosts } from '@/data/blogData';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.toolpixa.space',
+  },
+};
 
 const FEATURED_TOOL_SLUGS = [
   'home-loan-emi-calculator',

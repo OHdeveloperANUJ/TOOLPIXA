@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const canonicalUrl = `${baseUrl}/category/${slug.toLowerCase()}`;
 
   return {
-    title: `${categoryName} Tools & Calculators — 100% Free Online | ToolPixa`,
+    title: `${categoryName} Tools & Calculators — 100% Free Online`,
     description: `Explore all ${ Object.values(toolsRegistry).filter(t => t.category.toLowerCase() === slug.toLowerCase()).length || '' } precision ${categoryName} tools on ToolPixa. 100% free online calculators and browser utilities built for accuracy and instant results.`,
     alternates: {
       canonical: canonicalUrl,

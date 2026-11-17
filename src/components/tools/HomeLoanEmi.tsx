@@ -166,14 +166,14 @@ export default function HomeLoanEmi() {
   };
 
   const handleCopy = () => {
-    const text = `📊 Home Loan EMI Result — ToolPixa\nEMI: ${currency.symbol}${fmt(emi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\nTotal Repayment: ${currency.symbol}${fmt(totalPayment)}\n─────────────────\nTry free: https://toolpixa.space/tools/home-loan-emi-calculator`;
+    const text = `📊 Home Loan EMI Result — ToolPixa\nEMI: ${currency.symbol}${fmt(emi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\nTotal Repayment: ${currency.symbol}${fmt(totalPayment)}\n─────────────────\nTry free: https://www.toolpixa.space/tools/home-loan-emi-calculator`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleShare = () => {
-    const text = `📊 Home Loan EMI Result — ToolPixa\nEMI: ${currency.symbol}${fmt(emi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\n─────────────────\nTry free: https://toolpixa.space/tools/home-loan-emi-calculator`;
+    const text = `📊 Home Loan EMI Result — ToolPixa\nEMI: ${currency.symbol}${fmt(emi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\n─────────────────\nTry free: https://www.toolpixa.space/tools/home-loan-emi-calculator`;
     const a = document.createElement('a');
     a.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     a.target = '_blank';

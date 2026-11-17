@@ -1,8 +1,9 @@
 import React from 'react';
 
 export const metadata = {
-    title: "Terms & Conditions | ToolPixa",
+    title: "Terms & Conditions",
     description: "Read the Terms & Conditions of ToolPixa.",
+    alternates: { canonical: "https://www.toolpixa.space/terms" },
 };
 
 export default function TermsPage() {

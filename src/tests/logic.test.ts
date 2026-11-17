@@ -1,11 +1,9 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
+import { describe, it, expect } from 'vitest';
 import { calculateHealthMetrics } from '../utils/bmiLogic';
 import { calculateGPA } from '../utils/gpaLogic';
 import { processJSON } from '../utils/jsonLogic';
 import { convertValue, CATEGORIES } from '../utils/converterLogic';
 
-// Financial math functions
 function calculateEMI(principal: number, annualRate: number, tenureYears: number) {
   if (annualRate === 0) return principal / (tenureYears * 12);
   const r = annualRate / 12 / 100;
@@ -34,53 +32,55 @@ function calculateFD(principal: number, annualRate: number, years: number) {
   return Math.round(val);
 }
 
-test('Home & Personal Loan EMI calculation accuracy', () => {
-  assert.equal(calculateEMI(1000000, 10, 5), 21247);
-  assert.equal(calculateEMI(50000, 12, 2), 2354);
-  assert.equal(calculateEMI(120000, 0, 1), 10000);
-});
-
-test('SIP maturity value calculation accuracy', () => {
-  assert.equal(calculateSIP(5000, 12, 10), 1161695);
-  assert.equal(calculateSIP(10000, 15, 20), 15159550);
-});
-
-test('Fixed Deposit (quarterly compounding) calculation accuracy', () => {
-  assert.equal(calculateFD(100000, 7, 5), 141478);
-  assert.equal(calculateFD(10000, 6.5, 1), 10666);
-});
-
-test('BMI and Health metrics utility calculation accuracy', () => {
-  const res = calculateHealthMetrics({
-    heightCm: 175,
-    weightKg: 70,
-    age: 30,
-    gender: 'male',
-    activityLevel: 1.55,
+describe('Core Calculator & Utility Logic Suite', () => {
+  it('calculates Home & Personal Loan EMI accurately', () => {
+    expect(calculateEMI(1000000, 10, 5)).toBe(21247);
+    expect(calculateEMI(50000, 12, 2)).toBe(2354);
+    expect(calculateEMI(120000, 0, 1)).toBe(10000);
   });
-  assert.ok(res !== null);
-  assert.equal(res.bmi, 22.9);
-  assert.equal(res.bmiCategory, 'Normal');
-});
 
-test('GPA utility calculation accuracy', () => {
-  const res = calculateGPA([
-    { grade: 'A', credits: 4 },
-    { grade: 'B', credits: 3 },
-  ]);
-  assert.equal(res.gpa, 3.57);
-  assert.equal(res.totalCredits, 7);
-});
+  it('calculates SIP maturity value accurately', () => {
+    expect(calculateSIP(5000, 12, 10)).toBe(1161695);
+    expect(calculateSIP(10000, 15, 20)).toBe(15159550);
+  });
 
-test('JSON formatter utility', () => {
-  const formatted = processJSON('{"a":1}');
-  assert.equal(formatted.isValid, true);
-  assert.ok(formatted.formatted?.includes('"a": 1'));
-});
+  it('calculates Fixed Deposit quarterly compounding accurately', () => {
+    expect(calculateFD(100000, 7, 5)).toBe(141478);
+    expect(calculateFD(10000, 6.5, 1)).toBe(10666);
+  });
 
-test('Unit converter utility', () => {
-  const mUnit = CATEGORIES.Length.find((u) => u.id === 'm')!;
-  const ftUnit = CATEGORIES.Length.find((u) => u.id === 'ft')!;
-  const metersToFeet = convertValue(1, mUnit, ftUnit, 'Length');
-  assert.ok(Math.abs(metersToFeet - 3.28084) < 0.001);
+  it('calculates BMI and Health metrics accurately', () => {
+    const res = calculateHealthMetrics({
+      heightCm: 175,
+      weightKg: 70,
+      age: 30,
+      gender: 'male',
+      activityLevel: 1.55,
+    });
+    expect(res).not.toBeNull();
+    expect(res?.bmi).toBe(22.9);
+    expect(res?.bmiCategory).toBe('Normal');
+  });
+
+  it('calculates GPA accurately', () => {
+    const res = calculateGPA([
+      { grade: 'A', credits: 4 },
+      { grade: 'B', credits: 3 },
+    ]);
+    expect(res.gpa).toBe(3.57);
+    expect(res.totalCredits).toBe(7);
+  });
+
+  it('formats JSON cleanly', () => {
+    const formatted = processJSON('{"a":1}');
+    expect(formatted.isValid).toBe(true);
+    expect(formatted.formatted).toContain('"a": 1');
+  });
+
+  it('converts Length units accurately', () => {
+    const mUnit = CATEGORIES.Length.find((u) => u.id === 'm')!;
+    const ftUnit = CATEGORIES.Length.find((u) => u.id === 'ft')!;
+    const metersToFeet = convertValue(1, mUnit, ftUnit, 'Length');
+    expect(Math.abs(metersToFeet - 3.28084)).toBeLessThan(0.001);
+  });
 });

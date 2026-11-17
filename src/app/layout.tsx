@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,16 +27,22 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const siteUrl = 'https://www.toolpixa.space';
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION?.trim();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: "ToolPixa",
   title: {
     default: "ToolPixa — 115+ Free Precision Calculators & Tools",
     template: "%s | ToolPixa",
   },
   description:
-    "Free online calculators and utility tools for finance, loans, SIP, taxes, health, students, developers, PDF, and image compression. Instant client-side precision with no sign-ups.",
+    "ToolPixa (toolpixa.space) offers 115+ free online calculators and utility tools for finance, loans, SIP, taxes, health, students, developers, PDF, and image compression. Instant client-side precision with no sign-ups.",
   keywords: [
+    "ToolPixa",
+    "ToolPixa.space",
+    "Tool Pixa",
     "online calculators",
     "EMI calculator",
     "SIP calculator",
@@ -45,14 +53,17 @@ export const metadata: Metadata = {
     "PDF compressor",
     "image size reducer",
     "developer tools",
-    "ToolPixa",
   ],
-  authors: [{ name: "ToolPixa Editorial & Engineering Team", url: siteUrl }],
+  authors: [{ name: "ToolPixa", url: siteUrl }],
   creator: "ToolPixa",
   publisher: "ToolPixa",
-  alternates: {
-    canonical: siteUrl,
-  },
+  ...(gscVerification
+    ? {
+        verification: {
+          google: gscVerification,
+        },
+      }
+    : {}),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -60,7 +71,7 @@ export const metadata: Metadata = {
     siteName: "ToolPixa",
     title: "ToolPixa — 115+ Free Precision Calculators & Tools",
     description:
-      "Free online calculators and utility tools for finance, loans, SIP, taxes, health, students, developers, PDF, and image compression. Instant client-side precision with no sign-ups.",
+      "ToolPixa offers 115+ free online calculators and utility tools for finance, loans, SIP, taxes, health, students, developers, PDF, and image compression. Instant client-side precision with no sign-ups.",
     images: [
       {
         url: "/assets/sip_vs_lumpsum_cover.png",
@@ -74,7 +85,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ToolPixa — 115+ Free Precision Calculators & Tools",
     description:
-      "Free online calculators and utility tools for finance, loans, SIP, taxes, health, students, developers, PDF, and image compression. Instant client-side precision with no sign-ups.",
+      "ToolPixa offers 115+ free online calculators and utility tools for finance, loans, SIP, taxes, health, students, developers, PDF, and image compression.",
     images: ["/assets/sip_vs_lumpsum_cover.png"],
   },
   robots: {
@@ -99,10 +110,34 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: "ToolPixa",
+        alternateName: ["ToolPixa.space", "Tool Pixa", "TOOLPIXA"],
+        url: siteUrl,
+        foundingDate: "2026",
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteUrl}/logo.png`,
+          width: 512,
+          height: 512,
+        },
+        sameAs: ["https://github.com/OHdeveloperANUJ/TOOLPIXA"],
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "support@toolpixa.space",
+          contactType: "customer support",
+        },
+      },
+      {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
         name: "ToolPixa",
+        alternateName: ["ToolPixa.space", "Tool Pixa"],
+        publisher: {
+          "@id": `${siteUrl}/#organization`,
+        },
         description:
           "115+ Free Online Precision Calculators & Utility Tools for Finance, Health, Students, Developers, PDF & Images.",
         potentialAction: {
@@ -112,16 +147,6 @@ export default function RootLayout({
             urlTemplate: `${siteUrl}/categories?q={search_term_string}`,
           },
           "query-input": "required name=search_term_string",
-        },
-      },
-      {
-        "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
-        name: "ToolPixa",
-        url: siteUrl,
-        logo: {
-          "@type": "ImageObject",
-          url: `${siteUrl}/logo.png`,
         },
       },
     ],
@@ -149,6 +174,21 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full w-full flex flex-col font-body-md text-text-primary bg-background selection:bg-primary/30">
+        {gaMeasurementId && !gaMeasurementId.includes('YOUR_') && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaMeasurementId}', { page_path: window.location.pathname });`}
+            </Script>
+          </>
+        )}
+        <Analytics />
         <PwaRegistry />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <CurrencyProvider>

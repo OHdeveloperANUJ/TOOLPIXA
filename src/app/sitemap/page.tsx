@@ -8,6 +8,7 @@ import tags from '../../../tags.json';
 export const metadata = {
   title: 'HTML Sitemap — Complete Directory of 275+ Calculators, Exact Tables & Guides',
   description: 'Browse the complete directory of 115+ free online calculators, 105+ pre-calculated EMI, Salary, FD, SIP & CGPA reference tables, and expert financial guides on ToolPixa.',
+  alternates: { canonical: 'https://www.toolpixa.space/sitemap' },
 };
 
 const CATEGORY_ORDER = [

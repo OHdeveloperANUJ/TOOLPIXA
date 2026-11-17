@@ -1,8 +1,9 @@
 import React from 'react';
 
 export const metadata = {
-    title: "Privacy Policy | ToolPixa",
+    title: "Privacy Policy",
     description: "Read the Privacy Policy of ToolPixa.",
+    alternates: { canonical: "https://www.toolpixa.space/privacy" },
 };
 
 export default function PrivacyPage() {

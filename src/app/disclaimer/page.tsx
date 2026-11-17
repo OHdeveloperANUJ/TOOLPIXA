@@ -1,8 +1,9 @@
 import React from 'react';
 
 export const metadata = {
-    title: "Disclaimer | ToolPixa",
+    title: "Disclaimer",
     description: "Read the Disclaimer of ToolPixa.",
+    alternates: { canonical: "https://www.toolpixa.space/disclaimer" },
 };
 
 export default function DisclaimerPage() {

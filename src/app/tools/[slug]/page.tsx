@@ -257,7 +257,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!toolData) return {};
   
   const baseUrl = 'https://www.toolpixa.space';
-  const title = toolData.seoTitle || `${toolData.title} — Free Online ${toolData.category.charAt(0).toUpperCase() + toolData.category.slice(1)} Tool | ToolPixa`;
+  const fullTitle = toolData.seoTitle || `${toolData.title} — Free Online ${toolData.category.charAt(0).toUpperCase() + toolData.category.slice(1)} Tool | ToolPixa`;
+  const title = fullTitle.replace(/\s*\|\s*ToolPixa$/i, '');
   const description = toolData.seoDescription || toolData.description;
   const canonicalUrl = `${baseUrl}/tools/${slug}`;
 
@@ -268,7 +269,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url: canonicalUrl,
       type: 'website',
@@ -284,7 +285,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description,
       images: ['/assets/sip_vs_lumpsum_cover.png'],
     },

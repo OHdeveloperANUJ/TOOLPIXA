@@ -134,7 +134,7 @@ export default function BikeLoanEmi() {
   };
 
   const handleShare = () => {
-    const text = `📊 Bike Loan EMI Result — ToolPixa\nEMI: ${currency.symbol}${fmt(emi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\n─────────────────\nTry free: https://toolpixa.space/tools/bike-loan-emi-calculator`;
+    const text = `📊 Bike Loan EMI Result — ToolPixa\nEMI: ${currency.symbol}${fmt(emi)}\nPrincipal: ${currency.symbol}${fmt(principal)}\nTotal Interest: ${currency.symbol}${fmt(totalInterest)}\n─────────────────\nTry free: https://www.toolpixa.space/tools/bike-loan-emi-calculator`;
     const a = document.createElement('a');
     a.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     a.target = '_blank';
