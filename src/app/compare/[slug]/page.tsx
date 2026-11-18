@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { toolsRegistry } from '@/data/toolsRegistry';
 
 const BASE_URL = 'https://www.toolpixa.space';
@@ -287,8 +288,13 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
   const preset = PRESET_COMPARISONS[normalizedSlug];
 
   const rawParts = slug.split('-vs-');
-  const slug1 = preset?.slug1 || (toolsRegistry[rawParts[0]] ? rawParts[0] : 'home-loan-emi-calculator');
-  const slug2 = preset?.slug2 || (toolsRegistry[rawParts[1]] ? rawParts[1] : 'personal-loan-emi-calculator');
+  const hasValidPair = Boolean(toolsRegistry[rawParts[0]] && toolsRegistry[rawParts[1]]);
+  if (!preset && !hasValidPair) {
+    notFound();
+  }
+
+  const slug1 = preset?.slug1 || rawParts[0];
+  const slug2 = preset?.slug2 || rawParts[1];
 
   const tool1 = preset?.title1 || toolsRegistry[slug1]?.title || (rawParts[0] || 'Tool 1').replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
   const tool2 = preset?.title2 || toolsRegistry[slug2]?.title || (rawParts[1] || 'Tool 2').replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());

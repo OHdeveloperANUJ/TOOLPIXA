@@ -312,10 +312,24 @@ interface RefTableData {
 
 function getQuickReferenceTable(slug: string, category: string, title: string): RefTableData {
   const cat = category.toLowerCase();
+  if (slug.includes('car-loan') || slug.includes('bike-loan') || slug.includes('personal-loan') || slug.includes('gold-loan')) {
+    return {
+      heading: `${title} — Short-Tenure Installment Table (1 to 7 Years)`,
+      caption: 'Estimated monthly EMIs across shorter consumer, auto, and gold loan tenures.',
+      headers: ['Loan Amount', '1 Year (@ 10.5%)', '3 Years (@ 10.5%)', '5 Years (@ 10.5%)', '7 Years (@ 10.5%)'],
+      rows: [
+        ['₹1,00,000 (₹1 Lakh)', '₹8,815 / mo', '₹3,250 / mo', '₹2,149 / mo', '₹1,686 / mo'],
+        ['₹3,00,000 (₹3 Lakh)', '₹26,445 / mo', '₹9,751 / mo', '₹6,448 / mo', '₹5,058 / mo'],
+        ['₹5,00,000 (₹5 Lakh)', '₹44,074 / mo', '₹16,251 / mo', '₹10,747 / mo', '₹8,430 / mo'],
+        ['₹10,00,000 (₹10 Lakh)', '₹88,149 / mo', '₹32,502 / mo', '₹21,494 / mo', '₹16,861 / mo'],
+        ['₹15,00,000 (₹15 Lakh)', '₹1,32,223 / mo', '₹48,754 / mo', '₹32,241 / mo', '₹25,291 / mo'],
+      ],
+    };
+  }
   if (slug.includes('loan') || slug.includes('emi')) {
     return {
       heading: `${title} — Quick Reference EMI Table (@ 8.50% p.a.)`,
-      caption: 'Pre-calculated monthly EMI installments across standard loan amounts and tenures.',
+      caption: 'Pre-calculated monthly EMI installments across standard long-term loan amounts and tenures.',
       headers: ['Loan Principal', '5 Years EMI', '10 Years EMI', '15 Years EMI', '20 Years EMI'],
       rows: [
         ['₹5,00,000 (₹5 Lakh)', '₹10,258 / mo', '₹6,199 / mo', '₹4,924 / mo', '₹4,339 / mo'],
@@ -323,7 +337,6 @@ function getQuickReferenceTable(slug: string, category: string, title: string): 
         ['₹20,00,000 (₹20 Lakh)', '₹41,033 / mo', '₹24,797 / mo', '₹19,695 / mo', '₹17,356 / mo'],
         ['₹30,00,000 (₹30 Lakh)', '₹61,550 / mo', '₹37,196 / mo', '₹29,542 / mo', '₹26,035 / mo'],
         ['₹50,00,000 (₹50 Lakh)', '₹1,02,583 / mo', '₹61,993 / mo', '₹49,237 / mo', '₹43,391 / mo'],
-        ['₹75,00,000 (₹75 Lakh)', '₹1,53,874 / mo', '₹92,989 / mo', '₹73,855 / mo', '₹65,087 / mo'],
         ['₹1,00,00,000 (₹1 Crore)', '₹2,05,165 / mo', '₹1,23,986 / mo', '₹98,474 / mo', '₹86,782 / mo'],
       ],
     };
@@ -331,7 +344,7 @@ function getQuickReferenceTable(slug: string, category: string, title: string): 
   if (slug.includes('tax') || slug.includes('salary')) {
     return {
       heading: `${title} — FY 2025–26 Salaried Tax & In-Hand Reference Table`,
-      caption: 'Comparison of annual tax liability and monthly take-home pay under the FY 2025–26 New Tax Regime (with ₹75,000 Standard Deduction).',
+      caption: 'Annual tax liability and monthly take-home pay under the FY 2025–26 New Tax Regime (with ₹75,000 Standard Deduction).',
       headers: ['Annual Gross Salary (CTC)', 'Taxable Income', 'New Regime Tax (FY 25-26)', 'Approx. Monthly In-Hand'],
       rows: [
         ['₹8,00,000 (₹8 Lakh)', '₹7,25,000', '₹0 (Sec 87A Rebate)', '₹63,800 / mo'],
@@ -340,6 +353,45 @@ function getQuickReferenceTable(slug: string, category: string, title: string): 
         ['₹15,00,000 (₹15 Lakh)', '₹14,25,000', '₹97,500 (incl. 4% Cess)', '₹1,12,800 / mo'],
         ['₹20,00,000 (₹20 Lakh)', '₹19,25,000', '₹1,95,000 (incl. 4% Cess)', '₹1,46,200 / mo'],
         ['₹25,00,000 (₹25 Lakh)', '₹24,25,000', '₹3,35,400 (incl. 4% Cess)', '₹1,75,500 / mo'],
+      ],
+    };
+  }
+  if (slug.includes('ppf') || slug.includes('fd') || slug.includes('rd')) {
+    return {
+      heading: `${title} — Safe Fixed-Income Maturity Benchmarks (2026)`,
+      caption: 'Projected tax-free PPF (@ 7.1%) and taxable Bank FD (@ 7.25%) outcomes across multi-year horizons.',
+      headers: ['Instrument & Rate', '5 Years Horizon', '10 Years Horizon', '15 Years Horizon', 'Tax Treatment'],
+      rows: [
+        ['PPF (₹1.5L/yr @ 7.10%)', '₹9,30,104', '₹22,12,069', '₹40,68,209', 'EEE (100% Tax-Free)'],
+        ['Bank FD (₹10L @ 7.25%)', '₹14,32,262', '₹20,51,375', '₹29,38,108', 'Taxed at Slab Rate'],
+        ['Post Office RD (₹10k/mo @ 6.7%)', '₹7,13,659', '₹17,08,546', '—', 'Taxed at Slab Rate'],
+        ['Senior Citizen SCSS (₹15L @ 8.2%)', '₹30,750 / quarter payout', 'Renewable 3-Yr Block', '—', 'Sec 80TTB ₹50k Exempt'],
+      ],
+    };
+  }
+  if (slug.includes('inflation') || slug.includes('retirement') || slug.includes('rule-of-72')) {
+    return {
+      heading: `${title} — Inflation Erosion & Rule of 72 Benchmarks`,
+      caption: 'How 6%–7% inflation reduces purchasing power and the years needed to double wealth.',
+      headers: ['Annual Rate (%)', 'Years to Double (Rule of 72)', 'Value of ₹10 Lakh in 10 Yrs', 'Value of ₹10 Lakh in 20 Yrs'],
+      rows: [
+        ['6.0% Annual', '12.0 Years', '₹17,90,848 (or ₹5.58L purchasing power)', '₹32,07,135 (or ₹3.12L real)'],
+        ['7.0% Annual', '10.3 Years', '₹19,67,151 (or ₹5.08L purchasing power)', '₹38,69,684 (or ₹2.58L real)'],
+        ['10.0% Annual', '7.2 Years', '₹25,93,742 nominal corpus', '₹67,27,500 nominal corpus'],
+        ['12.0% Annual', '6.0 Years', '₹31,05,848 nominal corpus', '₹96,46,293 nominal corpus'],
+      ],
+    };
+  }
+  if (slug.includes('margin') || slug.includes('roi') || slug.includes('break-even') || slug.includes('discount')) {
+    return {
+      heading: `${title} — Markup vs Gross Margin & Discount Benchmarks`,
+      caption: 'Quick reference converting cost-plus markup percentages into true revenue gross margins.',
+      headers: ['Cost-Plus Markup', 'Gross Margin on Selling Price', 'Selling Price (Cost = ₹1,000)', 'Net Profit Earned'],
+      rows: [
+        ['20% Markup', '16.67% Gross Margin', '₹1,200', '₹200'],
+        ['25% Markup', '20.00% Gross Margin', '₹1,250', '₹250'],
+        ['50% Markup', '33.33% Gross Margin', '₹1,500', '₹500'],
+        ['100% Markup (2×)', '50.00% Gross Margin', '₹2,000', '₹1,000'],
       ],
     };
   }
@@ -352,9 +404,21 @@ function getQuickReferenceTable(slug: string, category: string, title: string): 
         ['₹2,000 / month', '₹1,64,973', '₹4,64,678', '₹10,09,152', '₹19,98,296'],
         ['₹5,000 / month', '₹4,12,432', '₹11,61,695', '₹25,22,880', '₹49,95,740'],
         ['₹10,000 / month', '₹8,24,864', '₹23,23,391', '₹50,45,760', '₹99,91,479'],
-        ['₹15,000 / month', '₹12,37,295', '₹34,85,086', '₹75,68,640', '₹1,49,87,219'],
         ['₹25,000 / month', '₹20,62,159', '₹58,08,477', '₹1,26,14,400', '₹2,49,78,698'],
         ['₹50,000 / month', '₹41,24,318', '₹1,16,16,954', '₹2,52,28,800', '₹4,99,57,396'],
+      ],
+    };
+  }
+  if (slug.includes('attendance')) {
+    return {
+      heading: `${title} — College 75% Mandatory Attendance Buffer Table`,
+      caption: 'Classes you must attend consecutively or can skip safely to maintain 75% eligibility.',
+      headers: ['Current Attendance %', 'Total Held Classes', 'Classes Attended', 'Action Required for 75%'],
+      rows: [
+        ['85% Safe Buffer', '100 Classes', '85 Attended', 'Can skip next 13 classes safely'],
+        ['80% Safe Buffer', '100 Classes', '80 Attended', 'Can skip next 6 classes safely'],
+        ['75% Borderline', '100 Classes', '75 Attended', '0 skips left — attend next class'],
+        ['70% Shortfall', '100 Classes', '70 Attended', 'Attend next 20 classes continuously'],
       ],
     };
   }
@@ -370,46 +434,97 @@ function getQuickReferenceTable(slug: string, category: string, title: string): 
         ['8.0 CGPA', '76.00%', '75.00%', '72.50%', '3.20 GPA (B+)'],
         ['8.5 CGPA', '80.75%', '80.00%', '77.50%', '3.40 GPA (A−)'],
         ['9.0 CGPA', '85.50%', '85.00%', '82.50%', '3.65 GPA (A)'],
-        ['9.5 CGPA', '90.25%', '90.00%', '87.50%', '3.85 GPA (A+)'],
       ],
     };
   }
-  if (cat === 'image' || cat === 'pdf') {
+  if (slug.includes('compress-image') || slug.includes('resize-image')) {
     return {
-      heading: `${title} — Official Indian Exam & Portal File Size Chart (2026)`,
-      caption: 'Required KB file size, pixel dimensions, and format specifications for major government and academic portals.',
-      headers: ['Exam / Portal Name', 'Photo Size Limit', 'Signature Size Limit', 'PDF Document Limit'],
+      heading: `${title} — Official Indian Exam Photo & Signature Specs (2026)`,
+      caption: 'Required KB file sizes and pixel dimensions for SSC, UPSC, IBPS, NEET, and PAN portals.',
+      headers: ['Exam / Portal Name', 'Photo Size Limit', 'Dimensions (Width × Height)', 'Signature Size Limit'],
       rows: [
-        ['SSC CGL / CHSL / MTS', '20 KB – 50 KB (3.5×4.5 cm)', '10 KB – 20 KB (4.0×2.0 cm)', 'Under 200 KB – 500 KB'],
-        ['UPSC CSE / NDA / CDS', '20 KB – 300 KB (350×350 px+)', '20 KB – 300 KB (JPG)', 'ID Proof PDF < 300 KB'],
-        ['IBPS PO / Clerk & SBI PO', '20 KB – 50 KB (200×230 px)', '10 KB – 20 KB (140×60 px)', 'Thumb Impression 20–50 KB'],
-        ['NTA NEET UG & JEE Main', '10 KB – 200 KB (Passport JPG)', '4 KB – 30 KB (JPG)', 'Category Cert 50–300 KB PDF'],
-        ['PAN Card (NSDL / UTIITSL)', 'Under 50 KB (213×213 px, 300 DPI)', 'Under 50 KB (400×200 px)', 'Supporting Proof < 1 MB PDF'],
+        ['SSC CGL / CHSL / MTS', '20 KB – 50 KB JPEG', '3.5 cm × 4.5 cm (200×230 px)', '10 KB – 20 KB JPEG'],
+        ['UPSC CSE / NDA / CDS', '20 KB – 300 KB JPEG', '350×350 px to 1000×1000 px', '20 KB – 300 KB JPEG'],
+        ['IBPS PO / Clerk & SBI PO', '20 KB – 50 KB JPEG', '200 × 230 pixels', '10 KB – 20 KB (140×60 px)'],
+        ['NTA NEET UG & JEE Main', '10 KB – 200 KB JPEG', 'Passport 3.5 × 4.5 cm', '4 KB – 30 KB JPEG'],
+        ['PAN Card (NSDL / UTIITSL)', 'Under 50 KB JPEG', '213 × 213 px @ 300 DPI', 'Under 50 KB (400×200 px)'],
+      ],
+    };
+  }
+  if (cat === 'image' || cat === 'video') {
+    return {
+      heading: `${title} — Standard Web, Print & 16:9 Media Resolution Guide`,
+      caption: 'Exact pixel dimensions, aspect ratios, and format trade-offs for browser media tools.',
+      headers: ['Format / Preset', 'Pixel Dimensions', 'Aspect Ratio', 'Best Use Case'],
+      rows: [
+        ['4K UHD / YouTube Max', '3840 × 2160 px', '16:9', '4K displays & high-DPI archival'],
+        ['Full HD Thumbnail', '1280 × 720 px', '16:9', 'YouTube maxresdefault thumbnails'],
+        ['Passport Photo (300 DPI)', '413 × 531 px (3.5×4.5 cm)', '7:9', 'Indian Govt & Visa applications'],
+        ['JPEG vs PNG', 'Lossy vs Lossless Alpha', 'Any', 'Photos (JPEG) vs Transparent Logos (PNG)'],
+      ],
+    };
+  }
+  if (cat === 'pdf') {
+    return {
+      heading: `${title} — Government & Portal PDF Upload Specifications`,
+      caption: 'Standard A4 print dimensions and PDF file size caps used across Indian portals.',
+      headers: ['Portal / Document Type', 'Max PDF File Size', 'Recommended Page Spec', 'Processing Engine'],
+      rows: [
+        ['SSC / UPSC ID & Certificates', '50 KB – 300 KB', 'A4 (210×297 mm), 150 DPI', 'Client-side PDF-Lib'],
+        ['NTA NEET / JEE Documents', '50 KB – 300 KB', 'Single or Multi-Page PDF', '100% Local RAM'],
+        ['NSDL PAN Supporting Proof', 'Under 300 KB – 1 MB', 'A4 Readable Scan (200 DPI)', 'Zero Server Upload'],
+        ['Passport / EPFO / DigiLocker', '500 KB – 2 MB', 'Standard A4 Portrait', 'Instant Browser Export'],
+      ],
+    };
+  }
+  if (slug.includes('bmr') || slug.includes('tdee') || slug.includes('calorie') || slug.includes('macro') || slug.includes('water')) {
+    return {
+      heading: `${title} — Daily Energy, Activity Multiplier & Hydration Benchmarks`,
+      caption: 'Standard Harris-Benedict / Mifflin-St Jeor activity factors and protein/water daily targets.',
+      headers: ['Activity Level', 'TDEE Multiplier (× BMR)', 'Fat Loss Deficit Target', 'Daily Protein & Hydration'],
+      rows: [
+        ['Sedentary (Desk Job)', '1.20 × BMR', '−300 to −400 kcal / day', '1.2 g/kg protein · 35 ml/kg water'],
+        ['Lightly Active (1–3d/wk)', '1.375 × BMR', '−400 to −500 kcal / day', '1.5 g/kg protein · +400 ml water'],
+        ['Moderately Active (3–5d/wk)', '1.55 × BMR', '−500 kcal / day', '1.8 g/kg protein · +600 ml water'],
+        ['Very Active (6–7d/wk)', '1.725 × BMR', '−500 to −600 kcal / day', '2.0 g/kg protein · +800 ml water'],
       ],
     };
   }
   if (cat === 'health') {
     return {
-      heading: `${title} — Clinical BMI, Calorie & Metabolic Reference Chart`,
-      caption: 'Comparison of WHO International vs ICMR Asian-Indian BMI thresholds and baseline daily energy requirements.',
-      headers: ['Classification', 'WHO Global BMI Range', 'Asian-Indian (ICMR) Range', 'Recommended Daily Action'],
+      heading: `${title} — Clinical WHO vs Asian-Indian Health Thresholds`,
+      caption: 'Comparison of WHO International and ICMR Asian-Indian clinical reference brackets.',
+      headers: ['Classification', 'WHO Global BMI Range', 'Asian-Indian (ICMR) Range', 'Recommended Action'],
       rows: [
         ['Underweight', 'Below 18.5 kg/m²', 'Below 18.5 kg/m²', '+300 to +500 kcal/day nutrient surplus'],
-        ['Normal / Healthy Weight', '18.5 – 24.9 kg/m²', '18.5 – 22.9 kg/m²', 'Maintenance TDEE + 1.6g/kg protein'],
-        ['Overweight / At-Risk', '25.0 – 29.9 kg/m²', '23.0 – 24.9 kg/m²', '−300 to −400 kcal/day + 150 min/wk cardio'],
-        ['Obesity Class I', '30.0+ kg/m²', '25.0 – 29.9 kg/m²', '−500 kcal/day deficit + resistance training'],
+        ['Normal / Healthy Weight', '18.5 – 24.9 kg/m²', '18.5 – 22.9 kg/m²', 'Maintenance TDEE + 150 min/wk movement'],
+        ['Overweight / At-Risk', '25.0 – 29.9 kg/m²', '23.0 – 24.9 kg/m²', '−300 kcal/day + resistance exercise'],
+        ['Obesity Class I+', '30.0+ kg/m²', '25.0+ kg/m²', 'Structured −500 kcal deficit + medical check'],
+      ],
+    };
+  }
+  if (cat === 'developer') {
+    return {
+      heading: `${title} — Developer Encoding, Entropy & Standards Benchmark`,
+      caption: 'Technical specification constants enforced inside ToolPixa browser developer tools.',
+      headers: ['Standard / Metric', 'Key Parameter', 'Bit / Size Capacity', 'Compliance'],
+      rows: [
+        ['UTF-8 / Base64 Encoding', '3 Raw Bytes → 4 ASCII Chars', '~33% Payload Expansion', 'RFC 4648 Standard'],
+        ['UUID v4 / CSPRNG Password', 'crypto.getRandomValues()', '122–128 Bits Entropy', 'RFC 4122 / NIST SP 800-63B'],
+        ['JSON / Color Spaces', 'HEX (#RRGGBB) ↔ RGB / HSL', '24-bit True Color (16.7M)', 'RFC 8259 / W3C CSS Color'],
+        ['QR Error Correction', 'Levels L (7%) to H (30%)', 'Up to 4,296 Alphanumeric Chars', 'ISO/IEC 18004'],
       ],
     };
   }
   return {
     heading: `${title} — Precision Conversion & Benchmark Reference`,
-    caption: 'Standard SI, imperial, and digital reference equivalents used by this calculator.',
-    headers: ['Input Benchmark', 'Metric / SI Equivalent', 'Imperial / US Equivalent', 'Precision Standard'],
+    caption: 'Exact NIST, BIPM, and ISO reference equivalents used by this browser utility.',
+    headers: ['Measurement Domain', 'Metric / SI Reference', 'Imperial / Alternate Equivalent', 'Standard'],
     rows: [
-      ['Length / Distance', '1 Meter = 100 cm = 1,000 mm', '3.28084 Feet = 39.3701 Inches', 'NIST / BIPM Exact Constant'],
-      ['Area / Land', '1 Acre = 4,046.86 sq. meters', '43,560 sq. feet = 4,840 sq. yards', 'Indian Revenue & SI Standard'],
-      ['Mass / Weight', '1 Kilogram = 1,000 Grams', '2.20462 Pounds (lbs) = 35.274 oz', 'IEEE 754 Double Precision'],
-      ['Digital / Encoding', '1 UTF-8 Byte = 8 Bits', '4 Base64 Chars = 3 Raw Bytes', 'RFC 4648 / ISO Standard'],
+      ['Length & Area', '1 m = 100 cm · 1 Acre = 4,046.86 m²', '1 ft = 0.3048 m · 1 Acre = 43,560 sq ft', 'NIST Exact Constant'],
+      ['Mass & Volume', '1 kg = 1,000 g · 1 L = 1,000 mL', '1 lb = 0.453592 kg · 1 US Gal = 3.7854 L', 'BIPM International System'],
+      ['Temperature & Speed', '0 °C = 32 °F = 273.15 K', '100 km/h = 62.137 mph = 27.778 m/s', 'ITS-90 / SI Derived'],
+      ['Time & Number Base', '1 Day = 86,400 Seconds', 'Binary (Base 2) ↔ Hex (Base 16)', 'IEEE 754 Double Precision'],
     ],
   };
 }
@@ -437,7 +552,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       : toolData.title;
 
   let faqs = toolData.faqs || [];
-  if (faqs.length < 7) {
+  if (faqs.length < 3) {
     const defaultFaqs = [
       { question: `What is the ${toolData.title} and what does it calculate?`, answer: `${toolData.description} It uses ${toolData.formulaTitle || 'verified mathematical models'} so you can evaluate scenarios instantaneously in your browser.` },
       { question: `Is the ${toolData.title} completely free to use?`, answer: `Yes, the ${toolData.title} on ToolPixa is 100% free with zero daily usage caps, watermarks, or registration walls.` },
@@ -445,7 +560,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       { question: `Does my data stay private when using ${toolData.title}?`, answer: `Yes. Every calculation and file operation in ${toolData.title} runs locally inside your browser's JavaScript engine. Your inputs and files are never uploaded to an external server.` }
     ];
     const newFaqs = [...faqs];
-    for (let i = 0; newFaqs.length < 8 && i < defaultFaqs.length; i++) {
+    for (let i = 0; newFaqs.length < 4 && i < defaultFaqs.length; i++) {
       if (!newFaqs.find(f => f.question === defaultFaqs[i].question)) {
         newFaqs.push(defaultFaqs[i]);
       }

@@ -35,129 +35,125 @@ const COMPARISONS = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const siteUpdated = new Date('2026-11-17T00:00:00Z');
+  const programmaticUpdated = new Date('2026-11-10T00:00:00Z');
+  const staticUpdated = new Date('2026-10-15T00:00:00Z');
 
   const sitemapEntries: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/calculate`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 0.95,
+      lastModified: siteUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/categories`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/blog`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/privacy`,
-      lastModified: now,
-      changeFrequency: 'yearly',
-      priority: 0.4,
-    },
-    {
-      url: `${BASE_URL}/terms`,
-      lastModified: now,
-      changeFrequency: 'yearly',
-      priority: 0.4,
-    },
-    {
-      url: `${BASE_URL}/disclaimer`,
-      lastModified: now,
-      changeFrequency: 'yearly',
-      priority: 0.4,
+      lastModified: siteUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.85,
     },
     {
       url: `${BASE_URL}/sitemap`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/about`,
+      lastModified: staticUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/contact`,
+      lastModified: staticUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/privacy`,
+      lastModified: staticUpdated,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/terms`,
+      lastModified: staticUpdated,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/disclaimer`,
+      lastModified: staticUpdated,
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ];
 
-  // Add all 8 categories
   CATEGORIES.forEach((cat) => {
     sitemapEntries.push({
       url: `${BASE_URL}/category/${cat}`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: 'weekly',
       priority: 0.85,
     });
   });
 
-  // Add all 115+ tools
   Object.keys(toolsRegistry).forEach((slug) => {
     sitemapEntries.push({
       url: `${BASE_URL}/tools/${slug}`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: 'weekly',
-      priority: 0.85,
+      priority: 0.8,
     });
   });
 
-  // Add all 105 programmatic exact-calculation & exam pages
   programmaticSlugs.forEach((slug) => {
     sitemapEntries.push({
       url: `${BASE_URL}/calculate/${slug}`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    });
-  });
-
-  // Add all blog articles
-  blogPosts.forEach((blog) => {
-    const parsedDate = blog.date ? new Date(blog.date) : now;
-    sitemapEntries.push({
-      url: `${BASE_URL}/blog/${blog.slug}`,
-      lastModified: isNaN(parsedDate.getTime()) ? now : parsedDate,
+      lastModified: programmaticUpdated,
       changeFrequency: 'monthly',
-      priority: 0.75,
-    });
-  });
-
-  // Add all tag hubs
-  Object.keys(tags).forEach((tag) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}/tag/${tag}`,
-      lastModified: now,
-      changeFrequency: 'weekly',
       priority: 0.7,
     });
   });
 
-  // Add comparison pages
+  blogPosts.forEach((blog) => {
+    const parsedDate = blog.date ? new Date(blog.date) : staticUpdated;
+    sitemapEntries.push({
+      url: `${BASE_URL}/blog/${blog.slug}`,
+      lastModified: isNaN(parsedDate.getTime()) ? staticUpdated : parsedDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    });
+  });
+
+  Object.keys(tags).forEach((tag) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/tag/${tag}`,
+      lastModified: siteUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.65,
+    });
+  });
+
   COMPARISONS.forEach((comp) => {
     sitemapEntries.push({
       url: `${BASE_URL}/compare/${comp}`,
-      lastModified: now,
+      lastModified: programmaticUpdated,
       changeFrequency: 'monthly',
-      priority: 0.75,
+      priority: 0.7,
     });
   });
 

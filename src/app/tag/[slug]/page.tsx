@@ -1,15 +1,39 @@
 import React from 'react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import ToolCard from '@/components/ToolCard';
 import { toolsRegistry } from '@/data/toolsRegistry';
 import tags from '../../../../tags.json';
 
 const BASE_URL = 'https://www.toolpixa.space';
 
+export async function generateStaticParams() {
+  return Object.keys(tags).map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const normalizedSlug = slug.toLowerCase();
+  const tagsMap = tags as Record<string, string[]>;
   const tagName = slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-  const canonicalUrl = `${BASE_URL}/tag/${slug.toLowerCase()}`;
+  const canonicalUrl = `${BASE_URL}/tag/${normalizedSlug}`;
+
+  const keyword = normalizedSlug.replace(/-/g, ' ');
+  const hasMatches =
+    Boolean(tagsMap[normalizedSlug]?.length) ||
+    Object.values(toolsRegistry).some(
+      (t) =>
+        t.title.toLowerCase().includes(keyword) ||
+        t.description.toLowerCase().includes(keyword) ||
+        t.category.toLowerCase().includes(keyword)
+    );
+
+  if (!hasMatches) {
+    return {
+      title: 'Topic Not Found',
+      robots: { index: false, follow: false },
+    };
+  }
 
   return {
     title: `${tagName} Calculators & Tools — Free Online Suite`,
@@ -34,7 +58,6 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
   const tagsMap = tags as Record<string, string[]>;
   const tagToolSlugs = tagsMap[normalizedSlug] || [];
 
-  // Get tools from tags.json, or fallback to keyword matching across toolsRegistry
   let matchedTools = tagToolSlugs
     .map((id) => toolsRegistry[id])
     .filter(Boolean);
@@ -50,7 +73,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
   }
 
   if (matchedTools.length === 0) {
-    matchedTools = Object.values(toolsRegistry).slice(0, 8);
+    notFound();
   }
 
   return (

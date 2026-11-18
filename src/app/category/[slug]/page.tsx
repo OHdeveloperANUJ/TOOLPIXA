@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import CategoryToolsGrid from '@/components/CategoryToolsGrid';
 import { toolsRegistry } from '@/data/toolsRegistry';
 
@@ -32,9 +33,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
+  const normalizedCat = slug.toLowerCase();
+  if (!ALL_CATEGORIES.includes(normalizedCat)) {
+    notFound();
+  }
+
   const categoryTools = Object.values(toolsRegistry).filter(
-    t => t.category.toLowerCase() === slug.toLowerCase()
+    t => t.category.toLowerCase() === normalizedCat
   );
   
   const categoryName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -69,6 +74,26 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <Suspense fallback={<div className="min-h-[500px] flex items-center justify-center"><div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full text-primary"></div></div>}>
           <CategoryToolsGrid initialTools={categoryTools} category={slug} />
         </Suspense>
+
+        <section className="max-w-7xl mx-auto px-margin mb-xl">
+          <div className="glass-card p-lg rounded-xl border border-glass-border flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h2 className="font-headline-md text-lg font-bold text-text-primary">Explore Curated Hubs &amp; Exact Schedules</h2>
+              <p className="text-xs text-text-secondary">Jump directly to topic suites or pre-calculated Indian reference tables.</p>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs font-label-md">
+              <Link href={`/tag/${normalizedCat}`} className="px-3 py-1.5 rounded-lg bg-surface-container border border-glass-border hover:border-primary text-primary transition-colors">
+                #{categoryName} Hub
+              </Link>
+              <Link href="/calculate" className="px-3 py-1.5 rounded-lg bg-surface-container border border-glass-border hover:border-primary text-text-primary transition-colors">
+                105+ Exact Tables
+              </Link>
+              <Link href="/categories" className="px-3 py-1.5 rounded-lg bg-surface-container border border-glass-border hover:border-primary text-text-secondary hover:text-primary transition-colors">
+                All Categories
+              </Link>
+            </div>
+          </div>
+        </section>
 
         <section className="max-w-7xl mx-auto px-margin mb-xxxl">
           <div className="glass-card p-xxl rounded-xl relative overflow-hidden flex flex-col md:flex-row items-center gap-xl justify-between">

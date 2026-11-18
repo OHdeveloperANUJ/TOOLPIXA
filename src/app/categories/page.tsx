@@ -3,6 +3,7 @@ import Link from 'next/link';
 import TiltCard from '@/components/TiltCard';
 import CategoriesSearchSection from '@/components/CategoriesSearchSection';
 import { toolsRegistry } from '@/data/toolsRegistry';
+import tags from '../../../tags.json';
 
 export const metadata = {
   title: 'All Tool Categories',
@@ -59,6 +60,31 @@ export default function CategoriesPage() {
               </TiltCard>
             );
           })}
+        </div>
+      </section>
+      <section className="px-margin max-w-7xl mx-auto mb-xxl">
+        <div className="glass-card rounded-2xl p-lg md:p-xl border border-glass-border">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-md">
+            <div>
+              <h2 className="font-headline-md text-xl md:text-2xl font-bold text-text-primary">Curated Topic Hubs &amp; Lookup Directories</h2>
+              <p className="text-sm text-text-secondary">Jump directly to topic collections or pre-computed reference schedules.</p>
+            </div>
+            <Link href="/calculate" className="text-sm font-label-md text-primary hover:underline shrink-0">
+              105+ Exact Calculation Tables →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {Object.keys(tags).map((tagSlug) => (
+              <Link
+                key={tagSlug}
+                href={`/tag/${tagSlug}`}
+                className="p-3.5 rounded-xl bg-surface-container border border-glass-border hover:border-primary text-sm font-medium text-text-primary hover:text-primary transition-colors capitalize flex items-center justify-between"
+              >
+                <span>{tagSlug.replace(/-/g, ' ')} Hub</span>
+                <span className="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </main>
